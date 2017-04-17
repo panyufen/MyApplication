@@ -1,0 +1,18 @@
+<resources>
+
+    <style name="AppTheme" parent="BaseAppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.StatusTranslattion">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="OptionsActivity" parent="AppTheme">
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+</resources>

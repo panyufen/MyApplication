@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_open_cvcar_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pan.mydemo.activity.opencv.OpenCVCarPlateActivity">
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/feature_camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <TextView
+        android:id="@+id/feature_seek_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:textColor="@color/normal_text_color"
+        android:layout_alignParentBottom="true"
+        />
+
+    <SeekBar
+        android:id="@+id/feature_seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:max="255"
+        android:progress="1"
+        />
+</RelativeLayout>

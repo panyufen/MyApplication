@@ -1,0 +1,8 @@
+//
+// Created by p7742 on 2016/11/30.
+//
+
+#ifndef MYAPPLICATION_NATIVE_LIB_H
+#define MYAPPLICATION_NATIVE_LIB_H
+
+#endif //MYAPPLICATION_NATIVE_LIB_H

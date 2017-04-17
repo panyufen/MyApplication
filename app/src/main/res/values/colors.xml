@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 共通颜色 -->
+    <!-- 白色 -->
+    <color name="common_white">#FFFFFF</color>
+    <!-- 黑色 -->
+    <color name="common_black">#000000</color>
+
+    <color name="common_dialog_bg">#ff424242</color>
+
+    <color name="common_transparent">#B215171f</color>
+
+    <!-- 普通文字颜色 -->
+    <color name="normal_text_color">#404040</color>
+    <!-- 辅助文字颜色(hint) -->
+    <color name="assist_text_color">#949494</color>
+
+
+    <color name="loading_yellow">#F6B965</color>
+    <color name="loading_pink">#F04D61</color>
+
+    <color name="window_background">#f0f8ff</color>
+
+    <color name="btn_white_released">#FFFFFF</color>
+    <color name="btn_white_pressed">#d1e4f0</color>
+
+    <color name="btn_blue_released">#FF1e8cd4</color>
+    <color name="btn_blue_pressed">#1a77b4</color>
+
+
+    <color name="default_red_fire_brick">#B22222</color>
+    <color name="default_yellow_orange_dark">#FF8C00</color>
+    <color name="default_green_dark">#006400</color>
+    <color name="default_blue_royal">#4682B4</color>
+    <color name="default_purple">#5C005C</color>
+
+    <color name="globle_item_select_color">#e4eef8</color>
+    <color name="noneColor">#00000000</color>
+
+
+    <color name="contract_index_background">#7f424242</color>
+
+</resources>

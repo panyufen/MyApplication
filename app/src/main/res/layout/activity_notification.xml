@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:id="@+id/activity_notification"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startSimpleNotify"
+        android:text="SimpleNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startProgressNotify"
+        android:text="ProgressNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startBigTextNotify"
+        android:text="BigTextNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startInBoxNotify"
+        android:text="InBoxNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startBigPictureNotify"
+        android:text="BigPictureNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startMediaStyleNotify"
+        android:text="MediaStyleNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startCustomNotify"
+        android:text="CustomNotify"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+</LinearLayout>

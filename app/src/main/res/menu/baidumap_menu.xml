@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:menu="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/id_menu_map_common"
+        menu:showAsAction="never"
+        android:title="普通地图"/>
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/id_menu_map_site"
+        menu:showAsAction="never"
+        android:title="卫星地图"/>
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/id_menu_map_traffic"
+        menu:showAsAction="never"
+        android:title="开启实时交通"/>
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/id_menu_map_myLoc"
+        menu:showAsAction="never"
+        android:title="我的位置"/>
+    <item
+        android:icon="@mipmap/ic_launcher"
+        android:id="@+id/id_menu_map_style"
+        menu:showAsAction="never"
+        android:title="地图模式【正常】"/>
+
+</menu>

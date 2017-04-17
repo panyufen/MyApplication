@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_open_gl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.pan.mydemo.activity.OpenGLActivity"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startOpenGLSample"
+        android:text="OpenGLSample"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startOpenGL20Sample"
+        android:text="OpenGL2.0 Sample"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+</LinearLayout>

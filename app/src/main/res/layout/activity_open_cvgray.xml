@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_open_cvgray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.pan.mydemo.activity.opencv.OpenCVGrayActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="choose picture!"/>
+
+    <Button
+        android:id="@+id/GiveFaceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/GetFaceButton"
+        android:layout_alignStart="@+id/GetFaceButton"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="71dp"
+        android:text="原图"/>
+
+    <ImageView
+        android:id="@+id/IV01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxHeight="400dp"
+        android:maxWidth="200dp"
+        android:scaleType="fitStart"/>
+
+    <Button
+        android:id="@+id/GetFaceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="灰度图"/>
+
+    <ImageView
+        android:id="@+id/IV02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/IV01"
+        android:adjustViewBounds="true"
+        android:maxHeight="400dp"
+        android:maxWidth="200dp"
+        android:scaleType="fitStart"/>
+
+</RelativeLayout>

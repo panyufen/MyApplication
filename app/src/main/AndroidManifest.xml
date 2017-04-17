@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.example.pan.mydemo"
+          tools:overrideLibrary="com.facebook.react">
+
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!-- 无障碍服务 -->
+    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
+    <!-- 相机 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- 手机信息 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!-- Jpush -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false"/>
+
+    <!-- Tell the system this app requires OpenGL ES 2.0. -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true"/>
+
+    <application
+        android:name=".application.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="pVw6DkYLBRoEACBpH2CP9BDApiSYpCF8"/>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SecondActivity"
+            android:label="@string/app_name">
+        </activity>
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":MyAIDLService">
+            <intent-filter>
+                <action android:name="com.example.pan.mydemo.aidl"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.MyClientService"
+            android:enabled="true"
+            android:exported="false">
+        </service>
+
+        <activity
+            android:name=".activity.ZoomActivity"
+            android:theme="@style/AppTheme.StatusTranslattion">
+        </activity>
+        <activity
+            android:name=".activity.AnimActivity"
+            android:label="@string/title_activity_anim">
+        </activity>
+        <activity
+            android:name=".activity.ServiceActivity"
+            android:label="@string/title_activity_service">
+        </activity>
+        <activity
+            android:name=".activity.InflaterFactoryActivity"
+            android:label="@string/title_activity_inflater_factory">
+        </activity>
+        <activity
+            android:name=".activity.VolleyActivity"
+            android:label="@string/title_activity_volley">
+        </activity>
+        <activity
+            android:name=".activity.OkHttpActivity"
+            android:label="@string/title_activity_ok_http">
+        </activity>
+        <activity
+            android:name=".activity.WebActivity"
+            android:label="@string/title_activity_web">
+        </activity>
+        <activity android:name=".activity.RxJavaActivity">
+        </activity>
+        <activity android:name=".activity.PicassoActivity">
+        </activity>
+        <activity android:name=".activity.materialdesign.RecyclerViewActivity">
+        </activity>
+        <activity android:name=".activity.CordovaActivity">
+        </activity>
+        <activity android:name=".activity.ReactNativeActivity">
+        </activity>
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity">
+        </activity>
+        <activity
+            android:name=".activity.materialdesign.SwipCloseActivity"
+            android:theme="@style/transparent">
+        </activity>
+        <activity android:name=".activity.BaiduMapDemoActivity">
+        </activity>
+        <activity android:name=".activity.SkinLoaderActivity">
+        </activity>
+        <activity
+            android:name=".activity.materialdesign.ConstraintLayout"
+            android:label="@string/title_activity_constraint_layout">
+        </activity>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+        </service>
+        <service
+            android:name=".service.MyAccessibilityService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/accessibility_service"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service"/>
+        </service>
+        <service
+            android:name=".service.AutoReplyService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="@string/auto_reply_service"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/auto_reply_service"/>
+        </service>
+
+        <activity android:name=".activity.AccessibilityServiceActivity">
+        </activity>
+        <activity android:name=".activity.BlurringActivity">
+        </activity>
+        <activity android:name=".activity.anim.ViewPagerActivity">
+        </activity>
+        <activity android:name=".activity.opencv.OpenCVGrayActivity">
+        </activity>
+        <activity android:name=".activity.opencv.OpenCVActivity">
+        </activity>
+        <activity
+            android:name=".activity.opencv.OpenCVFeatureActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar.FullScreen">
+        </activity>
+        <activity
+            android:name=".activity.opencv.OpencvFaceDetectionActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar.FullScreen">
+        </activity>
+        <activity
+            android:name=".activity.opencv.OpenCVCarPlateActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar.FullScreen">
+        </activity>
+        <activity
+            android:name=".activity.opencv.OpenCVCarDetectionActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar.FullScreen">
+        </activity>
+        <activity
+            android:name=".activity.opencv.OpenCVMakeDelaunayForFaceActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar.FullScreen">
+        </activity>
+        <activity android:name=".activity.FrescoActivity">
+        </activity>
+        <activity
+            android:name=".activity.opencv.OpenCVCarPlateDetectionByCActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/NoActionBar.FullScreen">
+        </activity>
+        <activity
+            android:name=".activity.WebJsBridgeActivity"
+            android:exported="false"
+            android:process=":newtask"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activity.FileReaderActivity">
+        </activity>
+        <activity android:name=".activity.anim.PathAnimActivity">
+        </activity>
+        <activity android:name=".activity.anim.LayoutAnimActivity">
+        </activity>
+        <activity android:name=".activity.anim.PropertyAnimActivity">
+        </activity>
+        <activity android:name=".activity.anim.SvgPathAnimActivity">
+        </activity>
+        <activity
+            android:name=".activity.anim.XMLPropertyAnimActivity"
+            android:label="XMLPropertyAnim">
+        </activity>
+        <activity android:name=".activity.NotificationActivity">
+        </activity>
+
+        <receiver
+            android:name=".broadcast.NotificationBroascastReveiver"
+            android:enabled="true"
+            >
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION"/>
+                <action android:name="cn.jpush.android.intent.CONNECTION"/>
+                <category android:name="com.example.pan.mydemo"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activity.OpenGLActivity">
+        </activity>
+        <activity android:name=".activity.OpenGLSampleActivity">
+        </activity>
+        <activity android:name=".activity.OpenGL20SampleActivity">
+        </activity>
+        <activity
+            android:name=".activity.RecentTaskActivity"
+            android:launchMode="standard">
+        </activity>
+        <activity android:name=".activity.materialdesign.MaterialDesignActivity">
+        </activity>
+        <activity
+            android:name=".activity.materialdesign.NavigationViewActivity"
+            android:theme="@style/AppTheme.StatusTranslattion">
+        </activity>
+        <activity
+            android:name=".activity.materialdesign.CollapsingToolbarLayoutActivity"
+            android:label="CollapsingToolBarLayoutActivityTitleSample">
+        </activity>
+        <activity android:name=".activity.materialdesign.SceneTransitionActivity">
+        </activity>
+        <activity android:name=".activity.materialdesign.SceneTransitionDetailActivity">
+        </activity>
+        <activity android:name=".activity.materialdesign.RightSwipMenuActivity">
+        </activity>
+        <activity android:name=".activity.anim.OtherAnimActivity">
+        </activity>
+    </application>
+
+</manifest>

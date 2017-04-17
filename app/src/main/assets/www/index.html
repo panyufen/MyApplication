@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="./cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <title>Hello World</title>
+</head>
+<body>
+<div>
+    <input type="button" style="height:40px" value="getNativeData" onclick="javascript:getNaitveData()"/>
+    <span id="success">这里是从Naitve获取到的信息</span><br/>
+
+    <br/>
+    <span id="cordova">这里是主动从Native发送的信息</span><br/>
+
+    <img id="myImage" src="./img/logo.png" style="width:300px;height:200px"/><br/>
+    <input type="button" style="height:40px" value="takePicture" onclick="javascript:getPicture()"/>
+    <input type="button" style="margin-left:10px;height:40px" value="selectPicture"
+           onclick="javascript:selectPicture()"/><br/>
+    <br/>
+    <span id="deviceInfo"></span><br/>
+    <input type="button" style="height:40px" value="获取设备信息" onclick="javascript:getDeviceInfo()"/>
+    <script>
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+
+    }
+
+//    cordova.require('cordova/channel').onCordovaReady.subscribe(function() {
+//        cordova.exec(success, error, "MyCordova", "show", []);
+//        function success( message ) {
+//            var span = document.getElementById("success");
+//            span.innerHTML = message;
+//        }
+//        function error( message ){
+//            alert("callback js error "+message);
+//        }
+//    });
+    function getNaitveData(){
+        cordova.exec(success, error, "MyCordova", "show", []);
+
+    }
+
+    function success( message ) {
+        var span = document.getElementById("success");
+        span.innerHTML = message;
+    }
+    function error( message ){
+        alert("callback js error "+message);
+    }
+
+    function nativeCallJs( msg ){
+        var span = document.getElementById("cordova");
+        span.innerHTML = msg;
+    }
+
+    function getPicture(){
+        navigator.camera.getPicture(
+            cameraOnsuccessCallback,
+            cameraOnError,
+            {
+                destinationType: Camera.DestinationType.FILE_URI,
+                quality:50,
+                allowEdit:true
+            }
+        );
+    }
+
+    function selectPicture(){
+        navigator.camera.getPicture(
+            cameraOnsuccessCallback,
+            cameraOnError,
+            {
+                destinationType:Camera.DestinationType.FILE_URI,
+                sourceType:Camera.PictureSourceType.PHOTOLIBRARY,
+                allowEdit:true
+            }
+        );
+    }
+    function cameraOnsuccessCallback(imageUri) {
+        console.log("imageurl "+imageUri);
+        var image = document.getElementById('myImage');
+        image.src =  imageUri;
+
+    }
+
+    function cameraOnError(msg){
+        console.log("cameraError "+msg);
+    }
+
+    function getDeviceInfo(){
+        var str =  "cordova:      "+device.cordova+"<br/>";
+            str += "model:        "+device.model+"<br/>";
+            str += "platform:     "+device.platform+"<br/>";
+            str += "uuid:         "+device.uuid+"<br/>";
+            str += "version:      "+device.version+"<br/>";
+            str += "manufacturer: "+device.manufacturer+"<br/>";
+            str += "isVirtual:    "+device.isVirtual+"<br/>";
+            str += "serial:       "+device.serial+"<br/>";
+
+        var text = document.getElementById('deviceInfo');
+        text.innerHTML = str;
+    }
+
+
+    </script>
+</div>
+</body>
+</html>

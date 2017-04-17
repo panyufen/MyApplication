@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_right_swip_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="RightSwipMenuActivity"
+        />
+
+    <com.example.pan.mydemo.view.RightSwipMenuLayout
+        android:id="@+id/right_swip_menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+
+        <LinearLayout
+            android:id="@+id/content_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@color/assist_text_color"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="20dp"-->
+            <!--android:text="内容区域\n\n 仿锤子通讯录联系人索引菜单\n 菜单收回时可以上下滑动选择联系人，菜单左滑弹出菜单，可以点击字母索引选择联系人"-->
+            <!--android:visibility="gone"-->
+            <!--/>-->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:scrollbars="none"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="-120dp"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:id="@+id/menu_tip"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="@color/contract_index_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+
+                <com.example.pan.mydemo.view.SideBar
+                    android:id="@+id/side_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menu_content"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:background="@color/common_white"
+                android:orientation="vertical"
+                >
+
+                <com.example.pan.mydemo.view.AutoLinearLayout
+                    android:id="@+id/auto_line_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.example.pan.mydemo.view.RightSwipMenuLayout>
+</LinearLayout>
