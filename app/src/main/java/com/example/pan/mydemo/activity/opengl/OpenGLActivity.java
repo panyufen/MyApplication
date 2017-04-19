@@ -1,4 +1,4 @@
-package com.example.pan.mydemo.activity;
+package com.example.pan.mydemo.activity.opengl;
 
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +19,15 @@ public class OpenGLActivity extends BaseActivity {
         startActivity(OpenGLSampleActivity.class);
     }
 
-    public void startOpenGL20Sample(View v){
+    public void startOpenGL20Sample(View v) {
         startActivity(OpenGL20SampleActivity.class);
+    }
+
+    public void startProjection(View v) {
+        startActivity(OpenGLProjectionActivity.class);
+    }
+
+    public void startOpenGLLight(View v) {
+        startActivity(OpenGLLightActivity.class);
     }
 }

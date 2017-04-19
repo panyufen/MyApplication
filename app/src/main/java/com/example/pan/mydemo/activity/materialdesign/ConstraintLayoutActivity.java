@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
 
-public class ConstraintLayout extends BaseActivity {
+public class ConstraintLayoutActivity extends BaseActivity {
 
     private Toolbar toolbar;
 
@@ -16,6 +16,6 @@ public class ConstraintLayout extends BaseActivity {
         setContentView(R.layout.activity_constraint_layout);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("ConstraintLayout Activity");
+        toolbar.setTitle("ConstraintLayoutActivity Activity");
     }
 }

@@ -53,7 +53,7 @@ public class MaterialDesignActivity extends BaseActivity {
     }
 
     public void startConstraintLayout(View v) {
-        startActivity(ConstraintLayout.class);
+        startActivity(ConstraintLayoutActivity.class);
     }
 
     public void startSceneTransition(View v) {

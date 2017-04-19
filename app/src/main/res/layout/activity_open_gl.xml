@@ -2,13 +2,11 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:skin="http://schemas.android.com/android/skin"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_open_gl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.example.pan.mydemo.activity.OpenGLActivity"
     >
 
     <android.support.v7.widget.Toolbar
@@ -48,6 +46,8 @@
         android:layout_height="50dp"
         android:layout_margin="2dp"
         android:background="@drawable/item_selector"
+        android:onClick="startProjection"
+        android:text="OpenGL Orthof And Frustumf"
         android:textAllCaps="false"
         android:textColor="@color/normal_text_color"
         skin:enable="true"
@@ -58,6 +58,8 @@
         android:layout_height="50dp"
         android:layout_margin="2dp"
         android:background="@drawable/item_selector"
+        android:onClick="startOpenGLLight"
+        android:text="OpenGL Linght"
         android:textAllCaps="false"
         android:textColor="@color/normal_text_color"
         skin:enable="true"

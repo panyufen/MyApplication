@@ -139,7 +139,7 @@
         <activity android:name=".activity.SkinLoaderActivity">
         </activity>
         <activity
-            android:name=".activity.materialdesign.ConstraintLayout"
+            android:name=".activity.materialdesign.ConstraintLayoutActivity"
             android:label="@string/title_activity_constraint_layout">
         </activity>
 
@@ -245,8 +245,7 @@
 
         <receiver
             android:name=".broadcast.NotificationBroascastReveiver"
-            android:enabled="true"
-            >
+            android:enabled="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION"/>
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
@@ -254,15 +253,16 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_CLICK_ACTION"/>
                 <action android:name="cn.jpush.android.intent.CONNECTION"/>
+
                 <category android:name="com.example.pan.mydemo"/>
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.OpenGLActivity">
+        <activity android:name=".activity.opengl.OpenGLActivity">
         </activity>
-        <activity android:name=".activity.OpenGLSampleActivity">
+        <activity android:name=".activity.opengl.OpenGLSampleActivity">
         </activity>
-        <activity android:name=".activity.OpenGL20SampleActivity">
+        <activity android:name=".activity.opengl.OpenGL20SampleActivity">
         </activity>
         <activity
             android:name=".activity.RecentTaskActivity"
@@ -285,6 +285,10 @@
         <activity android:name=".activity.materialdesign.RightSwipMenuActivity">
         </activity>
         <activity android:name=".activity.anim.OtherAnimActivity">
+        </activity>
+        <activity android:name=".activity.opengl.OpenGLProjectionActivity">
+        </activity>
+        <activity android:name=".activity.opengl.OpenGLLightActivity">
         </activity>
     </application>
 

@@ -13,6 +13,7 @@ import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
 import com.example.pan.mydemo.activity.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.activity.opencv.OpenCVActivity;
+import com.example.pan.mydemo.activity.opengl.OpenGLActivity;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;

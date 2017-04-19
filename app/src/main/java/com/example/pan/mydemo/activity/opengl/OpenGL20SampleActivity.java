@@ -1,4 +1,4 @@
-package com.example.pan.mydemo.activity;
+package com.example.pan.mydemo.activity.opengl;
 
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
