@@ -290,6 +290,8 @@
         </activity>
         <activity android:name=".activity.opengl.OpenGLLightActivity">
         </activity>
+        <activity android:name=".activity.CheckDevActivity">
+        </activity>
     </application>
 
 </manifest>

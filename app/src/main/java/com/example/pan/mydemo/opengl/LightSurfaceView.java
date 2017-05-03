@@ -21,6 +21,7 @@ public class LightSurfaceView extends GLSurfaceView {
 
     private final float TOUCH_SCALE_FACTOR = 0.3f;
     private float previousX = 0, previousY = 0;
+    private float lightAngle = 0;
 
     public LightSurfaceView(Context context) {
         this(context, null);
@@ -55,7 +56,27 @@ public class LightSurfaceView extends GLSurfaceView {
 
         Ball ball = new Ball(4);
 
-        public SceneRenderer() {}
+        public SceneRenderer() {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    while (true) {
+                        lightAngle += 5;
+                        requestRender();
+                        try {
+                            Thread.sleep(100);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }).start();
+        }
 
         @Override
         public void onSurfaceCreated(GL10 gl, EGLConfig config) {
@@ -77,12 +98,14 @@ public class LightSurfaceView extends GLSurfaceView {
 
         @Override
         public void onDrawFrame(GL10 gl) {
-            LogUtils.i("onDrawFrame " + openLightFlag);
             if (openLightFlag) {
                 gl.glEnable(GL10.GL_LIGHTING);//开启光照效果
                 //初始化灯光
                 initLight(gl);
-                float[] positionParamsGreen = {2, 1, 0, 1};
+                float lightAngleXGreen = (float) (7 * Math.cos(Math.toRadians(lightAngle)));
+                float lightAngleZGreen = (float) (7 * Math.sin(Math.toRadians(lightAngle)));
+                LogUtils.i("onDrawFrame " + lightAngleXGreen + " " + lightAngleZGreen);
+                float[] positionParamsGreen = {lightAngleXGreen, 0, lightAngleZGreen, 1};
                 gl.glLightfv(GL10.GL_LIGHT0, GL10.GL_POSITION, positionParamsGreen, 0);
             } else {
                 gl.glDisable(GL10.GL_LIGHTING);//关闭光照

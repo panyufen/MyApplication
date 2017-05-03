@@ -29,15 +29,15 @@ public class MainActivity extends BaseActivity {
 
 
         PermissionGen.needPermission(this, 100,
-            new String[]{
-                Manifest.permission.READ_CONTACTS,
-                Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.CAMERA,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-            }
+                new String[]{
+                        Manifest.permission.READ_CONTACTS,
+                        Manifest.permission.READ_PHONE_STATE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                }
         );
 
     }
@@ -107,6 +107,10 @@ public class MainActivity extends BaseActivity {
 
     public void startReactNative(View v) {
         startActivity(ReactNativeActivity.class);
+    }
+
+    public void startCheckDev(View v) {
+        startActivity(CheckDevActivity.class);
     }
 
     public void startBaiduMapDemo(View v) {
