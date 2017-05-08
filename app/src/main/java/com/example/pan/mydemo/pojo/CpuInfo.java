@@ -11,26 +11,26 @@ public class CpuInfo {
 
     public String getMinFreqStr() {
         if (minFreq > 0) {
-            return dealUnit(minFreq);
+            return dealUnit(minFreq) + "MHZ";
         }
         return "N/A";
     }
 
     public String getMaxFreqStr() {
         if (maxFreq > 0) {
-            return dealUnit(maxFreq);
+            return dealUnit(maxFreq) + "MHZ";
         }
         return "N/A";
     }
 
     public String getCurFreqStr() {
         if (curFreq > 0) {
-            return dealUnit(curFreq);
+            return dealUnit(curFreq) + "MHZ";
         }
         return "offline";
     }
 
-    private String dealUnit(long v) {
-        return v / 1000 + "MHZ";
+    public long dealUnit(long v) {
+        return v / 1000;
     }
 }

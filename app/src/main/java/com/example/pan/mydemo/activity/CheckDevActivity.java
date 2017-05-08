@@ -48,10 +48,9 @@ public class CheckDevActivity extends BaseActivity {
                     str += "CPU:" + cpuInfoList.size() + "个 使用率：" + getProcessCpuRate() + "% \n";
                     for (int i = 0; i < cpuInfoList.size(); i++) {
                         CpuInfo tempInfo = cpuInfoList.get(i);
-                        str += "CPU" + i + ":" +
-                                " Min:" + tempInfo.getMinFreqStr() +
-                                " Max:" + tempInfo.getMaxFreqStr() +
-                                " Cur:" + tempInfo.getCurFreqStr() + " \n";
+                        str += "CPU" + i + ":\n" +
+                                "    Min~Max:" + tempInfo.dealUnit(tempInfo.minFreq) + "~" + tempInfo.getMaxFreqStr() +
+                                "   Cur:" + tempInfo.getCurFreqStr() + " \n";
                     }
                     final String result = str;
                     CheckDevActivity.this.runOnUiThread(new Runnable() {
