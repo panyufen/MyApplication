@@ -30,4 +30,8 @@ public class OpenGLActivity extends BaseActivity {
     public void startOpenGLLight(View v) {
         startActivity(OpenGLLightActivity.class);
     }
+
+    public void startOpenGLTexture(View view){
+        startActivity(OpenGLTextureActivity.class);
+    }
 }

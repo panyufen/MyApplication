@@ -66,7 +66,7 @@ public class LightSurfaceView extends GLSurfaceView {
                         e.printStackTrace();
                     }
                     while (true) {
-                        lightAngle += 5;
+                        lightAngle += 2;
                         requestRender();
                         try {
                             Thread.sleep(100);

@@ -292,6 +292,8 @@
         </activity>
         <activity android:name=".activity.CheckDevActivity">
         </activity>
+        <activity android:name=".activity.opengl.OpenGLTextureActivity">
+        </activity>
     </application>
 
 </manifest>

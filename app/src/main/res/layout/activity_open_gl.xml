@@ -64,4 +64,16 @@
         android:textColor="@color/normal_text_color"
         skin:enable="true"
         />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startOpenGLTexture"
+        android:text="OpenGL Texture"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
 </LinearLayout>

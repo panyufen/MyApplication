@@ -20,7 +20,7 @@ public class SkinLoaderActivity extends BaseActivity {
     private static final String SKIN_NAME = "BlackFantacy.skin";
     private static String SKIN_DIR;
 
-    private Toolbar toolbar;
+    private Toolbar mToolBar;
 
     private Button defaultThemeBtn;
 
@@ -33,9 +33,7 @@ public class SkinLoaderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_skin_loader);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-
-        dynamicAddSkinEnableView(toolbar,"background",R.color.colorPrimary);
+        mToolBar = setSupportActionBar(R.id.tool_bar);
 
         defaultThemeBtn = (Button) findViewById(R.id.set_default_skin);
         darkThemeBtn = (Button) findViewById(R.id.set_night_skin);
@@ -45,7 +43,7 @@ public class SkinLoaderActivity extends BaseActivity {
 
 
     private void init() {
-        toolbar.setTitle("切换主题");
+        mToolBar.setTitle("切换主题");
 
         isOfficalSelected = !SkinManager.getInstance().isExternalSkin();
 
@@ -70,7 +68,6 @@ public class SkinLoaderActivity extends BaseActivity {
 
     public void setDarkTheme(View v) {
         if (!isOfficalSelected) return;
-
         String skinFullName = SKIN_DIR + File.separator + SKIN_NAME;
         FileUtils.moveAssetsToDir(this, SKIN_NAME, skinFullName);
         File skin = new File(skinFullName);
@@ -94,6 +91,7 @@ public class SkinLoaderActivity extends BaseActivity {
                     defaultThemeBtn.setText("官方默认");
                     darkThemeBtn.setText("黑色幻想(当前)");
                     isOfficalSelected = false;
+
                 }
 
                 @Override
