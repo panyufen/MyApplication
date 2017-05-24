@@ -20,7 +20,7 @@ public class MaterialDesignActivity extends BaseActivity {
         setContentView(R.layout.activity_material_design);
         mToolbar = setSupportActionBar(R.id.tool_bar);
         mActionBar = getSupportActionBar();
-        if(mActionBar != null){
+        if (mActionBar != null) {
             mActionBar.setDisplayHomeAsUpEnabled(true);
             mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -60,4 +60,9 @@ public class MaterialDesignActivity extends BaseActivity {
         startActivity(SceneTransitionActivity.class);
         overridePendingTransition(R.anim.in_from_right, R.anim.out_fade_and_small);
     }
+
+    public void startSearchView(View v) {
+        startActivity(SearchViewActivity.class);
+    }
+
 }

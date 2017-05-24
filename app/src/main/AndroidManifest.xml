@@ -294,6 +294,10 @@
         </activity>
         <activity android:name=".activity.opengl.OpenGLTextureActivity">
         </activity>
+        <activity android:name=".activity.materialdesign.SearchViewActivity"
+            android:label="SearchView"
+            >
+        </activity>
     </application>
 
 </manifest>
