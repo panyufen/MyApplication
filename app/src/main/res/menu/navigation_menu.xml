@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">
+    >
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navigation_item_home"
             android:icon="@drawable/ic_menu_camera"
-            android:title="首页" />
+            android:title="首页"
+            android:checked="true"
+            />
         <item
             android:id="@+id/navigation_item_blog"
             android:icon="@drawable/ic_menu_gallery"

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pan.mydemo.R;
@@ -14,6 +16,8 @@ public class NavigationViewActivity extends BaseActivity implements NavigationVi
     private DrawerLayout mDrawerLayout;
 
     private NavigationView mNavigationView;
+
+    private TextView swipValueTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,34 @@ public class NavigationViewActivity extends BaseActivity implements NavigationVi
     private void init() {
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+        //目前用XML属性设置 也可以用代码设置
+//        ColorStateList csl = getResources().getColorStateList(R.color.menu_item_selector);
+//        mNavigationView.setItemTextColor(csl);
 
-        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        swipValueTv = (TextView) findViewById(R.id.swip_value_tv);
+
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                swipValueTv.setText(String.valueOf(slideOffset));
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                Toast.makeText(NavigationViewActivity.this, "Opened", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                Toast.makeText(NavigationViewActivity.this, "Closed", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
     }
 
     /**
