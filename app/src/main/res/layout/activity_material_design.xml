@@ -6,8 +6,11 @@
     android:id="@+id/activity_support_design"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/window_background"
     android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    skin:enable="true"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tool_bar"

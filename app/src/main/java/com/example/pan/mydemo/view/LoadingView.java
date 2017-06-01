@@ -134,6 +134,7 @@ public class LoadingView extends View {
         }
         typeArray.recycle();
 
+
     }
 
     @Override

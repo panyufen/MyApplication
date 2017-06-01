@@ -70,6 +70,7 @@ public class RightSwipMenuLayout extends RelativeLayout {
                 LogUtils.i(TAG + "onViewReleased " + (releasedChild == mMenuLayout) + " " + xvel + " " + yvel + " " + mSwipLeft);
                 super.onViewReleased(releasedChild, xvel, yvel);
                 if (releasedChild == mMenuLayout) {
+                    LogUtils.i(TAG + "onViewReleased " + mMenuLastLeft + " " + mMenuDefaultLeft + " " + mMenuEndLeft);
                     if (mMenuLastLeft == mMenuDefaultLeft) {  //如果是初始位置
                         if ((mSwipLeft - mMenuEndLeft) < mMenuLayout.getWidth() * (RANGE - 1) / RANGE) {
                             mMenuLastLeft = mMenuEndLeft;
@@ -89,9 +90,9 @@ public class RightSwipMenuLayout extends RelativeLayout {
 
             @Override
             public int clampViewPositionHorizontal(View child, int left, int dx) {
-//                LogUtils.i(TAG + "clampViewPositionHorizontal " + " " + left + " " + dx);
                 mSwipLeft = left < getMeasuredWidth() - mMenuLayout.getChildAt(0).getWidth() ? left : getMeasuredWidth() - mMenuLayout.getChildAt(0).getWidth();
                 mSwipLeft = mSwipLeft > mMenuEndLeft ? mSwipLeft : mMenuEndLeft; //只能滑动菜单宽度大小的距离
+                LogUtils.i(TAG + "clampViewPositionHorizontal " + " " + left + " " + dx + " " + mSwipLeft);
                 return mSwipLeft;
             }
 

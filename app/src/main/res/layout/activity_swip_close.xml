@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.pan.mydemo.view.SwipBackLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:id="@+id/swip_back_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pan.mydemo.activity.materialdesign.SwipCloseActivity"
     android:fitsSystemWindows="true"
     >
 
@@ -13,20 +12,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/window_background"
+        skin:enable="true"
         >
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/window_background"
             android:gravity="center"
-            android:textColor="@color/normal_text_color"
             android:text="右滑关闭页面"
+            android:textColor="@color/normal_text_color"
+            skin:enable="true"
             />
     </LinearLayout>
 </com.example.pan.mydemo.view.SwipBackLayout>

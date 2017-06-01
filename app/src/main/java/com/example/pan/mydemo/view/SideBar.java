@@ -20,6 +20,8 @@ public class SideBar extends View {
     private RecyclerView list;
     private TextView mDialogText;
     private int m_nItemHeight = 27;
+    private float dx, dy;
+    private float xDistance, yDistance;
 
     private boolean mCanTouchAble = true;
 
@@ -57,6 +59,9 @@ public class SideBar extends View {
 
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
+        if (true) {
+            return false;
+        }
         LogUtils.i("side touch " + mCanTouchAble);
         if (!mCanTouchAble) return true;
         if (l == null) throw new IllegalStateException("setListIndexData first");
@@ -67,15 +72,24 @@ public class SideBar extends View {
         } else if (idx < 0) {
             idx = 0;
         }
-        int position = sectionIndexter.getPositionForSection(l[idx]);
         if (list == null) throw new IllegalStateException("setListView first");
 
         if (sectionIndexter == null) {
             sectionIndexter = (SectionIndexer) list.getAdapter();
             if (sectionIndexter == null) throw new IllegalStateException("listView must setAdapter first");
         }
-        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            dx = event.getX();
+            dy = event.getY();
+        }
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            final float curX = event.getX();
+            final float curY = event.getY();
+            xDistance += Math.abs(curX - dx);
+            yDistance += Math.abs(curY - dx);
+        }
 
+        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
             if (mDialogText != null) {
                 mDialogText.setVisibility(View.VISIBLE);
                 mDialogText.setText(String.valueOf(l[idx]));
@@ -89,10 +103,14 @@ public class SideBar extends View {
         }
 
         if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_MOVE) {
+            int position = sectionIndexter.getPositionForSection(l[idx]);
             if (position == -1) {
                 return true;
             }
-            list.scrollToPosition(position);
+            LogUtils.i("x y " + xDistance + " " + yDistance);
+            if (xDistance < yDistance) { //如果是垂直滑动才可以触发滚动list
+                list.scrollToPosition(position);
+            }
         }
 
         return true;

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:id="@+id/item_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -13,9 +14,9 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/ic_launcher"
         android:layout_margin="5dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:id="@+id/id_index_gallery_item_text"
@@ -25,8 +26,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="5dp"
-        android:textColor="@color/colorPrimaryDark"
         android:text="some info"
-        android:textSize="12dp" />
+        android:textColor="@color/normal_text_color"
+        android:textSize="12dp"
+        skin:enable="true"/>
 
 </RelativeLayout>

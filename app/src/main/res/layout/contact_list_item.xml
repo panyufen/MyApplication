@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/item_bg"
-    android:clickable="true"
-    android:orientation="horizontal"
-    android:paddingBottom="8dp"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:paddingTop="8dp"
+              xmlns:skin="http://schemas.android.com/android/skin"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/item_bg"
+              android:clickable="true"
+              android:orientation="horizontal"
+              android:paddingBottom="8dp"
+              android:paddingLeft="15dp"
+              android:paddingRight="15dp"
+              android:paddingTop="8dp"
     >
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@mipmap/ic_launcher"
-        android:id="@+id/imageView"/>
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
         android:id="@+id/contact_list_item_name"

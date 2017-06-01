@@ -128,6 +128,8 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
         public void onBindViewHolder(MyViewHolder holder, int position) {
             Contact contact = mContacts.get(position);
             holder.tv.setText(contact.name + " " + contact.tel);
+//            dynamicAddSkinEnableView(holder.tv, "textColor", R.color.normal_text_color);
+//            holder.tv.setTextColor(Color.RED);
         }
 
         @Override
@@ -211,6 +213,7 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
                     }
                 }
             });
+            dynamicAddSkinEnableView(textView, "textColor", R.color.normal_text_color);
             mAutoLinearLayout.addView(textView);
         }
     }

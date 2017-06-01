@@ -5,18 +5,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:listDivider">@drawable/divider_bg</item>
-
         <item name="toolbarStyle">@style/MyToolBarStyle</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
         <!--设置menu中item的图标颜色-->
         <!--<item name="android:textColorSecondary">#ffffff</item>-->
         <!--<item name="android:textColorPrimary">#ffffff</item>-->
         <!--<item name="android:textColorTertiary">#ffffff</item>-->
-
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColorSecondary">@android:color/white</item>
         <!--<item name="android:actionMenuTextColor">@android:color/white</item>-->
-
     </style>
 
     <style name="AppTheme" parent="BaseAppTheme">
@@ -33,6 +30,11 @@
     </style>
 
     <style name="AppTheme.StatusTranslattion">
+    </style>
+
+    <style name="AppTheme.AppStartLoad" parent="AppTheme">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
