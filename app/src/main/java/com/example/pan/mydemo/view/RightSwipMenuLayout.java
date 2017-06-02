@@ -28,8 +28,8 @@ public class RightSwipMenuLayout extends RelativeLayout {
     LinearLayout mMenuLayout;
 
     private int mMenuDefaultLeft = 0;
-    private int mMenuEndLeft = 0;
-    private int mMenuLastLeft = mMenuDefaultLeft; //默认是初始未知 (也用于判断菜单状态)
+    private int mMenuEndLeft = 0; //菜单展开时 菜单left
+    private int mMenuLastLeft = mMenuDefaultLeft; //默认是初始位置 (也用于判断菜单状态)
     private int mSwipLeft = 0;
 
     private boolean isMenuClosed = true;
@@ -92,7 +92,7 @@ public class RightSwipMenuLayout extends RelativeLayout {
             public int clampViewPositionHorizontal(View child, int left, int dx) {
                 mSwipLeft = left < getMeasuredWidth() - mMenuLayout.getChildAt(0).getWidth() ? left : getMeasuredWidth() - mMenuLayout.getChildAt(0).getWidth();
                 mSwipLeft = mSwipLeft > mMenuEndLeft ? mSwipLeft : mMenuEndLeft; //只能滑动菜单宽度大小的距离
-                LogUtils.i(TAG + "clampViewPositionHorizontal " + " " + left + " " + dx + " " + mSwipLeft);
+//                LogUtils.i(TAG + "clampViewPositionHorizontal " + " " + left + " " + dx + " " + mSwipLeft);
                 return mSwipLeft;
             }
 
@@ -215,21 +215,17 @@ public class RightSwipMenuLayout extends RelativeLayout {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        LogUtils.i("onMeasure " + mMenuLayout.getLeft());
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (mMenuDefaultLeft == 0) { //只在第一次进行赋值
-            mMenuDefaultLeft = mMenuLayout.getLeft();
+            mMenuDefaultLeft = getMeasuredWidth() - mMenuLayout.getChildAt(0).getMeasuredWidth();
             mMenuLastLeft = mMenuDefaultLeft;
-            mMenuEndLeft = getMeasuredWidth() - mMenuLayout.getWidth();
+            mMenuEndLeft = getMeasuredWidth() - mMenuLayout.getMeasuredWidth();
+            super.onLayout(changed, l, t, r, b);
         }
-
+        if( !isMenuClosed ){
+            super.onLayout(changed, l, t, r, b);
+        }
         LogUtils.i("onlayout " + mMenuLastLeft + " " + mMenuDefaultLeft + " " + mMenuEndLeft + " " + changed + " " + l + " " + t + " " + r + " " + b);
-        super.onLayout(changed, l, t, r, b);
     }
 
     @Override

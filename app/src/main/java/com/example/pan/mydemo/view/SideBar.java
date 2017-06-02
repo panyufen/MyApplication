@@ -59,9 +59,6 @@ public class SideBar extends View {
 
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
-        if (true) {
-            return false;
-        }
         LogUtils.i("side touch " + mCanTouchAble);
         if (!mCanTouchAble) return true;
         if (l == null) throw new IllegalStateException("setListIndexData first");

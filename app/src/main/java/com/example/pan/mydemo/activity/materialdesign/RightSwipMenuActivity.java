@@ -185,7 +185,7 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
 
     @Override
     public void onChanged() {
-        LogUtils.i("onChange "+mRightSwipMenuLayout.getMenuIsClosed());
+//        LogUtils.i("onChange "+mRightSwipMenuLayout.getMenuIsClosed());
         mSideBar.setTouchEnable(mRightSwipMenuLayout.getMenuIsClosed());
     }
 
