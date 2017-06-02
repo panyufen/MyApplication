@@ -71,7 +71,7 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
 
         mSideBar = (SideBar) findViewById(R.id.side_bar);
         mSideBar.setListView(mRecyclerView);
-
+        mSideBar.setRightSwipMenuLayout(mRightSwipMenuLayout);
         mAutoLinearLayout = (AutoLinearLayout) findViewById(R.id.auto_line_layout);
     }
 

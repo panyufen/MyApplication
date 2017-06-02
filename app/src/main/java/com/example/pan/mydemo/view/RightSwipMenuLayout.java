@@ -33,6 +33,7 @@ public class RightSwipMenuLayout extends RelativeLayout {
     private int mSwipLeft = 0;
 
     private boolean isMenuClosed = true;
+    private boolean canLayout = false;
 
     private final int RANGE = 4; //滑动到菜单4分之1的位置时触发打开或关闭菜单动画
 
@@ -74,12 +75,16 @@ public class RightSwipMenuLayout extends RelativeLayout {
                     if (mMenuLastLeft == mMenuDefaultLeft) {  //如果是初始位置
                         if ((mSwipLeft - mMenuEndLeft) < mMenuLayout.getWidth() * (RANGE - 1) / RANGE) {
                             mMenuLastLeft = mMenuEndLeft;
+                            isMenuClosed = false;
                             markBg.setVisibility(View.VISIBLE);
+                            setCanLayout(true);
                         }
                     } else {
                         if ((mSwipLeft - mMenuEndLeft) > mMenuLayout.getWidth() / RANGE) {
+                            isMenuClosed = true;
                             mMenuLastLeft = mMenuDefaultLeft;
                             markBg.setVisibility(View.GONE);
+                            setCanLayout(true);
                         }
                     }
                     mViewDragHelper.settleCapturedViewAt(mMenuLastLeft, releasedChild.getTop());
@@ -87,6 +92,7 @@ public class RightSwipMenuLayout extends RelativeLayout {
                     invalidate();
                 }
             }
+
 
             @Override
             public int clampViewPositionHorizontal(View child, int left, int dx) {
@@ -103,19 +109,17 @@ public class RightSwipMenuLayout extends RelativeLayout {
                     mOnSwipMenuListener.onChanged();
                 }
                 if (left == mMenuDefaultLeft) { //菜单已关闭
-                    isMenuClosed = true;
                     if (mOnSwipMenuListener != null) {
                         mOnSwipMenuListener.onHide();
                     }
                 } else {
-                    isMenuClosed = false;
                     if (left == mMenuEndLeft) {//菜单已开启
                         if (mOnSwipMenuListener != null) {
                             mOnSwipMenuListener.onShow();
                         }
                     }
                 }
-
+                LogUtils.i("onViewPositionChanged " + canLayout + " " + isMenuClosed);
             }
 
             @Override
@@ -173,6 +177,7 @@ public class RightSwipMenuLayout extends RelativeLayout {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = (float) animation.getAnimatedValue();
                 params.rightMargin = (int) (margin * value);
+                setCanLayout(true);
                 mMenuLayout.setLayoutParams(params);
                 LogUtils.i("onAnimationUpdate " + value);
             }
@@ -182,7 +187,9 @@ public class RightSwipMenuLayout extends RelativeLayout {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 mMenuLastLeft = mMenuDefaultLeft;
+                setCanLayout(true);
                 markBg.setVisibility(View.GONE);
+                isMenuClosed = true;
                 mOnSwipMenuListener.onHide();
             }
         });
@@ -191,6 +198,10 @@ public class RightSwipMenuLayout extends RelativeLayout {
 
     public boolean getMenuIsClosed() {
         return isMenuClosed;
+    }
+
+    public void setCanLayout(boolean b) {
+        this.canLayout = b;
     }
 
     @Override
@@ -206,7 +217,6 @@ public class RightSwipMenuLayout extends RelativeLayout {
         markBg.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                LogUtils.i("content onclick ");
                 if (mMenuLastLeft == mMenuEndLeft) {
                     hideMenu();
                 }
@@ -222,8 +232,10 @@ public class RightSwipMenuLayout extends RelativeLayout {
             mMenuEndLeft = getMeasuredWidth() - mMenuLayout.getMeasuredWidth();
             super.onLayout(changed, l, t, r, b);
         }
-        if( !isMenuClosed ){
+        LogUtils.i("onlayout " + canLayout + " " + isMenuClosed);
+        if (canLayout) {
             super.onLayout(changed, l, t, r, b);
+            canLayout = false;
         }
         LogUtils.i("onlayout " + mMenuLastLeft + " " + mMenuDefaultLeft + " " + mMenuEndLeft + " " + changed + " " + l + " " + t + " " + r + " " + b);
     }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.cus.pan.library.utils.LogUtils;
 
 public class SideBar extends View {
+    private RightSwipMenuLayout rightSwipMenuLayout;
     private char[] l;
     private SectionIndexer sectionIndexter = null;
     private RecyclerView list;
@@ -53,6 +54,10 @@ public class SideBar extends View {
         sectionIndexter = (SectionIndexer) _list.getAdapter();
     }
 
+    public void setRightSwipMenuLayout(RightSwipMenuLayout rightSwipMenuLayout) {
+        this.rightSwipMenuLayout = rightSwipMenuLayout;
+    }
+
     public void setTextView(TextView mDialogText) {
         this.mDialogText = mDialogText;
     }
@@ -78,12 +83,14 @@ public class SideBar extends View {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             dx = event.getX();
             dy = event.getY();
+            yDistance = 0;
+            xDistance = 0;
         }
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             final float curX = event.getX();
             final float curY = event.getY();
             xDistance += Math.abs(curX - dx);
-            yDistance += Math.abs(curY - dx);
+            yDistance += Math.abs(curY - dy);
         }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
@@ -98,16 +105,20 @@ public class SideBar extends View {
                 mDialogText.setVisibility(View.INVISIBLE);
             }
         }
-
-        if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_MOVE) {
+        if (rightSwipMenuLayout != null) {
+            rightSwipMenuLayout.setCanLayout(true);
+        }
+        LogUtils.i("x y " + xDistance + " " + yDistance);
+        if (event.getAction() == MotionEvent.ACTION_UP
+                ||(event.getAction() == MotionEvent.ACTION_MOVE && xDistance < yDistance)) {
+            //如果是 “垂直滑动” 或者 “点击” 才可以触发滚动list
             int position = sectionIndexter.getPositionForSection(l[idx]);
             if (position == -1) {
                 return true;
             }
-            LogUtils.i("x y " + xDistance + " " + yDistance);
-            if (xDistance < yDistance) { //如果是垂直滑动才可以触发滚动list
-                list.scrollToPosition(position);
-            }
+            LogUtils.i("side update list");
+            list.scrollToPosition(position);
+            rightSwipMenuLayout.requestLayout();
         }
 
         return true;
