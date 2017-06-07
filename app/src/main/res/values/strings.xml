@@ -41,6 +41,7 @@
     <string name="common_cancel">取消</string>
     <string name="i_know">我知道了</string>
     <string name="please_wait">请稍后...</string>
+    <string name="behavior_content">com.example.pan.mydemo.behavior.NestedScrollContentBehavior</string>
 
     <string-array name="magic_effect">
         <item>RotateDown</item>

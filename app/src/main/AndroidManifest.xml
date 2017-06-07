@@ -64,8 +64,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.AppStartLoad"
-            >
+            android:theme="@style/AppTheme.AppStartLoad">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -296,9 +295,11 @@
         </activity>
         <activity android:name=".activity.opengl.OpenGLTextureActivity">
         </activity>
-        <activity android:name=".activity.materialdesign.SearchViewActivity"
-            android:label="SearchView"
-            >
+        <activity
+            android:name=".activity.materialdesign.SearchViewActivity"
+            android:label="SearchView">
+        </activity>
+        <activity android:name=".activity.materialdesign.NestedScrollingActivity">
         </activity>
     </application>
 
