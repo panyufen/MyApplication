@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.example.pan.mydemo.activity.customview.CustomViewActivity;
 import com.example.pan.mydemo.activity.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.activity.opencv.OpenCVActivity;
 import com.example.pan.mydemo.activity.opengl.OpenGLActivity;
@@ -108,6 +109,11 @@ public class MainActivity extends BaseActivity {
     public void startReactNative(View v) {
         startActivity(ReactNativeActivity.class);
     }
+
+    public void startCusView(View v){
+        startActivity(CustomViewActivity.class);
+    }
+
 
     public void startCheckDev(View v) {
         startActivity(CheckDevActivity.class);
