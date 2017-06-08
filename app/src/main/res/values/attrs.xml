@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BezierLoadingView">
+        <attr name="lv_external_radius" format="dimension"></attr>
+        <attr name="lv_internal_radius" format="dimension"></attr>
+        <attr name="lv_duration" format="integer"></attr>
+        <attr name="lv_start_color" format="color"></attr>
+        <attr name="lv_end_color" format="color"></attr>
+    </declare-styleable>
+    <declare-styleable name="CameraBridgeViewBase">
+        <attr name="show_fps" format="boolean"/>
+        <attr name="camera_id" format="integer">
+            <enum name="any" value="-1"/>
+            <enum name="back" value="99"/>
+            <enum name="front" value="98"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CircleBtnView">
+        <attr name="android:text"/>
+        <attr name="android:textSize"/>
+        <attr name="stroke_color" format="color|reference"/>
+        <attr name="content_color" format="color|reference"/>
+        <attr name="radiu" format="dimension|reference"/>
+        <attr name="rectwidth" format="dimension|reference"/>
+        <attr name="contentPaddingLR" format="dimension|reference"/>
+        <attr name="contentPaddingTB" format="dimension|reference"/>
+    </declare-styleable>
+</resources>
