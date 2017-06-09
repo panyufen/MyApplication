@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        />
+
+    <com.example.pan.mydemo.view.AutoLinearLayoutV2
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        >
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:text="Android"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:text="IOS"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WindowPhone"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Content"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:text="Mac"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:text="Apple"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:text="Google"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+
+        <com.example.pan.mydemo.view.CircleRectView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_margin="5dp"
+            android:text="Microsoft Microsoft"
+            android:textColor="@color/common_white"
+            app:backgroundColor="@color/default_green_dark"
+            app:contentPaddingLR="10dp"
+            app:contentPaddingTB="10dp"
+            app:radiu="20dp"
+            />
+    </com.example.pan.mydemo.view.AutoLinearLayoutV2>
+
+</LinearLayout>

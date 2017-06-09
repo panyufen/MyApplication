@@ -301,10 +301,10 @@
         </activity>
         <activity android:name=".activity.materialdesign.NestedScrollingActivity">
         </activity>
-        <activity android:name=".activity.customview.CustomViewActivity"
+        <activity
+            android:name=".activity.customview.CustomViewActivity"
             android:label="自定义View"
             >
-
         </activity>
     </application>
 

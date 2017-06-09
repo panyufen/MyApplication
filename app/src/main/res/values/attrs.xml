@@ -17,14 +17,15 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="CircleBtnView">
+    <declare-styleable name="CircleRectView">
         <attr name="android:text"/>
         <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
         <attr name="stroke_color" format="color|reference"/>
-        <attr name="content_color" format="color|reference"/>
         <attr name="radiu" format="dimension|reference"/>
         <attr name="rectwidth" format="dimension|reference"/>
         <attr name="contentPaddingLR" format="dimension|reference"/>
         <attr name="contentPaddingTB" format="dimension|reference"/>
+        <attr name="backgroundColor" format="color|reference"/>
     </declare-styleable>
 </resources>
