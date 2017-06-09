@@ -107,7 +107,6 @@
         <com.example.pan.mydemo.view.CircleRectView
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_margin="5dp"
             android:text="Google"
             android:textColor="@color/common_white"
             app:backgroundColor="@color/default_green_dark"
@@ -118,8 +117,7 @@
 
         <com.example.pan.mydemo.view.CircleRectView
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
             android:text="Microsoft Microsoft"
             android:textColor="@color/common_white"
             app:backgroundColor="@color/default_green_dark"
@@ -129,4 +127,14 @@
             />
     </com.example.pan.mydemo.view.AutoLinearLayoutV2>
 
+    <com.example.pan.mydemo.view.CircleRectView
+        android:id="@+id/circle_rect_view"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="点我开始"
+        app:backgroundColor="@color/default_blue_royal"
+        app:radiu="30dp"
+        />
 </LinearLayout>

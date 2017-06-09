@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import com.cus.pan.library.utils.LogUtils;
 
 /**
+ * 自动换行LinearLayout
  * Created by PAN on 2017/6/8.
  */
-
 public class AutoLinearLayoutV2 extends ViewGroup {
 
     public AutoLinearLayoutV2(Context context) {

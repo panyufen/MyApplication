@@ -8,15 +8,16 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.pan.mydemo.R;
 
 /**
+ * 圆角矩形View (可转变为圆形)
  * Created by PAN on 2017/6/8.
  */
-
 public class CircleRectView extends View {
 
     private final int DEFAULT_RADIU = 40;
@@ -68,6 +69,7 @@ public class CircleRectView extends View {
         mTextPaint.setColor(mTextColor);
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setStyle(Paint.Style.STROKE);
+        mTextPaint.setAntiAlias(true);
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
         mPaint = new Paint();
@@ -79,6 +81,19 @@ public class CircleRectView extends View {
         leftRect = new RectF();
         rightRect = new RectF();
         contentRect = new RectF();
+    }
+
+    /**
+     * 最小可超出控件最小宽度，最大可超出控件最大宽度（控件已做边界处理）
+     * @param width
+     */
+    public void setRectWidth(int width) {
+        mRectWidth = width;
+        requestLayout();
+    }
+
+    public int getRectWidth(){
+        return mRectWidth;
     }
 
 
@@ -96,13 +111,16 @@ public class CircleRectView extends View {
         int contentW = 0, contentH = 0;
 
         if (widthMode == MeasureSpec.AT_MOST) {
-            mTextMeasureWidth = (int) mTextPaint.measureText(mText);
-            contentW += mTextMeasureWidth + mLeftRightPadding * 2 + mRadiu * 2;
-            resultW = contentW < widthSize ? contentW : widthSize;
+            if (!TextUtils.isEmpty(mText)) {
+                mTextMeasureWidth = (int) mTextPaint.measureText(mText);
+                contentW = mTextMeasureWidth + mLeftRightPadding * 2;
+            }
+            mRectWidth = Math.max(mRectWidth, contentW);
+            resultW = mRectWidth + mRadiu * 2 < widthSize ? mRectWidth + mRadiu * 2 : widthSize;
         }
 
         if (heightMode == MeasureSpec.AT_MOST) {
-            contentH += mTopBottomPadding * 2 + mTextSize;
+            contentH = mTopBottomPadding * 2 + mTextSize;
             resultH = contentH < heightSize ? contentH : heightSize;
         }
 
@@ -110,7 +128,9 @@ public class CircleRectView extends View {
         resultH = resultH < 2 * mRadiu ? 2 * mRadiu : resultH;
         setMeasuredDimension(resultW, resultH);
 
-        mRectWidth = resultW - mRadiu * 2;
+        if (widthMode == MeasureSpec.EXACTLY) {
+            mRectWidth = resultW - mRadiu * 2;
+        }
     }
 
     @Override
@@ -152,9 +172,11 @@ public class CircleRectView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mStrokeColor);
 
-        int textDescent = (int) mTextPaint.getFontMetrics().descent;
-        int textAscent = (int) mTextPaint.getFontMetrics().ascent;
-        int delta = Math.abs(textAscent) - textDescent;
-        canvas.drawText(mText, cx, cy + delta / 2, mTextPaint);
+        if (!TextUtils.isEmpty(mText)) {
+            int textDescent = (int) mTextPaint.getFontMetrics().descent;
+            int textAscent = (int) mTextPaint.getFontMetrics().ascent;
+            int delta = Math.abs(textAscent) - textDescent;
+            canvas.drawText(mText, cx, cy + delta / 2, mTextPaint);
+        }
     }
 }
