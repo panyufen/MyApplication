@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="files"
+        path="Android/data/com.example.pan.mydemo/files/"/>  
+    <external-path
+        name="cache"
+        path="Android/data/com.example.pan.mydemo/cache/"/>
+    <external-path
+        name="files_root"
+        path="Android/data/com.example.pan.mydemo/"
+        />
+    <external-path
+        name="external_root"
+        path="."/>
+</paths>

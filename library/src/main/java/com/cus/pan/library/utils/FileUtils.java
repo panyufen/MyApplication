@@ -273,7 +273,7 @@ public class FileUtils {
 
     public static String getFileName(String path) {
         int index = path.lastIndexOf('/');
-        return path.substring(index+1);
+        return path.substring(index + 1);
     }
 
 
@@ -346,7 +346,7 @@ public class FileUtils {
     private static boolean copyAssetsFile(boolean isCover, InputStream inputStream, String dest) {
         File file = new File(dest);
         File parentFile = file.getParentFile();
-        if (!parentFile.exists() && parentFile.mkdirs()) {
+        if (parentFile != null && !parentFile.exists() && parentFile.mkdirs()) {
             LogUtils.d("mkdir error " + file.getParent());
             return false;
         }
@@ -387,8 +387,26 @@ public class FileUtils {
 
 
     /**
+     * 提升读写权限
+     * @param filePath 文件路径
+     * @return
+     * @throws IOException
+     */
+    public static void setPermission(String filePath)  {
+        String command = "chmod " + "777" + " " + filePath;
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            runtime.exec(command);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
      * 获取SDCard可用空间大小
-     * @return  单位 B
+     *
+     * @return 单位 B
      */
     public static long getSDCardAvailableSpace() {
         String state = Environment.getExternalStorageState();
@@ -410,7 +428,7 @@ public class FileUtils {
 
 //            Log.d(TAG, "block大小:" + blockSize + ",block数目:" + totalBlocks + ",总大小:" + blockSize * totalBlocks / 1024 + "KB");
 //            Log.d(TAG, "可用的block数目：:" + availableBlocks + ",剩余空间:" + availableBlocks * blockSize / 1024 + "KB");
-            return availableBlocks*blockSize;
+            return availableBlocks * blockSize;
         }
         return 0L;
     }

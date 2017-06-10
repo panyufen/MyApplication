@@ -42,6 +42,7 @@
     <string name="i_know">我知道了</string>
     <string name="please_wait">请稍后...</string>
     <string name="behavior_content">com.example.pan.mydemo.behavior.NestedScrollContentBehavior</string>
+    <string name="web_intent_text">点击下方地址,会先关闭当前页面，并用手机浏览器打开下方地址（App内部共享的HTML文件），点击open会自动再次启动本页面，并取得网页url的内容（类似浏览器打开淘宝链接，会启动淘宝App）</string>
 
     <string-array name="magic_effect">
         <item>RotateDown</item>

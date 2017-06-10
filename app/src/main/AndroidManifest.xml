@@ -303,9 +303,33 @@
         </activity>
         <activity
             android:name=".activity.customview.CustomViewActivity"
-            android:label="自定义View"
-            >
+            android:label="自定义View">
         </activity>
+        <activity
+            android:name=".activity.web.WebIntentActivity"
+            android:allowTaskReparenting="true"
+            android:label="从web打开App"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="localhost"
+                    android:scheme="panapp"/>
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>

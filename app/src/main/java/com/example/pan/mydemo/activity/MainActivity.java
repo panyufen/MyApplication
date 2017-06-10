@@ -15,6 +15,7 @@ import com.example.pan.mydemo.activity.customview.CustomViewActivity;
 import com.example.pan.mydemo.activity.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.activity.opencv.OpenCVActivity;
 import com.example.pan.mydemo.activity.opengl.OpenGLActivity;
+import com.example.pan.mydemo.activity.web.WebIntentActivity;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
@@ -110,7 +111,7 @@ public class MainActivity extends BaseActivity {
         startActivity(ReactNativeActivity.class);
     }
 
-    public void startCusView(View v){
+    public void startCusView(View v) {
         startActivity(CustomViewActivity.class);
     }
 
@@ -165,6 +166,10 @@ public class MainActivity extends BaseActivity {
 
     public void startMaterialDesign(View v) {
         startActivity(MaterialDesignActivity.class);
+    }
+
+    public void startWebIntent(View v) {
+        startActivity(WebIntentActivity.class);
     }
 
 
