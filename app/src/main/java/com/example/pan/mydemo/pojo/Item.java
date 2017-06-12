@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.pan.mydemo.activity.materialdesign;
+package com.example.pan.mydemo.pojo;
 
 /**
  * Represents an Item in our application. Each item has a name, id, full size image url and

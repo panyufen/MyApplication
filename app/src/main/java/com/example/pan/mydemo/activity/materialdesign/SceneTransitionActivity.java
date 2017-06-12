@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseNoSkinActivity;
+import com.example.pan.mydemo.pojo.Item;
 import com.squareup.picasso.Picasso;
 
 public class SceneTransitionActivity extends BaseNoSkinActivity implements AdapterView.OnItemClickListener {

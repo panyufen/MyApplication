@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.pan.mydemo.R;
+import com.example.pan.mydemo.pojo.Item;
 import com.squareup.picasso.Picasso;
 
 public class SceneTransitionDetailActivity extends AppCompatActivity {
