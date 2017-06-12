@@ -1,4 +1,4 @@
-package com.example.pan.mydemo.activity;
+package com.example.pan.mydemo.activity.customview;
 
 import android.os.Bundle;
 

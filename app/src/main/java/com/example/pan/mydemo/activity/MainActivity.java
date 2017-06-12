@@ -66,10 +66,6 @@ public class MainActivity extends BaseActivity {
         startActivity(ServiceActivity.class);
     }
 
-    public void startZoom(View v) {
-        startActivity(ZoomActivity.class);
-    }
-
     public void startVolley(View v) {
         startActivity(VolleyActivity.class);
     }

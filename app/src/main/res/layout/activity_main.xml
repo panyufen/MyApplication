@@ -50,7 +50,6 @@
             android:orientation="vertical"
             >
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,41 +57,17 @@
                 >
 
                 <Button
-                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/item_selector"
-                    android:onClick="startAnim"
-                    android:text="Anim"
+                    android:onClick="startWebIntent"
+                    android:text="WebIntent"
                     android:textAllCaps="false"
                     android:textColor="@color/normal_text_color"
                     skin:enable="true"
                     />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/item_selector"
-                    android:onClick="startZoom"
-                    android:text="ZoomView"
-                    android:textAllCaps="false"
-                    android:textColor="@color/normal_text_color"
-                    skin:enable="true"
-                    />
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
 
                 <Button
                     android:layout_width="match_parent"
@@ -155,6 +130,40 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startAnim"
+                    android:text="Anim"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startMaterialDesign"
+                    android:text="Metarial Design"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"
+                    />
+            </LinearLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -163,18 +172,6 @@
                 android:background="@drawable/item_selector"
                 android:onClick="startCusView"
                 android:text="CustomView"
-                android:textAllCaps="false"
-                android:textColor="@color/normal_text_color"
-                skin:enable="true"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_selector"
-                android:onClick="startWebIntent"
-                android:text="WebIntent"
                 android:textAllCaps="false"
                 android:textColor="@color/normal_text_color"
                 skin:enable="true"
@@ -200,7 +197,6 @@
                 >
 
 
-
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -215,19 +211,6 @@
                     />
 
             </LinearLayout>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_selector"
-                android:onClick="startMaterialDesign"
-                android:text="Metarial Design"
-                android:textAllCaps="false"
-                android:textColor="@color/normal_text_color"
-                skin:enable="true"
-                />
 
             <LinearLayout
                 android:layout_width="match_parent"

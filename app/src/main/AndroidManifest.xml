@@ -92,7 +92,7 @@
         </service>
 
         <activity
-            android:name=".activity.ZoomActivity"
+            android:name=".activity.customview.ZoomActivity"
             android:theme="@style/AppTheme.StatusTranslattion">
         </activity>
         <activity
@@ -308,8 +308,7 @@
         <activity
             android:name=".activity.web.WebIntentActivity"
             android:allowTaskReparenting="true"
-            android:label="从web打开App"
-            >
+            android:label="从web打开App">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -330,6 +329,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
         </provider>
+
+        <activity android:name=".activity.customview.CircleRectViewActivity">
+        </activity>
     </application>
 
 </manifest>
