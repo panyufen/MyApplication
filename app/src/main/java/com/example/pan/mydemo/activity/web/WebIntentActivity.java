@@ -57,13 +57,23 @@ public class WebIntentActivity extends BaseActivity {
         Intent intent = getIntent();
         if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             Uri data = intent.getData();
+            String scheme = data.getScheme();
             String host = data.getHost();
             int port = data.getPort();
             String path = data.getPath();
             String query = data.getQuery();
             String id = data.getQueryParameter("id");
             String name = data.getQueryParameter("name");
-            mWebIntentContentTv.setText("从浏览器得到的数据：url=\n" + data.toString());
+            mWebIntentContentTv.setText("从浏览器到的数据:\n"
+                    + "url:" + data.toString() + "\n"
+                    + "scheme:" + scheme + "\n"
+                    + "host:" + host + "\n"
+                    + "port:" + port + "\n"
+                    + "path:" + path + "\n"
+                    + "query:" + query + "\n"
+                    + "id:" + id + "\n"
+                    + "name:" + name
+            );
         }
     }
 }
