@@ -177,18 +177,38 @@
                 skin:enable="true"
                 />
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_selector"
-                android:onClick="startCheckDev"
-                android:text="CheckDev"
-                android:textAllCaps="false"
-                android:textColor="@color/normal_text_color"
-                skin:enable="true"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startCheckDev"
+                    android:text="CheckDev"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startRecentTask"
+                    android:text="RecentTask"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"
+                    />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -224,8 +244,8 @@
                     android:layout_margin="2dp"
                     android:layout_weight="1"
                     android:background="@drawable/item_selector"
-                    android:onClick="startRecentTask"
-                    android:text="RecentTask"
+                    android:onClick="startInflaterFactory"
+                    android:text="InflaterFactory"
                     android:textAllCaps="false"
                     android:textColor="@color/normal_text_color"
                     skin:enable="true"
@@ -243,20 +263,6 @@
                     android:textColor="@color/normal_text_color"
                     skin:enable="true"
                     />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_margin="2dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/item_selector"
-                    android:onClick="startInflaterFactory"
-                    android:text="InflaterFactory"
-                    android:textAllCaps="false"
-                    android:textColor="@color/normal_text_color"
-                    skin:enable="true"
-                    />
-
 
             </LinearLayout>
 

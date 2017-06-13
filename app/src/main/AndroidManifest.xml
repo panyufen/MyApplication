@@ -332,6 +332,8 @@
 
         <activity android:name=".activity.customview.CircleRectViewActivity">
         </activity>
+        <activity android:name=".activity.materialdesign.NestedScrollViewActivity">
+        </activity>
     </application>
 
 </manifest>

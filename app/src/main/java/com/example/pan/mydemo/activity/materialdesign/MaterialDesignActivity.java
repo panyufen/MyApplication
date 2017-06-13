@@ -68,4 +68,8 @@ public class MaterialDesignActivity extends BaseActivity {
     public void startNestedScrolling(View v) {
         startActivity(NestedScrollingActivity.class);
     }
+
+    public void startNestedScrollView(View v) {
+        startActivity(NestedScrollViewActivity.class);
+    }
 }

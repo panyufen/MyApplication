@@ -26,6 +26,7 @@
     <com.example.pan.mydemo.view.AutoLinearLayoutV2
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/default_blue_royal"
         android:padding="5dp"
         >
 

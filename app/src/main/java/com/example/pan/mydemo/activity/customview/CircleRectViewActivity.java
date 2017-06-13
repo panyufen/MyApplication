@@ -3,7 +3,7 @@ package com.example.pan.mydemo.activity.customview;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
 
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
@@ -14,6 +14,7 @@ public class CircleRectViewActivity extends BaseActivity {
     private ValueAnimator valueAnimator = null;
     private CircleRectView circleRectView;
     private boolean toBig = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class CircleRectViewActivity extends BaseActivity {
     public void runAnim(View v, int val) {
         if (valueAnimator == null || !valueAnimator.isRunning()) {
             valueAnimator = ValueAnimator.ofInt(((CircleRectView) v).getRectWidth(), val);
-            valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            valueAnimator.setInterpolator(new AccelerateInterpolator());
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
