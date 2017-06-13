@@ -1,5 +1,6 @@
 package com.example.pan.mydemo.activity.materialdesign;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -30,9 +31,9 @@ public class NavigationViewActivity extends BaseActivity implements NavigationVi
     private void init() {
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-        //目前用XML属性设置 也可以用代码设置
-//        ColorStateList csl = getResources().getColorStateList(R.color.menu_item_selector);
-//        mNavigationView.setItemTextColor(csl);
+        //用代码设置,也可以用XML属性设置
+        ColorStateList csl = getResources().getColorStateList(R.color.menu_item_selector);
+        mNavigationView.setItemTextColor(csl);
 
         swipValueTv = (TextView) findViewById(R.id.swip_value_tv);
 
