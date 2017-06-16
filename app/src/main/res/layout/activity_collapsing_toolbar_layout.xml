@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         >
-
+        <!--app:titleEnabled="false"  // 不显示Title-->
+        <!--app:contentScrim="@color/colorPrimary"  内容收起是标题的背景色  -->
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
             style="@style/CollapsingToolbarTitleStyle"
@@ -20,17 +21,15 @@
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:collapsedTitleGravity="left|center_vertical"
-            app:contentScrim="@color/noneColor"
+            app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginBottom="50dp"
             app:expandedTitleMarginEnd="20dp"
             app:expandedTitleMarginStart="20dp"
             app:expandedTitleTextAppearance="@style/AppBarlayoutStyle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:paddingStart="0dp"
-            app:titleEnabled="false"
             app:toolbarId="@id/tool_bar"
             >
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -74,9 +73,9 @@
                 android:id="@+id/tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/noneColor"
                 android:fitsSystemWindows="true"
                 app:contentInsetStartWithNavigation="0dp"
-                android:background="@color/noneColor"
                 app:layout_collapseMode="pin"
                 />
         </android.support.design.widget.CollapsingToolbarLayout>
