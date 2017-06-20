@@ -25,7 +25,7 @@ public class NestedScrollViewActivity extends BaseActivity implements NestedScro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTranslucentStatus(true);
-        setContentView(R.layout.activity_nest_scrolling2);
+        setContentView(R.layout.activity_nest_scrollview);
         mToolbar = setSupportActionBar(R.id.tool_bar);
         mScrollView = (NestedScrollView) findViewById(R.id.scroll_view);
         mScrollView.setOnScrollChangeListener(this);

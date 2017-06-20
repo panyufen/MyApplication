@@ -174,6 +174,18 @@
             android:layout_height="50dp"
             android:layout_margin="2dp"
             android:background="@drawable/item_selector"
+            android:onClick="startNestedScrolling2"
+            android:text="NestedScrolling2"
+            android:textAllCaps="false"
+            android:textColor="@color/normal_text_color"
+            skin:enable="true"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:background="@drawable/item_selector"
             android:onClick="startNestedScrollView"
             android:text="NestedScrollView"
             android:textAllCaps="false"

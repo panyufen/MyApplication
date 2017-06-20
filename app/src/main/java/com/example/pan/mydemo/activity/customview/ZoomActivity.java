@@ -14,9 +14,7 @@ public class ZoomActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zoom);
-        zoomImageView = (ZoomImageView)findViewById(R.id.zoom_image_view);
-
+        zoomImageView = (ZoomImageView) findViewById(R.id.zoom_image_view);
         zoomImageView.setImageDrawable(getResources().getDrawable(R.mipmap.s20150612_195215166));
-
     }
 }
