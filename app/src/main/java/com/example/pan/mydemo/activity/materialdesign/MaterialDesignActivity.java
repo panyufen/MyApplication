@@ -56,6 +56,10 @@ public class MaterialDesignActivity extends BaseActivity {
         startActivity(ConstraintLayoutActivity.class);
     }
 
+    public void startFlexBoxLayout(View v) {
+        startActivity(FlexBoxLayoutActivity.class);
+    }
+
     public void startSceneTransition(View v) {
         startActivity(SceneTransitionActivity.class);
         overridePendingTransition(R.anim.in_from_right, R.anim.out_fade_and_small);

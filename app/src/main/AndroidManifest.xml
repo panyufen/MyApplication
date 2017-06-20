@@ -330,18 +330,21 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
-        <activity android:name=".activity.customview.CircleRectViewActivity"
-            android:label="CircleRectView"
-            >
+        <activity
+            android:name=".activity.customview.CircleRectViewActivity"
+            android:label="CircleRectView">
         </activity>
         <activity
             android:name=".activity.materialdesign.NestedScrollViewActivity"
-            android:label="ScrollViewOnScroll"
-            >
+            android:label="ScrollViewOnScroll">
         </activity>
         <activity
             android:name=".activity.materialdesign.NestedScrolling2Activity"
-            android:label="BottomSheetBehavior"
+            android:label="BottomSheetBehavior">
+        </activity>
+        <activity
+            android:name=".activity.materialdesign.FlexBoxLayoutActivity"
+            android:label="FlexBoxLayout"
             >
         </activity>
     </application>

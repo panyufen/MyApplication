@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@color/common_transparent"
+                android:padding="5dp"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:background="@color/default_blue_royal"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="1"
+                    app:layout_order="1"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_red_fire_brick"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="2"
+                    app:layout_order="2"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_green_dark"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="3"
+                    app:layout_order="3"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="#ef3344"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="4"
+                    app:layout_order="4"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_purple"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="5"
+                    app:layout_order="7"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_yellow_orange_dark"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="6"
+                    app:layout_order="6"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/assist_text_color"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="7"
+                    app:layout_order="5"/>
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@color/common_transparent"
+                android:padding="5dp"
+                app:alignItems="center"
+                app:flexDirection="column_reverse"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_blue_royal"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="1111"
+                    app:layout_order="1"/>
+
+                <TextView
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_red_fire_brick"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="2222"
+                    app:layout_order="2"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_green_dark"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="3333"
+                    app:layout_order="3"/>
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/common_transparent"
+                android:padding="5dp"
+                app:alignContent="space_around"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="space_around"
+                >
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/default_blue_royal"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="1"
+                    app:layout_order="1"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/default_red_fire_brick"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="2"
+                    app:layout_order="2"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/default_green_dark"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="3"
+                    app:layout_order="3"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="#ef3344"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="4"
+                    app:layout_order="4"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/default_purple"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="5"
+                    app:layout_order="7"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/default_yellow_orange_dark"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="6"
+                    app:layout_order="6"/>
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/assist_text_color"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:text="7"
+                    app:layout_order="5"/>
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@color/common_transparent"
+                android:padding="5dp"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="space_around"
+                >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_blue_royal"
+                    android:gravity="center"
+                    android:text="1"
+                    app:layout_flexGrow="1"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_red_fire_brick"
+                    android:gravity="center"
+                    android:text="2"
+                    app:layout_flexGrow="2"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_green_dark"
+                    android:gravity="center"
+                    android:text="3"
+                    app:layout_flexGrow="4"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="#ef3344"
+                    android:gravity="center"
+                    android:text="4"
+                    app:layout_alignSelf="center"
+                    app:layout_flexGrow="4"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_purple"
+                    android:gravity="center"
+                    android:text="5"
+                    app:layout_flexGrow="1"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/default_yellow_orange_dark"
+                    android:gravity="center"
+                    android:text="6"
+                    app:layout_flexGrow="1"
+                    />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dp"
+                    android:background="@color/assist_text_color"
+                    android:gravity="center"
+                    android:text="7"
+                    app:layout_flexGrow="2"
+                    />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:background="@color/common_transparent"
+                app:flexDirection="row"
+                app:flexWrap="wrap"
+                app:justifyContent="space_around"
+                >
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:background="@color/default_blue_royal"
+                    android:gravity="center"
+                    android:text="20%"
+                    app:layout_flexBasisPercent="20%"
+                    />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:background="@color/default_red_fire_brick"
+                    android:gravity="center"
+                    android:text="30%"
+                    app:layout_flexBasisPercent="30%"
+                    />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:background="@color/default_green_dark"
+                    android:gravity="center"
+                    android:text="50%"
+                    app:layout_flexBasisPercent="50%"
+                    />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:background="#ef3344"
+                    android:gravity="center"
+                    android:text="60%"
+                    app:layout_alignSelf="center"
+                    app:layout_flexBasisPercent="60%"
+                    />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:background="@color/default_purple"
+                    android:gravity="center"
+                    android:text="40%"
+                    app:layout_flexBasisPercent="40%"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/default_yellow_orange_dark"
+                    android:gravity="center"
+                    android:text="100%"
+                    />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:background="@color/assist_text_color"
+                    android:gravity="center"
+                    android:text="60%"
+                    app:layout_flexBasisPercent="60%"
+                    />
+            </com.google.android.flexbox.FlexboxLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
