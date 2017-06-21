@@ -6,7 +6,7 @@
     android:focusable="true"
     android:background="@color/window_background"
     android:focusableInTouchMode="true"
-    android:fitsSystemWindows="true"
+
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar

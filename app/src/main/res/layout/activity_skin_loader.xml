@@ -4,7 +4,7 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+
     >
 
     <android.support.design.widget.CoordinatorLayout
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/common_white"
-        android:fitsSystemWindows="true"
+
         android:orientation="vertical"
         skin:enable="true">
 
@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/colorPrimary"
-                    android:fitsSystemWindows="true"
+
                     />
             </android.support.design.widget.AppBarLayout>
 

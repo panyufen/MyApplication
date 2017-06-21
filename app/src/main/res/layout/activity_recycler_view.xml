@@ -6,7 +6,7 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:background="@color/window_background"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
+
     skin:enable="true"
     >
 

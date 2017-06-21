@@ -6,13 +6,13 @@ import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 
 import com.pan.skin.loader.attr.DynamicAttr;
 import com.pan.skin.loader.listener.IDynamicNewView;
 import com.pan.skin.loader.listener.ISkinUpdate;
 import com.pan.skin.loader.load.SkinInflaterFactory;
 import com.pan.skin.loader.load.SkinManager;
-import com.pan.skin.loader.statusbar.StatusBarBackground;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         //getLayoutInflater().cloneInContext(this).setFactory(mSkinInflaterFactory);
         try {
             LayoutInflaterCompat.setFactory(getLayoutInflater(), mSkinInflaterFactory);
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
         super.onCreate(savedInstanceState);
@@ -73,12 +73,21 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
 
     public void changeStatusColor() {
         //如果当前的Android系统版本大于4.4则更改状态栏颜色
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Log.i("SkinBaseActivity", "changeStatus");
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            Log.i("SkinBaseActivity", "changeStatus");
+//            int color = SkinManager.getInstance().getColorPrimaryDark();
+//            StatusBarBackground statusBarBackground = new StatusBarBackground(this, color);
+//            if (color != -1)
+//                statusBarBackground.setStatusBarbackColor();
+//        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int color = SkinManager.getInstance().getColorPrimaryDark();
-            StatusBarBackground statusBarBackground = new StatusBarBackground(this, color);
-            if (color != -1)
-                statusBarBackground.setStatusBarbackColor();
+            Log.i("SkinBaseActivity", "color " + color);
+            if (color != -1) {
+                Window window = getWindow();
+                window.setStatusBarColor(color);
+            }
         }
     }
 

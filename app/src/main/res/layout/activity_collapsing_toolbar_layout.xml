@@ -19,7 +19,7 @@
             style="@style/CollapsingToolbarTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
+
             app:collapsedTitleGravity="left|center_vertical"
             app:contentScrim="@color/colorPrimary"
             app:expandedTitleMarginBottom="50dp"
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/noneColor"
-                android:fitsSystemWindows="true"
+
                 app:contentInsetStartWithNavigation="0dp"
                 app:layout_collapseMode="pin"
                 />
