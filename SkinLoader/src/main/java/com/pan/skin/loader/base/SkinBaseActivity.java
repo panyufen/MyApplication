@@ -33,7 +33,6 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mSkinInflaterFactory = new SkinInflaterFactory();
-        //getLayoutInflater().cloneInContext(this).setFactory(mSkinInflaterFactory);
         try {
             LayoutInflaterCompat.setFactory(getLayoutInflater(), mSkinInflaterFactory);
         } catch (Exception e) {
@@ -65,10 +64,6 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         }
         mSkinInflaterFactory.applySkin();
         changeStatusColor();
-
-//        //设置window的背景色
-//        Drawable drawable = new ColorDrawable(SkinManager.getInstance().getColorPrimaryDark());
-//        getWindow().setBackgroundDrawable(drawable);
     }
 
     public void changeStatusColor() {
@@ -84,8 +79,8 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int color = SkinManager.getInstance().getColorPrimaryDark();
             Log.i("SkinBaseActivity", "color " + color);
+            Window window = getWindow();
             if (color != -1) {
-                Window window = getWindow();
                 window.setStatusBarColor(color);
             }
         }
