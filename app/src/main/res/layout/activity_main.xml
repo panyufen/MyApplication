@@ -175,6 +175,18 @@
                 android:textColor="@color/normal_text_color"
                 skin:enable="true"
                 />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/item_selector"
+                android:onClick="startPriorityConQueue"
+                android:text="PriorityConQueue"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

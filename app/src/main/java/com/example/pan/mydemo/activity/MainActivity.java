@@ -168,6 +168,9 @@ public class MainActivity extends BaseActivity {
         startActivity(WebIntentActivity.class);
     }
 
+    public void startPriorityConQueue(View v) {
+        startActivity(PriorityConQueueActivity.class);
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
