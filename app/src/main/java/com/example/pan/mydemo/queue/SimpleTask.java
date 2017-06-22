@@ -12,6 +12,9 @@ import com.example.pan.mydemo.activity.base.BaseActivity;
 
 public class SimpleTask implements ITask {
 
+    private ITaskListener mITaskListener;
+
+    private ViewGroup parent;
     private ProgressBar progressBar;
 
     private int progress = 0;
@@ -19,13 +22,29 @@ public class SimpleTask implements ITask {
 
     private long defaultDelay = 1000;
 
-    public SimpleTask(ProgressBar progressBar, int sp) {
+    public SimpleTask(ViewGroup p, ProgressBar progressBar, int sp, ITaskListener il) {
+        this.parent = p;
         this.progressBar = progressBar;
         this.speed = sp;
+        this.mITaskListener = il;
+    }
+
+    @Override
+    public void constructor() {
+        ((BaseActivity) (progressBar.getContext())).runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                parent.addView(progressBar);
+            }
+        });
     }
 
     @Override
     public void run() {
+
+        if (mITaskListener != null) {
+            mITaskListener.onStart();
+        }
         while (progress < progressBar.getMax()) {
             progress += speed;
             runOnUiThread(progress);
@@ -35,7 +54,13 @@ public class SimpleTask implements ITask {
                 e.printStackTrace();
             }
         }
+    }
 
+    @Override
+    public void destructor() {
+        if (progress == progressBar.getMax()) {
+            removeTaskViewDelay(defaultDelay);
+        }
     }
 
     private void runOnUiThread(final int index) {
@@ -43,33 +68,25 @@ public class SimpleTask implements ITask {
             @Override
             public void run() {
                 progressBar.setProgress(index);
-                if (index == progressBar.getMax()) {
-                    removeTaskViewDelay(defaultDelay);
-                }
             }
         });
     }
 
     private void removeTaskViewDelay(final long delay) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                ((BaseActivity) (progressBar.getContext())).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        ViewParent parent = progressBar.getParent();
-                        if (parent != null) {
-                            ((ViewGroup) parent).removeView(progressBar);
-                        }
+        try {
+            Thread.sleep(delay);
+            mITaskListener.onEnd();
+            ((BaseActivity) (progressBar.getContext())).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ViewParent parent = progressBar.getParent();
+                    if (parent != null) {
+                        ((ViewGroup) parent).removeView(progressBar);
                     }
-                });
-            }
-        }).start();
-
+                }
+            });
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

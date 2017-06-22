@@ -1,5 +1,7 @@
 package com.example.pan.mydemo.queue;
 
+import com.cus.pan.library.utils.LogUtils;
+
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -8,12 +10,15 @@ import java.util.concurrent.BlockingQueue;
 
 public class TaskSimpleExecutor extends Thread {
 
-    private BlockingQueue<ITask> taskQueue;
+    private ITaskListener mITaskListener;
+
+    private BlockingQueue<ITask> mTaskQueue;
 
     private boolean isRunning = true;
 
-    public TaskSimpleExecutor(BlockingQueue<ITask> tq) {
-        taskQueue = tq;
+    public TaskSimpleExecutor(BlockingQueue<ITask> tq, ITaskListener it) {
+        mTaskQueue = tq;
+        mITaskListener = it;
     }
 
     public void quit() {
@@ -26,7 +31,7 @@ public class TaskSimpleExecutor extends Thread {
         while (isRunning) {
             ITask iTask;
             try {
-                iTask = taskQueue.take();
+                iTask = mTaskQueue.take();
             } catch (InterruptedException e) {
                 if (!isRunning) {
                     interrupt();
@@ -35,6 +40,11 @@ public class TaskSimpleExecutor extends Thread {
                 continue;
             }
             iTask.run();
+            iTask.destructor();
+            if (mITaskListener != null) {
+                LogUtils.i("TaskSimpleExecutor run End task");
+                mITaskListener.onEnd();
+            }
         }
     }
 }

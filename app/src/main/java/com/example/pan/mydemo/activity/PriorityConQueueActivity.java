@@ -5,18 +5,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.example.pan.mydemo.queue.IQueueListener;
+import com.example.pan.mydemo.queue.ITaskListener;
 import com.example.pan.mydemo.queue.SimpleTask;
 import com.example.pan.mydemo.queue.TaskSimpleQueue;
+import com.facebook.stetho.common.LogUtil;
 
 public class PriorityConQueueActivity extends BaseActivity {
 
     private TaskSimpleQueue mTaskSimpleQueue;
 
     private LinearLayout mTaskContainer;
+
+    private TextView mTaskCountTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +34,21 @@ public class PriorityConQueueActivity extends BaseActivity {
     }
 
     private void init() {
-        mTaskSimpleQueue = new TaskSimpleQueue(3);
         mTaskContainer = (LinearLayout) findViewById(R.id.task_container);
+        mTaskCountTv = (TextView) findViewById(R.id.task_count_tv);
+        mTaskCountTv.setText(getString(R.string.task_count, 0));
+        mTaskSimpleQueue = new TaskSimpleQueue(3, new IQueueListener() {
+            @Override
+            public void onQueueChanged(final int count) {
+                LogUtils.i("onQueueChanged " + count);
+                PriorityConQueueActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTaskCountTv.setText(getString(R.string.task_count, count));
+                    }
+                });
+            }
+        });
     }
 
 
@@ -61,9 +81,29 @@ public class PriorityConQueueActivity extends BaseActivity {
             int padding = (int) getResources().getDimension(R.dimen.nav_header_vertical_spacing);
             progressBar.setPadding(padding, padding, padding, padding);
             progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.seek_bar_progress_drawable));
-            SimpleTask simpleTask = new SimpleTask(progressBar, sp);
-            mTaskContainer.addView(progressBar);
-            mTaskSimpleQueue.add(simpleTask);
+            SimpleTask simpleTask = new SimpleTask(mTaskContainer, progressBar, sp, new ITaskListener() {
+                @Override
+                public void onStart() {
+                    LogUtil.i("task onStart");
+                }
+
+                @Override
+                public void onPause() {
+                    LogUtil.i("task onPause");
+                }
+
+                @Override
+                public void onResume() {
+                    LogUtil.i("task onResume");
+                }
+
+                @Override
+                public void onEnd() {
+                    LogUtil.i("task onEnd");
+                }
+            });
+            int size = mTaskSimpleQueue.add(simpleTask);
+            LogUtils.i("return size = " + size);
         } else {
             Toast.makeText(this, "click start first", Toast.LENGTH_SHORT).show();
         }

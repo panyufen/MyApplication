@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,22 +14,51 @@
         android:background="@color/colorPrimary"
         />
 
-    <LinearLayout
-        android:id="@+id/task_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         >
+
+        <LinearLayout
+            android:id="@+id/task_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/assist_text_color"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        >
+
+        <TextView
+            android:id="@+id/task_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text=""
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/assist_text_color"
+        android:orientation="horizontal"
+        >
+
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="start"
             android:text="start"
@@ -37,7 +67,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="addTask2"
             android:text="addTask2"
@@ -46,7 +76,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="addTask5"
             android:text="addTask5"
@@ -55,7 +85,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="stop"
             android:text="stop"
