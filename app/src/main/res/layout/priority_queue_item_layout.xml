@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="15dp"
         android:textColor="@color/assist_text_color"
-        app:layout_flexBasisPercent="50%"
+        app:layout_flexBasisPercent="70%"
         />
 
     <TextView
@@ -27,7 +27,7 @@
         android:paddingRight="15dp"
         android:text="0%"
         android:textColor="@color/assist_text_color"
-        app:layout_flexBasisPercent="50%"
+        app:layout_flexBasisPercent="30%"
         />
 
     <ProgressBar

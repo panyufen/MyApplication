@@ -19,7 +19,7 @@ public class SimpleTask extends BaseTask {
     private ProgressBar mProgressBar;
     private int progress;
     private long DEFAULT_DELAY = 1000;
-    private String[] priorityStrs = {"低", "正常", "高", "最高"};
+//    private String[] priorityStrs = {"低", "正常", "高", "最高"};
 
 
     public SimpleTask(ViewGroup p, View l) {
@@ -32,7 +32,7 @@ public class SimpleTask extends BaseTask {
         mNameTv = (TextView) layout.findViewById(R.id.priority_name_tv);
         mValueTv = (TextView) layout.findViewById(R.id.priority_value_tv);
         mProgressBar = (ProgressBar) layout.findViewById(R.id.priority_progress_bar);
-        mNameTv.setText("任务" + getSequence() + "   优先级：" + priorityStrs[getPriority().ordinal()]);
+        mNameTv.setText("任务" + getSequence() + "   优先级：" + getPriority().name());
 
         ((BaseActivity) (layout.getContext())).runOnUiThread(new Runnable() {
             @Override
