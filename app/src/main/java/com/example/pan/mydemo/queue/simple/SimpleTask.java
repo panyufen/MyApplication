@@ -1,4 +1,4 @@
-package com.example.pan.mydemo.queue;
+package com.example.pan.mydemo.queue.simple;
 
 import android.view.ViewGroup;
 import android.view.ViewParent;

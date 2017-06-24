@@ -346,7 +346,11 @@
             android:name=".activity.materialdesign.FlexBoxLayoutActivity"
             android:label="FlexBoxLayout">
         </activity>
-        <activity android:name=".activity.PriorityConQueueActivity">
+        <activity android:name=".activity.queue.PriorityConQueueActivity">
+        </activity>
+        <activity android:name=".activity.queue.PriorityQueueActivity">
+        </activity>
+        <activity android:name=".activity.queue.SimpleQueueActivity">
         </activity>
     </application>
 

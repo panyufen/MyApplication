@@ -2,10 +2,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:id="@+id/id_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/window_background"
+    skin:enable="true"
     android:orientation="vertical"
     tools:context="com.example.pan.mydemo.activity.anim.LayoutAnimActivity"
     >

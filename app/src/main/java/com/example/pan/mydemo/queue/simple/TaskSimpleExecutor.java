@@ -1,4 +1,4 @@
-package com.example.pan.mydemo.queue;
+package com.example.pan.mydemo.queue.simple;
 
 import com.cus.pan.library.utils.LogUtils;
 

@@ -15,6 +15,7 @@ import com.example.pan.mydemo.activity.customview.CustomViewActivity;
 import com.example.pan.mydemo.activity.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.activity.opencv.OpenCVActivity;
 import com.example.pan.mydemo.activity.opengl.OpenGLActivity;
+import com.example.pan.mydemo.activity.queue.PriorityConQueueActivity;
 import com.example.pan.mydemo.activity.web.WebIntentActivity;
 
 import kr.co.namee.permissiongen.PermissionFail;

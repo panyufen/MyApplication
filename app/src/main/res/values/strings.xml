@@ -57,5 +57,5 @@
     </string-array>
     <string name="image_header">%1$s by %2$s</string>
 
-        <string name="task_count">当前任务数：%d</string>
+    <string name="task_count">当前任务数：%d</string>
 </resources>

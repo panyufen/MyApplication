@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.flexbox.FlexboxLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp"
+    app:flexDirection="row"
+    app:flexWrap="wrap"
+    >
+
+    <TextView
+        android:id="@+id/priority_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:textColor="@color/assist_text_color"
+        app:layout_flexBasisPercent="50%"
+        />
+
+    <TextView
+        android:id="@+id/priority_value_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:paddingRight="15dp"
+        android:text="0%"
+        android:textColor="@color/assist_text_color"
+        app:layout_flexBasisPercent="50%"
+        />
+
+    <ProgressBar
+        android:id="@+id/priority_progress_bar"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="3dp"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/seek_bar_progress_drawable"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="5dp"
+        android:background="@color/assist_text_color"
+        />
+</com.google.android.flexbox.FlexboxLayout>

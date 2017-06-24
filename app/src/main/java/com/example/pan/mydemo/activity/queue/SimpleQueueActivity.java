@@ -1,4 +1,4 @@
-package com.example.pan.mydemo.activity;
+package com.example.pan.mydemo.activity.queue;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +11,13 @@ import android.widget.Toast;
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
-import com.example.pan.mydemo.queue.IQueueListener;
-import com.example.pan.mydemo.queue.ITaskListener;
-import com.example.pan.mydemo.queue.SimpleTask;
-import com.example.pan.mydemo.queue.TaskSimpleQueue;
+import com.example.pan.mydemo.queue.simple.IQueueListener;
+import com.example.pan.mydemo.queue.simple.ITaskListener;
+import com.example.pan.mydemo.queue.simple.SimpleTask;
+import com.example.pan.mydemo.queue.simple.TaskSimpleQueue;
 import com.facebook.stetho.common.LogUtil;
 
-public class PriorityConQueueActivity extends BaseActivity {
+public class SimpleQueueActivity extends BaseActivity {
 
     private TaskSimpleQueue mTaskSimpleQueue;
 
@@ -28,7 +28,7 @@ public class PriorityConQueueActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_priority_con_queue);
+        setContentView(R.layout.activity_simple_queue);
         setSupportActionBar(R.id.tool_bar);
         init();
     }
@@ -41,7 +41,7 @@ public class PriorityConQueueActivity extends BaseActivity {
             @Override
             public void onQueueChanged(final int count) {
                 LogUtils.i("onQueueChanged " + count);
-                PriorityConQueueActivity.this.runOnUiThread(new Runnable() {
+                SimpleQueueActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         mTaskCountTv.setText(getString(R.string.task_count, count));
@@ -58,12 +58,12 @@ public class PriorityConQueueActivity extends BaseActivity {
         Toast.makeText(this, "queue started", Toast.LENGTH_SHORT).show();
     }
 
-    public void addTask2(View v) {
-        createTaskView(2);
+    public void addTask1(View v) {
+        createTaskView(1);
     }
 
-    public void addTask5(View v) {
-        createTaskView(5);
+    public void addTask2(View v) {
+        createTaskView(2);
     }
 
     public void stop(View v) {
