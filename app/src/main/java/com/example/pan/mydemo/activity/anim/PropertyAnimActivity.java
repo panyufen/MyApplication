@@ -21,9 +21,7 @@ public class PropertyAnimActivity extends BaseActivity {
 
     private RelativeLayout ballContainer;
     private ImageView mGreenBall;
-
     private ImageView animatorSetMoveBall;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +31,6 @@ public class PropertyAnimActivity extends BaseActivity {
         toolbar.setTitle("PropertyAnim");
         setSupportActionBar(toolbar);
         dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimary);
-
-
 
 
         ballContainer = (RelativeLayout) findViewById(R.id.ball_container);
@@ -54,16 +50,12 @@ public class PropertyAnimActivity extends BaseActivity {
 
 
     public void rotateAnimRunListener(final View view) {
-        ObjectAnimator anim;
+        ValueAnimator anim;
         if (view.getTag() != "1") {
-            anim = ObjectAnimator//
-                    .ofFloat(view, "aaa", 1.0F, 0.3F)//
-                    .setDuration(1000);//
+            anim = ObjectAnimator.ofFloat(1.0F, 0.3F).setDuration(1000);//
             view.setTag("1");
         } else {
-            anim = ObjectAnimator//
-                    .ofFloat(view, "aaa", 0.3F, 1F)//
-                    .setDuration(1000);//
+            anim = ObjectAnimator.ofFloat(0.3F, 1F).setDuration(1000);//
             view.setTag("0");
         }
 
@@ -82,7 +74,6 @@ public class PropertyAnimActivity extends BaseActivity {
 
     public void doBounceAnim(final View view) {
         final float x = ballContainer.getWidth() - mGreenBall.getWidth(), y = ballContainer.getHeight() - mGreenBall.getHeight();
-
         ValueAnimator xAnimator = ValueAnimator.ofFloat(0f, 1f);
         xAnimator.setDuration(2000);
         xAnimator.setInterpolator(new LinearInterpolator());
@@ -98,7 +89,7 @@ public class PropertyAnimActivity extends BaseActivity {
         yAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mGreenBall.setY(y * (float) animation.getAnimatedValue());
+                mGreenBall.setTranslationY(y * (float) animation.getAnimatedValue());
             }
         });
 
@@ -155,7 +146,7 @@ public class PropertyAnimActivity extends BaseActivity {
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(animatorSetMoveBall, "scaleX", 1.0f, 2f);
         ObjectAnimator anim2 = ObjectAnimator.ofFloat(animatorSetMoveBall, "scaleY", 1.0f, 2f);
         ObjectAnimator anim3 = ObjectAnimator.ofFloat(animatorSetMoveBall, "x", cx, 0f);
-        ObjectAnimator anim4 = ObjectAnimator.ofFloat(animatorSetMoveBall, "x", 2*cx);
+        ObjectAnimator anim4 = ObjectAnimator.ofFloat(animatorSetMoveBall, "x", 2 * cx);
         ObjectAnimator anim5 = ObjectAnimator.ofFloat(animatorSetMoveBall, "x", cx);
         ObjectAnimator anim6 = ObjectAnimator.ofFloat(animatorSetMoveBall, "scaleX", 1.0f);
         ObjectAnimator anim7 = ObjectAnimator.ofFloat(animatorSetMoveBall, "scaleY", 1.0f);

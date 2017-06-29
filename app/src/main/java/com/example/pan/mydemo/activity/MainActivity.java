@@ -16,6 +16,7 @@ import com.example.pan.mydemo.activity.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.activity.opencv.OpenCVActivity;
 import com.example.pan.mydemo.activity.opengl.OpenGLActivity;
 import com.example.pan.mydemo.activity.queue.PriorityConQueueActivity;
+import com.example.pan.mydemo.activity.rxjava.RxJavaActivity;
 import com.example.pan.mydemo.activity.web.WebIntentActivity;
 
 import kr.co.namee.permissiongen.PermissionFail;
@@ -92,12 +93,21 @@ public class MainActivity extends BaseActivity {
         startActivity(RxJavaActivity.class);
     }
 
+    public void startRetrofit(View v){
+        startActivity(RetrofitActivity.class);
+    }
+
+
     public void startPicasso(View v) {
         startActivity(PicassoActivity.class);
     }
 
     public void startFresco(View v) {
         startActivity(FrescoActivity.class);
+    }
+
+    public void startGlide(View v){
+        startActivity(GlideActivity.class);
     }
 
     public void startCordova(View v) {

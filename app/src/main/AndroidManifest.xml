@@ -119,7 +119,7 @@
             android:name=".activity.WebActivity"
             android:label="@string/title_activity_web">
         </activity>
-        <activity android:name=".activity.RxJavaActivity">
+        <activity android:name=".activity.rxjava.RxJavaActivity">
         </activity>
         <activity android:name=".activity.PicassoActivity">
         </activity>
@@ -351,6 +351,16 @@
         <activity android:name=".activity.queue.PriorityQueueActivity">
         </activity>
         <activity android:name=".activity.queue.SimpleQueueActivity">
+        </activity>
+        <activity android:name=".activity.rxjava.RxJava1Activity">
+        </activity>
+        <activity android:name=".activity.rxjava.RxJava2Activity">
+        </activity>
+        <activity android:name=".activity.rxjava.RxJava3Activity">
+        </activity>
+        <activity android:name=".activity.RetrofitActivity">
+        </activity>
+        <activity android:name=".activity.GlideActivity">
         </activity>
     </application>
 
