@@ -1,9 +1,9 @@
 package com.example.pan.mydemo.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.pan.mydemo.R;
+import com.example.pan.mydemo.activity.base.BaseActivity;
 
 public class RetrofitActivity extends BaseActivity {
 
