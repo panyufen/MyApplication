@@ -123,7 +123,7 @@
         </activity>
         <activity android:name=".activity.PicassoActivity">
         </activity>
-        <activity android:name=".activity.materialdesign.ItemDecorationActivity">
+        <activity android:name=".activity.materialdesign.RecyclerViewItemDecorationActivity">
         </activity>
         <activity android:name=".activity.CordovaActivity">
         </activity>
@@ -364,7 +364,11 @@
         </activity>
         <activity
             android:name=".activity.materialdesign.RecyclerViewActivity"
-            android:label="RecyclerViewActivity"
+            android:label="RecyclerViewActivity">
+        </activity>
+        <activity
+            android:name=".activity.materialdesign.RecyclerViewItemDecoration2Activity"
+            android:label="ItemDecoration2Activity"
             >
 
         </activity>

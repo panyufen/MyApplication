@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ItemDecorationActivity extends BaseActivity {
+public class RecyclerViewItemDecorationActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
 
@@ -38,7 +38,7 @@ public class ItemDecorationActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_item_decoration);
+        setContentView(R.layout.activity_recycler_view_item_decoration);
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
@@ -99,7 +99,7 @@ public class ItemDecorationActivity extends BaseActivity {
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             MyViewHolder holder = new MyViewHolder(LayoutInflater.from(
-                    ItemDecorationActivity.this).inflate(R.layout.recycler_item, parent,
+                    RecyclerViewItemDecorationActivity.this).inflate(R.layout.recycler_item, parent,
                     false));
             return holder;
         }

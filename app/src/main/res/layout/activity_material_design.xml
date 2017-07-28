@@ -1,127 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:skin="http://schemas.android.com/android/skin"
     android:id="@+id/activity_support_design"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/window_background"
-    skin:enable="true"
+    android:orientation="vertical"
     >
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStartWithNavigation="0dp"
         >
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            app:contentInsetLeft="0dp"
-            app:contentInsetStartWithNavigation="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@color/common_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="自定义搜索"
+            android:textColor="@color/common_black"
+            android:textSize="16dp"
+            />
+    </android.support.v7.widget.Toolbar>
+
+
+    <!--android:background="@color/window_background"-->
+    <!--skin:enable="true"-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:background="@color/common_white"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:text="自定义搜索"
-                android:textColor="@color/common_black"
-                android:textSize="16dp"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/item_selector"
+                android:onClick="startConstraintLayout"
+                android:text="ConstraintLayout"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
                 />
-        </android.support.v7.widget.Toolbar>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startConstraintLayout"
-            android:text="ConstraintLayout"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startFlexBoxLayout"
-            android:text="FlexBoxLayout"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/item_selector"
-            android:onClick="startRecycler"
-            android:text="RecyclerView"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="2dp"
-                android:layout_weight="1"
                 android:background="@drawable/item_selector"
-                android:onClick="startSearchView"
-                android:text="SearchView"
-                android:textAllCaps="false"
-                android:textColor="@color/normal_text_color"
-                skin:enable="true"/>
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_selector"
-                android:onClick="startNavigationView"
-                android:text="NavigationView"
-                android:textAllCaps="false"
-                android:textColor="@color/normal_text_color"
-                skin:enable="true"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/item_selector"
-                android:onClick="startSwipBackActivity"
-                android:text="SwipBack"
+                android:onClick="startFlexBoxLayout"
+                android:text="FlexBoxLayout"
                 android:textAllCaps="false"
                 android:textColor="@color/normal_text_color"
                 skin:enable="true"
@@ -133,73 +75,139 @@
                 android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/item_selector"
-                android:onClick="startRightSwipMenuActivity"
-                android:text="RightSwipMenu"
+                android:onClick="startRecycler"
+                android:text="RecyclerView"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startSearchView"
+                    android:text="SearchView"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"/>
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startNavigationView"
+                    android:text="NavigationView"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startSwipBackActivity"
+                    android:text="SwipBack"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_selector"
+                    android:onClick="startRightSwipMenuActivity"
+                    android:text="RightSwipMenu"
+                    android:textAllCaps="false"
+                    android:textColor="@color/normal_text_color"
+                    skin:enable="true"
+                    />
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/item_selector"
+                android:onClick="startSceneTransition"
+                android:text="SceneTransition"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/item_selector"
+                android:onClick="startCollapsingToolbarLayout"
+                android:text="CollapsingToolbarLayout"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/item_selector"
+                android:onClick="startNestedScrolling"
+                android:text="NestedScrolling"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/item_selector"
+                android:onClick="startNestedScrolling2"
+                android:text="NestedScrolling2"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/item_selector"
+                android:onClick="startNestedScrollView"
+                android:text="NestedScrollView"
                 android:textAllCaps="false"
                 android:textColor="@color/normal_text_color"
                 skin:enable="true"
                 />
         </LinearLayout>
-
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startSceneTransition"
-            android:text="SceneTransition"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startCollapsingToolbarLayout"
-            android:text="CollapsingToolbarLayout"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startNestedScrolling"
-            android:text="NestedScrolling"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startNestedScrolling2"
-            android:text="NestedScrolling2"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:background="@drawable/item_selector"
-            android:onClick="startNestedScrollView"
-            android:text="NestedScrollView"
-            android:textAllCaps="false"
-            android:textColor="@color/normal_text_color"
-            skin:enable="true"
-            />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

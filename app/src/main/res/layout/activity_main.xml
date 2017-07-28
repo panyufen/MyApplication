@@ -462,6 +462,7 @@
                     android:textColor="@color/normal_text_color"
                     skin:enable="true"
                     />
+
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

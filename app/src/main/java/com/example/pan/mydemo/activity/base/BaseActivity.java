@@ -2,11 +2,14 @@ package com.example.pan.mydemo.activity.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.example.pan.mydemo.R;
 import com.pan.skin.loader.base.SkinBaseActivity;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by PAN on 2016/9/23.
@@ -22,6 +25,12 @@ public class BaseActivity extends SkinBaseActivity {
     protected void startActivity(Class<?> cls) {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
+    }
+
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        super.setContentView(layoutResID);
+        ButterKnife.bind(this);
     }
 
     @Override
