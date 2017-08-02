@@ -94,7 +94,6 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
             dataGroupItemsLeft.get(leftPos).isChecked = true;
             checkPos = leftPos;
             mRecyclerViewLeft.getAdapter().notifyDataSetChanged();
-            //TODO moveCenter
             moveCenter();
 
         } else {//移动右侧列表

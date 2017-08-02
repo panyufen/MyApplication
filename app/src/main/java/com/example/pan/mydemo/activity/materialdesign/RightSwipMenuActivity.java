@@ -103,8 +103,10 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
             if (!TextUtils.isEmpty(tempContact.index) && PatternUtils.isPinyinFirst(tempContact.index) && stringBuilder.indexOf(tempContact.index) < 0) {
                 stringBuilder.append(tempContact.index);
             }
-            tempContact.name = tempPerson[1];
-            tempContact.tel = tempPerson[0];
+//            tempContact.name = tempPerson[1];
+//            tempContact.tel = tempPerson[0];
+            tempContact.name = tempPerson[1].substring(0, 1) + "**";
+            tempContact.tel = tempPerson[0].substring(0, 3) + "****";
             mContacts.add(tempContact);
         }
         LogUtils.i("contacts " + new Gson().toJson(mContacts));
