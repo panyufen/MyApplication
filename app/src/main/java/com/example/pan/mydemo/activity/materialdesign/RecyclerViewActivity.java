@@ -22,4 +22,8 @@ public class RecyclerViewActivity extends BaseActivity {
     public void startItemDecoration2(View v) {
         startActivity(RecyclerViewItemDecoration2Activity.class);
     }
+
+    public void startRecyclerViewRelated(View v){
+        startActivity(RecyclerViewRelatedActivity.class);
+    }
 }

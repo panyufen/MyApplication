@@ -19,7 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- *  RecyclerView 通过ItemDecoration实现StickyHeader效果
+ * RecyclerView 通过ItemDecoration实现StickyHeader效果
  */
 public class RecyclerViewItemDecoration2Activity extends BaseActivity {
 
@@ -89,7 +89,7 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
 
         class MyViewHolder extends RecyclerView.ViewHolder {
 
-            TextView tv;
+            public TextView tv;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
@@ -97,6 +97,5 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
             }
         }
     }
-
 
 }

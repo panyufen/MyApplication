@@ -8,6 +8,8 @@ public class DataGroupItem {
 
     public boolean isTitle;
 
+    public boolean isChecked;
+
     public String title;
 
     public String text;

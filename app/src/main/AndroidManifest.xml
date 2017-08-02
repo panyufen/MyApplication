@@ -368,9 +368,9 @@
         </activity>
         <activity
             android:name=".activity.materialdesign.RecyclerViewItemDecoration2Activity"
-            android:label="ItemDecoration2Activity"
-            >
-
+            android:label="ItemDecoration2Activity">
+        </activity>
+        <activity android:name=".activity.materialdesign.RecyclerViewRelatedActivity">
         </activity>
     </application>
 

@@ -9,8 +9,10 @@
         android:id="@+id/item_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/selector_button_white"
         android:gravity="center"
-        android:padding="15dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         />
 
 </LinearLayout>
