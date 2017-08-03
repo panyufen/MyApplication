@@ -32,7 +32,7 @@ public class WebIntentActivity extends BaseActivity {
 
     private void init() {
         LogUtils.i("filepath " + FileUtils.getCacheDir(this) + FILENAME);
-        FileUtils.copyFileFromAssets(getApplicationContext(), FILENAME, FileUtils.getCacheDir(this) + File.separator + FILENAME);
+        FileUtils.copyFileFromAssets(getApplicationContext(), true, FILENAME, FileUtils.getCacheDir(this) + File.separator + FILENAME);
         FileUtils.setPermission(FileUtils.getCacheDir(this) + File.separator + FILENAME);
         File file = new File(getExternalCacheDir() + File.separator + FILENAME);
         LogUtils.i("file " + file.exists());

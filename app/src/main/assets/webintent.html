@@ -1,12 +1,23 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta charset="utf-8"/>
     <title>web文件</title>
 </head>
+<style>
+    body{
+        font-size:2em;
+    }
+
+</style>
 <body>
-<span>这个文件来自刚才App共享的文件 fileProvider</span><br/>
-<span>A链接的地址：panapp://localhost?id=1&name=2</span><br/>
-<!-- 这个页面用于从外部浏览器打开本App -->
-<a href="panapp://localhost?id=1&name=2">open</a>
+<div style="text-align:center">
+    <br/>
+    <span>这个文件来自刚才App共享的文件 fileProvider</span><br/><br/>
+    <span>A链接的地址：panapp://localhost?id=1&name=2</span><br/><br/>
+
+    <!-- 这个页面用于从外部浏览器打开本App -->
+    <a href="panapp://localhost?id=1&name=2">打开原应用</a>
+</div>
 </body>
 </html>
