@@ -3,7 +3,9 @@
 ## 动态换肤
 ![](/ScreenShoot/SkinLoaderScreenShoot.gif )  
 ## 动画类
+### SVG动画
 ![](/ScreenShoot/AnimSVGScreenShoot.gif )  
+### 贝塞尔曲线运用
 ![](/ScreenShoot/AnimScreenShoot.gif )  
 ![](/ScreenShoot/AnimScreenShoot1.gif )  
 ## 自动换行LinearLayout 自定义圆角View
