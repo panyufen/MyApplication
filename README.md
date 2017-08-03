@@ -6,6 +6,7 @@
 ![](/ScreenShoot/AnimSVGScreenShoot.gif )  
 ![](/ScreenShoot/AnimScreenShoot.gif )  
 ![](/ScreenShoot/AnimScreenShoot1.gif )  
+## 自动换行LinearLayout 自定义圆角View
 ![](/ScreenShoot/AutoLineLayoutScreenShoot.gif )
 ## 添加最近任务
 ![](/ScreenShoot/AddRecentTaskScreenShoot.gif)  
