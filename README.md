@@ -2,6 +2,8 @@
 ## 大部分是收集网络资源 做的修改 如有侵权请告知
 ## 动态换肤
 ![](/ScreenShoot/SkinLoaderScreenShoot.gif )  
+## 从外部浏览器打开应用
+![](/ScreenShoot/WebIntentScreenShoot.gif )  
 ## 动画类
 ### SVG动画
 ![](/ScreenShoot/AnimSVGScreenShoot.gif )  
