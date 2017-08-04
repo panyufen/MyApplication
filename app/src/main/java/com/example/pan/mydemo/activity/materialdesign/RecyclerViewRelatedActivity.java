@@ -11,7 +11,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,7 @@ import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
 import com.example.pan.mydemo.pojo.DataGroupItem;
-import com.google.gson.Gson;
+import com.example.pan.mydemo.view.AutoScrollRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,16 +31,15 @@ import butterknife.BindView;
 public class RecyclerViewRelatedActivity extends BaseActivity {
 
     @BindView(R.id.recycler_view_left)
-    RecyclerView mRecyclerViewLeft;
+    AutoScrollRecyclerView mRecyclerViewLeft;
     @BindView(R.id.recycler_view_right)
-    RecyclerView mRecyclerViewRight;
+    AutoScrollRecyclerView mRecyclerViewRight;
 
 
-    private final int TITLE_COUNT = 40, CONTENT_COUNT = 10;
+    private final int TITLE_COUNT = 100, CONTENT_COUNT = 10;
     private List<DataGroupItem> dataGroupItems = new ArrayList<>();
     private List<DataGroupItem> dataGroupItemsLeft = new ArrayList<>();
     private int checkPos = 0;
-    private boolean needMove = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,69 +94,26 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
             dataGroupItemsLeft.get(leftPos).isChecked = true;
             checkPos = leftPos;
             mRecyclerViewLeft.getAdapter().notifyDataSetChanged();
-            moveCenter();
+            mRecyclerViewLeft.moveCenterByPosition(checkPos);
 
         } else {//移动右侧列表
             int position = pos * (CONTENT_COUNT + 1);
-            View firstView = mRecyclerViewRight.getChildAt(0);
-            int firstPos = mRecyclerViewRight.getChildLayoutPosition(firstView);
-            int lastPos = mRecyclerViewRight.getChildLayoutPosition(mRecyclerViewRight.getChildAt(mRecyclerViewRight.getChildCount() - 1));
-            LogUtils.i("pos " + position + " " + firstPos + " " + lastPos);
-            mRecyclerViewRight.stopScroll();
-            if (position < firstPos) {
-                mRecyclerViewRight.scrollToPosition(position);
-            } else if (position > firstPos && position < lastPos) { //如果在当前屏幕里
-                View currView = mRecyclerViewRight.getChildAt(position - firstPos);
-                int moveDistence = currView.getTop() - firstView.getTop();
-                mRecyclerViewRight.scrollBy(0, moveDistence);
-            } else if (position > lastPos) {
-                mRecyclerViewRight.scrollToPosition(position);
-                needMove = true;
-            }
-        }
-    }
-
-    private void moveCenter() {
-        View firstView = mRecyclerViewLeft.getChildAt(0);
-        int firstPos = mRecyclerViewLeft.getChildLayoutPosition(firstView);
-        int movePosDis = checkPos - firstPos;
-        if (movePosDis > 0 && movePosDis < mRecyclerViewLeft.getChildCount()) {
-            View curView = mRecyclerViewLeft.getChildAt(movePosDis);
-            int firstTop = firstView.getTop();
-            int curTop = curView.getTop();
-            int moveDistence = curTop - firstTop - (mRecyclerViewLeft.getBottom() - mRecyclerViewLeft.getTop()) / 2;
-            mRecyclerViewLeft.smoothScrollBy(0, moveDistence, new DecelerateInterpolator());
+            mRecyclerViewRight.scrollToPosition(position);
         }
     }
 
     private class RightRecyclerViewScrollListener extends RecyclerView.OnScrollListener {
 
         @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-            super.onScrollStateChanged(recyclerView, newState);
-            LogUtils.i("onScrollStateChanged " + newState);
-        }
-
-        @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            LogUtils.i("onScrolled " + recyclerView.getScrollState());
             View firstView = recyclerView.getChildAt(0);
             int firstPos = recyclerView.getChildLayoutPosition(firstView);
             int currPos = checkPos * (CONTENT_COUNT + 1);
-            if (needMove && recyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
-                needMove = false;
-
-                int movePos = currPos - firstPos;
-                if (movePos > 0 && movePos < recyclerView.getChildCount()) {
-                    int moveTop = recyclerView.getChildAt(movePos).getTop();
-                    if (firstPos != currPos) {
-                        recyclerView.scrollBy(0, moveTop);
-                    }
+            if (dataGroupItems.get(firstPos).isTitle && currPos != firstPos) {
+                if (!mRecyclerViewRight.isScrollByAnim()) {
+                    moveToPos(firstPos, true);
                 }
-            }
-            if (!needMove && dataGroupItems.get(firstPos).isTitle && currPos != firstPos) {
-                moveToPos(firstPos, true);
             }
         }
     }
@@ -178,8 +135,8 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
                 dataGroupItems.add(item);
             }
         }
-        LogUtils.i(new Gson().toJson(dataGroupItemsLeft));
-        LogUtils.i(new Gson().toJson(dataGroupItems));
+//        LogUtils.i(new Gson().toJson(dataGroupItemsLeft));
+//        LogUtils.i(new Gson().toJson(dataGroupItems));
     }
 
 
@@ -280,7 +237,7 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
 
         @Override
         public MyViewAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
-            View itemView = LayoutInflater.from(RecyclerViewRelatedActivity.this).inflate(R.layout.item_recycler_view_layout, parent, false);
+            View itemView = LayoutInflater.from(RecyclerViewRelatedActivity.this).inflate(R.layout.item_multi_recycler_view_layout, parent, false);
             return new MyViewAdapter(itemView);
         }
 
@@ -294,6 +251,7 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
                         DensityUtils.dip2px(RecyclerViewRelatedActivity.this, 15),
                         0,
                         DensityUtils.dip2px(RecyclerViewRelatedActivity.this, 15));
+                holder.imageView.setVisibility(View.GONE);
             } else {
                 holder.textView.setGravity(Gravity.CENTER);
                 holder.textView.setPadding(
@@ -301,9 +259,10 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
                         DensityUtils.dip2px(RecyclerViewRelatedActivity.this, 15),
                         0,
                         DensityUtils.dip2px(RecyclerViewRelatedActivity.this, 15));
+                holder.imageView.setVisibility(View.VISIBLE);
             }
             holder.textView.setText(groupItem.text);
-            holder.textView.setOnClickListener(new View.OnClickListener() {
+            holder.linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     mListener.onClick(v, position);
@@ -317,12 +276,15 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
         }
 
         class MyViewAdapter extends RecyclerView.ViewHolder {
-
+            public LinearLayout linearLayout;
             public TextView textView;
+            public ImageView imageView;
 
             public MyViewAdapter(View itemView) {
                 super(itemView);
-                textView = (TextView) itemView.findViewById(R.id.item_tv);
+                linearLayout = (LinearLayout)itemView.findViewById(R.id.item_multi_layout);
+                textView = (TextView) itemView.findViewById(R.id.item_multi_tv);
+                imageView = (ImageView) itemView.findViewById(R.id.item_multi_img);
             }
         }
     }
