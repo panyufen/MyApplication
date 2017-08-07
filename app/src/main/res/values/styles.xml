@@ -83,4 +83,16 @@
         <item name="android:textStyle">bold</item>
         <item name="android:singleLine">false</item>
     </style>
+
+    <style name="DividerVerticalStyle">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/default_blue_royal</item>
+    </style>
+
+    <style name="DividerHorizontalStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/default_blue_royal</item>
+    </style>
 </resources>

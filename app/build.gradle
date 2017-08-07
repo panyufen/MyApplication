@@ -86,13 +86,13 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okio:okio:1.5.0'
     compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.facebook.react:react-native:+'
     compile 'com.facebook.fresco:fresco:0.12.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
     compile 'com.lovedise:permissiongen:0.0.6'
     compile 'com.android.support:multidex:1.0.1'
     // 此处以JPush 3.0.3 版本为例。
+
     // 此处以JCore 1.1.1 版本为例。
     compile 'cn.jiguang.sdk:jpush:3.0.3'
     compile 'cn.jiguang.sdk:jcore:1.1.1'
@@ -101,4 +101,8 @@ dependencies {
     //ButterKnife
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    //Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //Glide
+    compile 'com.github.bumptech.glide:glide:4.0.0'
 }

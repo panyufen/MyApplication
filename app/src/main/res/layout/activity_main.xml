@@ -470,7 +470,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/item_selector"
                     android:onClick="startGlide"
-                    android:text="glide"
+                    android:text="Glide"
                     android:textAllCaps="false"
                     android:textColor="@color/normal_text_color"
                     skin:enable="true"

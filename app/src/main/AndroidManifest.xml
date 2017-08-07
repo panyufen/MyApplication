@@ -121,7 +121,10 @@
         </activity>
         <activity android:name=".activity.rxjava.RxJavaActivity">
         </activity>
-        <activity android:name=".activity.PicassoActivity">
+        <activity
+            android:name=".activity.PicassoActivity"
+            android:label="PicassoActivity"
+            >
         </activity>
         <activity android:name=".activity.materialdesign.RecyclerViewItemDecorationActivity">
         </activity>
@@ -360,7 +363,9 @@
         </activity>
         <activity android:name=".activity.RetrofitActivity">
         </activity>
-        <activity android:name=".activity.GlideActivity">
+        <activity android:name=".activity.GlideActivity"
+            android:label="GlideActivity"
+            >
         </activity>
         <activity
             android:name=".activity.materialdesign.RecyclerViewActivity"

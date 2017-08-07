@@ -32,11 +32,11 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <!--android:background="@color/window_background"-->
-    <!--skin:enable="true"-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/window_background"
+        skin:enable="true"
         >
 
         <LinearLayout

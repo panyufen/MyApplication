@@ -31,7 +31,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         mToolBar = setSupportActionBar(R.id.tool_bar);
 
-
         PermissionGen.needPermission(this, 100,
                 new String[]{
                         Manifest.permission.READ_CONTACTS,

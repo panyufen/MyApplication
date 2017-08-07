@@ -1,7 +1,6 @@
 package com.example.pan.mydemo.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class PicassoActivity extends BaseActivity {
 
     private String BASE_URL = "http://img1.3lian.com/img2011/w1/106/85/";
-    private Toolbar mToolBar;
+
+    @BindView(R.id.image_load_error_iv)
+    ImageView mImageLoadErrorIv;
+    @BindView(R.id.image_load_net_timeout_iv)
+    ImageView mImageLoadNetTimeoutIv;
+    @BindView(R.id.image_load_success_iv)
+    ImageView mImageLoadSuccessIv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picasso);
-        mToolBar = setSupportActionBar(R.id.tool_bar);
+        ButterKnife.bind(this);
+        setSupportActionBar(R.id.tool_bar);
         ArrayList<Dish> dishList = new ArrayList<>();
 
         dishList.add(new Dish(BASE_URL + "42.jpg", "水煮鱼片"));
@@ -38,6 +49,36 @@ public class PicassoActivity extends BaseActivity {
         mListView.setAdapter(adapter);
 
     }
+
+    @OnClick({R.id.image_load_error_iv, R.id.image_load_net_timeout_iv, R.id.image_load_success_iv})
+    public void doClickEvent(View view) {
+        switch (view.getId()) {
+
+            case R.id.image_load_error_iv:
+                Picasso.with(PicassoActivity.this)
+                        .load("http:8.8.8.8/a.jpg")
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(mImageLoadErrorIv);
+                break;
+
+            case R.id.image_load_net_timeout_iv:
+                Picasso.with(PicassoActivity.this)
+                        .load("http://www.google.com/back.jpg")
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(mImageLoadNetTimeoutIv);
+
+                break;
+
+            case R.id.image_load_success_iv:
+                Picasso.with(PicassoActivity.this)
+                        .load("http://img1.3lian.com/img2011/w1/106/85/11.jpg")
+                        .placeholder(R.mipmap.ic_launcher)
+                        .into(mImageLoadSuccessIv);
+                break;
+        }
+
+    }
+
 
     // ListView适配器
     private class MainListViewAdapter extends BaseAdapter {
@@ -72,7 +113,7 @@ public class PicassoActivity extends BaseActivity {
                 item = new ListViewItemHolder();
                 item.img_iv = (ImageView) convertView
                         .findViewById(R.id.id_index_gallery_item_image);
-                item.name = (TextView)convertView.findViewById(R.id.id_index_gallery_item_text);
+                item.name = (TextView) convertView.findViewById(R.id.id_index_gallery_item_text);
                 convertView.setTag(item);
             } else {
                 item = (ListViewItemHolder) convertView.getTag();
@@ -83,7 +124,7 @@ public class PicassoActivity extends BaseActivity {
             //这里就是异步加载网络图片的地方
             Picasso.with(PicassoActivity.this)
                     .load(dish.getImgUrl())
-                    .resize(400,400)//pixel
+                    .resize(400, 400)//pixel
                     .centerInside()
                     .placeholder(R.mipmap.ic_launcher)
                     .into(item.img_iv);
@@ -107,7 +148,7 @@ public class PicassoActivity extends BaseActivity {
 
         private String name;
 
-        public Dish(String imgUrl,String name) {
+        public Dish(String imgUrl, String name) {
             this.imgUrl = imgUrl;
             this.name = name;
         }
@@ -120,11 +161,11 @@ public class PicassoActivity extends BaseActivity {
             this.imgUrl = imgUrl;
         }
 
-        public String getName(){
+        public String getName() {
             return this.name;
         }
 
-        public void setName( String name ){
+        public void setName(String name) {
             this.name = name;
         }
 
