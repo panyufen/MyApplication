@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity {
         startActivity(RxJavaActivity.class);
     }
 
-    public void startRetrofit(View v){
+    public void startRetrofit(View v) {
         startActivity(RetrofitActivity.class);
     }
 
@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity {
         startActivity(FrescoActivity.class);
     }
 
-    public void startGlide(View v){
+    public void startGlide(View v) {
         startActivity(GlideActivity.class);
     }
 
@@ -180,6 +180,10 @@ public class MainActivity extends BaseActivity {
 
     public void startPriorityConQueue(View v) {
         startActivity(PriorityConQueueActivity.class);
+    }
+
+    public void startNFC(View view) {
+        startActivity(NFCActivity.class);
     }
 
     @Override

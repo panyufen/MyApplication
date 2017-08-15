@@ -32,6 +32,12 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
+    <!-- nfc -->
+    <uses-permission android:name="android.permission.NFC"/>
+
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true"/>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -123,8 +129,7 @@
         </activity>
         <activity
             android:name=".activity.PicassoActivity"
-            android:label="PicassoActivity"
-            >
+            android:label="PicassoActivity">
         </activity>
         <activity android:name=".activity.materialdesign.RecyclerViewItemDecorationActivity">
         </activity>
@@ -363,9 +368,9 @@
         </activity>
         <activity android:name=".activity.RetrofitActivity">
         </activity>
-        <activity android:name=".activity.GlideActivity"
-            android:label="GlideActivity"
-            >
+        <activity
+            android:name=".activity.GlideActivity"
+            android:label="GlideActivity">
         </activity>
         <activity
             android:name=".activity.materialdesign.RecyclerViewActivity"
@@ -376,6 +381,21 @@
             android:label="ItemDecoration2Activity">
         </activity>
         <activity android:name=".activity.materialdesign.RecyclerViewRelatedActivity">
+        </activity>
+        <activity
+            android:name=".activity.NFCActivity"
+            android:exported="true"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            >
+            <!-- NFC Tech Filter -->
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/nfc_tech_filter" />
         </activity>
     </application>
 
