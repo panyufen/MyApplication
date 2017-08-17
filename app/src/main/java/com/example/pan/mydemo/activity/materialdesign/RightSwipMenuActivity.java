@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -18,10 +19,13 @@ import com.cus.pan.library.utils.LogUtils;
 import com.cus.pan.library.utils.PatternUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.example.pan.mydemo.adapter.DividerItemDecoration;
 import com.example.pan.mydemo.view.AutoLinearLayout;
+import com.example.pan.mydemo.view.AutoScrollRecyclerView;
 import com.example.pan.mydemo.view.RightSwipMenuLayout;
 import com.example.pan.mydemo.view.SideBar;
 import com.google.gson.Gson;
+import com.pan.skin.loader.load.SkinManager;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -40,7 +44,7 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
 
     private RightSwipMenuLayout mRightSwipMenuLayout;
 
-    private RecyclerView mRecyclerView;
+    private AutoScrollRecyclerView mRecyclerView;
     private ContactRecycleAdapter mAdapter;
 
     private SideBar mSideBar;
@@ -63,10 +67,11 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
         mRightSwipMenuLayout = (RightSwipMenuLayout) findViewById(R.id.right_swip_menu_layout);
         mRightSwipMenuLayout.setOnSwipMenuListener(this);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-//        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL_LIST));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView = (AutoScrollRecyclerView) findViewById(R.id.recycler_view);
+        int dividerColor = SkinManager.getInstance().getColor(R.color.normal_text_color);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(DividerItemDecoration.VERTICAL_LIST, dividerColor));
         mRecyclerView.setAdapter(mAdapter = new ContactRecycleAdapter());
 
         mSideBar = (SideBar) findViewById(R.id.side_bar);
@@ -123,7 +128,8 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new MyViewHolder(LayoutInflater.from(RightSwipMenuActivity.this).inflate(R.layout.contact_list_item, parent, false));
+            View view = LayoutInflater.from(RightSwipMenuActivity.this).inflate(R.layout.contact_list_item, parent, false);
+            return new MyViewHolder(view);
         }
 
         @Override
@@ -165,10 +171,15 @@ public class RightSwipMenuActivity extends BaseActivity implements RightSwipMenu
 
         class MyViewHolder extends RecyclerView.ViewHolder {
             TextView tv;
+            LinearLayout linearLayout;
 
             public MyViewHolder(View view) {
                 super(view);
                 tv = (TextView) view.findViewById(R.id.contact_list_item_name);
+                dynamicAddSkinEnableView(tv, "textColor", R.color.normal_text_color);
+
+                linearLayout = (LinearLayout) view.findViewById(R.id.linear_layout);
+                dynamicAddSkinEnableView(linearLayout, "background", R.drawable.item_selector);
             }
         }
 

@@ -2,6 +2,7 @@
 <com.example.pan.mydemo.view.SwipBackLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swip_back_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,12 +17,20 @@
         skin:enable="true"
         >
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            />
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/normal_text_color"
+                android:background="@color/colorPrimary"
+
+                />
+        </android.support.design.widget.AppBarLayout>
 
         <TextView
             android:layout_width="match_parent"

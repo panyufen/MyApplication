@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.v4.view.LayoutInflaterFactory;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -146,6 +147,7 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
             if (si.view == null) {
                 continue;
             }
+            Log.i("applyView:", si.view.getClass().getName() + " ");
             si.apply();
         }
     }

@@ -1,12 +1,13 @@
 <resources>
 
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorAccent">@color/common_white</item>
+    <style name="BaseAppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:listDivider">@drawable/divider_bg</item>
         <item name="toolbarStyle">@style/MyToolBarStyle</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
+        <item name="android:textColor">@color/normal_text_color</item>
         <!--设置menu中item的图标颜色-->
         <!--<item name="android:textColorPrimary">@android:color/white</item>-->
         <!--<item name="android:textColorSecondary">@android:color/white</item>-->

@@ -4,7 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,14 +23,18 @@ import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
 
 public class MainActivity extends BaseActivity {
-    private Toolbar mToolBar;
+
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mToolBar = setSupportActionBar(R.id.tool_bar);
-
+        setSupportActionBar(R.id.tool_bar);
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            setToolbarNavIconVisible(actionBar, false);
+        }
         PermissionGen.needPermission(this, 100,
                 new String[]{
                         Manifest.permission.READ_CONTACTS,
@@ -44,6 +48,7 @@ public class MainActivity extends BaseActivity {
         );
 
     }
+
 
     @PermissionFail(requestCode = 100)
     public void doFailSomething() {

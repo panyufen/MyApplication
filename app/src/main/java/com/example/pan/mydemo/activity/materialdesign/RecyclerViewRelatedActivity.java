@@ -22,6 +22,7 @@ import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
 import com.example.pan.mydemo.pojo.DataGroupItem;
 import com.example.pan.mydemo.view.AutoScrollRecyclerView;
+import com.pan.skin.loader.load.SkinManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,9 +163,9 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
             holder.textView.setText(groupItem.title);
 
             if (groupItem.isChecked) {
-                holder.textView.setBackgroundColor(getResources().getColor(R.color.btn_white_pressed));
+                holder.textView.setBackgroundColor(SkinManager.getInstance().getColor(R.color.btn_pressed));
             } else {
-                holder.textView.setBackground(getResources().getDrawable(R.drawable.selector_button_white));
+                holder.textView.setBackground(SkinManager.getInstance().getDrawable(R.drawable.item_selector));
             }
 
             holder.textView.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +188,8 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
             public MyViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView.findViewById(R.id.item_tv);
+                dynamicAddSkinEnableView(textView, "background", R.drawable.item_selector);
+                dynamicAddSkinEnableView(textView, "textColor", R.color.normal_text_color);
             }
         }
     }
@@ -282,9 +285,14 @@ public class RecyclerViewRelatedActivity extends BaseActivity {
 
             public MyViewAdapter(View itemView) {
                 super(itemView);
-                linearLayout = (LinearLayout)itemView.findViewById(R.id.item_multi_layout);
+                linearLayout = (LinearLayout) itemView.findViewById(R.id.item_multi_layout);
+                dynamicAddSkinEnableView(linearLayout, "background", R.drawable.item_selector);
+
                 textView = (TextView) itemView.findViewById(R.id.item_multi_tv);
+                dynamicAddSkinEnableView(textView, "textColor", R.color.normal_text_color);
+
                 imageView = (ImageView) itemView.findViewById(R.id.item_multi_img);
+
             }
         }
     }

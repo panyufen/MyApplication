@@ -50,8 +50,8 @@ public class RecyclerViewItemDecorationActivity extends BaseActivity {
 
         initData();
 
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL_LIST));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        recyclerView.addItemDecoration(new DividerItemDecoration(DividerItemDecoration.HORIZONTAL_LIST));
+        recyclerView.addItemDecoration(new DividerItemDecoration(DividerItemDecoration.VERTICAL_LIST));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter = new HomeAdapter());
@@ -136,7 +136,7 @@ public class RecyclerViewItemDecorationActivity extends BaseActivity {
             public MyViewHolder(View view) {
                 super(view);
                 relativeLayout = (RelativeLayout) view.findViewById(R.id.item_container);
-                iv = (ImageView)view.findViewById(R.id.id_index_gallery_item_image);
+                iv = (ImageView) view.findViewById(R.id.id_index_gallery_item_image);
                 tv = (TextView) view.findViewById(R.id.id_index_gallery_item_text);
             }
         }

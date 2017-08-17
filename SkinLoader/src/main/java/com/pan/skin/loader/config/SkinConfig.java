@@ -11,14 +11,12 @@ import com.pan.skin.loader.util.PreferencesUtils;
  */
 public class SkinConfig {
     public static final String NAMESPACE = "http://schemas.android.com/android/skin";
-    public static final String SKIN_SUFFIX = ".theme";
     public static final String SKIN_FOLER_NAME = "skin";
-    public static final String PREF_CUSTOM_SKIN_PATH = "cn_feng_skin_custom_path";
-    public static final String DEFALT_SKIN = "cn_feng_skin_default";//默认皮肤
-    public static final String SKIN_FROM = "cn_feng_skin_from";
-    public static final int FROM_INTERNAL = 0;
-    public static final int FROM_EXTERNAL = 1;
+    public static final String PREF_CUSTOM_SKIN_PATH = "pan_skin_custom_path";
+    public static final String DEFALT_SKIN = "pan_skin_default";//默认皮肤
     public static final String ATTR_SKIN_ENABLE = "enable";
+    public static final String SKIN_STYLE_ISLIGHT = "skin_style_islight";
+
 
     /**
      * get path of last skin package path
@@ -34,7 +32,18 @@ public class SkinConfig {
         PreferencesUtils.putString(context, PREF_CUSTOM_SKIN_PATH, path);
     }
 
+    public static void setIsLightSkin(Context context,boolean isLight) {
+        PreferencesUtils.putBoolean(context, SKIN_STYLE_ISLIGHT, isLight);
+    }
+
+    public static boolean isLightSkin(Context context) {
+        return PreferencesUtils.getBoolean(context, SKIN_STYLE_ISLIGHT, false);
+    }
+
+
     public static boolean isDefaultSkin(Context context) {
         return DEFALT_SKIN.equals(getCustomSkinPath(context));
     }
+
+
 }

@@ -204,9 +204,9 @@ public class FileUtils {
     }
 
 
-    public static void moveAssetsToDir(Context context, String rawName, String dir) {
+    public static void moveAssetsToDir(Context context, String rawName, String dir,boolean isOverRide) {
         try {
-            writeFile(context.getAssets().open(rawName), dir, true);
+            writeFile(context.getAssets().open(rawName), dir, isOverRide);
         } catch (Exception e) {
             e.printStackTrace();
             Log.e(TAG, e.getMessage());

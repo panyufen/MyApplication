@@ -1,5 +1,7 @@
 package com.pan.skin.loader.attr;
 
+import android.util.Log;
+
 /**
  * Created by _SOLID
  * Date:2016/4/14
@@ -11,6 +13,7 @@ public class AttrFactory {
 
     public static final String BACKGROUND = "background";
     public static final String TEXT_COLOR = "textColor";
+    public static final String TITLE_TEXT_COLOR = "titleTextColor";
     public static final String TAB_INDICATOR_COLOR = "tabIndicatorColor";
     public static final String CONTENT_SCRIM_COLOR = "contentScrimColor";
     public static final String BACKGROUND_TINTLIST = "backgroundTint";
@@ -18,12 +21,15 @@ public class AttrFactory {
 
 
     public static SkinAttr get(String attrName, int attrValueRefId, String attrValueRefName, String typeName) {
-//        Log.i(TAG, "attrName:" + attrName);
+        Log.i(TAG, "attrName:" + attrName);
         SkinAttr mSkinAttr = null;
 
         if (BACKGROUND.equals(attrName)) {
             mSkinAttr = new BackgroundAttr();
 //            Log.i(TAG, "create:BackgroundAttr");
+        } else if (TITLE_TEXT_COLOR.equals(attrName)) {
+            mSkinAttr = new TitleTextColor();
+
         } else if (TEXT_COLOR.equals(attrName)) {
             mSkinAttr = new TextColorAttr();
 //            Log.i(TAG, "create:TextColorAttr");

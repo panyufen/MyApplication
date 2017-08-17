@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,11 +17,12 @@ public class SideBar extends View {
     private RightSwipMenuLayout rightSwipMenuLayout;
     private char[] l;
     private SectionIndexer sectionIndexter = null;
-    private RecyclerView list;
+    private AutoScrollRecyclerView list;
     private TextView mDialogText;
     private int m_nItemHeight = 27;
     private float dx, dy;
     private float xDistance, yDistance;
+    private Paint mPaint = new Paint();
 
     private boolean mCanTouchAble = true;
 
@@ -42,6 +42,12 @@ public class SideBar extends View {
     private void init() {
         l = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
                 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        mPaint.setColor(Color.WHITE);
+        mPaint.setTextSize(25);
+        mPaint.setStrokeWidth(3);
+        mPaint.setAntiAlias(true);
+        mPaint.setTypeface(Typeface.DEFAULT);
+        mPaint.setTextAlign(Paint.Align.CENTER);
     }
 
 
@@ -49,7 +55,7 @@ public class SideBar extends View {
         this.l = tl;
     }
 
-    public void setListView(RecyclerView _list) {
+    public void setListView(AutoScrollRecyclerView _list) {
         list = _list;
         sectionIndexter = (SectionIndexer) _list.getAdapter();
     }
@@ -110,7 +116,7 @@ public class SideBar extends View {
         }
         LogUtils.i("x y " + xDistance + " " + yDistance);
         if (event.getAction() == MotionEvent.ACTION_UP
-                ||(event.getAction() == MotionEvent.ACTION_MOVE && xDistance < yDistance)) {
+                || (event.getAction() == MotionEvent.ACTION_MOVE && xDistance < yDistance)) {
             //如果是 “垂直滑动” 或者 “点击” 才可以触发滚动list
             int position = sectionIndexter.getPositionForSection(l[idx]);
             if (position == -1) {
@@ -129,17 +135,10 @@ public class SideBar extends View {
     }
 
     protected void onDraw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(25);
-        paint.setStrokeWidth(3);
-        paint.setAntiAlias(true);
-        paint.setTypeface(Typeface.DEFAULT);
-        paint.setTextAlign(Paint.Align.CENTER);
         float widthCenter = getMeasuredWidth() / 2;
         m_nItemHeight = getMeasuredHeight() / l.length;
         for (int i = 0; i < l.length; i++) {
-            canvas.drawText(String.valueOf(l[i]), widthCenter, m_nItemHeight / 2 + (i * m_nItemHeight), paint);
+            canvas.drawText(String.valueOf(l[i]), widthCenter, m_nItemHeight / 2 + (i * m_nItemHeight), mPaint);
         }
         super.onDraw(canvas);
     }

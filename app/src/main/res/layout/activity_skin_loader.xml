@@ -4,6 +4,7 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
     >
 
@@ -11,7 +12,7 @@
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/common_white"
+        android:background="@color/window_background"
 
         android:orientation="vertical"
         skin:enable="true">
@@ -31,6 +32,7 @@
                     android:id="@+id/tool_bar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    app:titleTextColor="@color/normal_text_color"
                     android:background="@color/colorPrimary"
 
                     />
@@ -50,7 +52,6 @@
                     android:layout_height="100dp"
                     android:background="@drawable/item_selector"
                     android:onClick="setDefaultTheme"
-                    android:text="官方默认"
                     android:textColor="@color/normal_text_color"
                     android:textSize="20sp"
                     skin:enable="true"/>
@@ -62,7 +63,6 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/item_selector"
                     android:onClick="setDarkTheme"
-                    android:text="暗夜诱惑"
                     android:textColor="@color/normal_text_color"
                     android:textSize="20sp"
                     skin:enable="true"/>

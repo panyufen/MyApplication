@@ -11,21 +11,31 @@
     skin:enable="true"
     >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="@color/colorPrimary"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/normal_text_color"
         tools:layout_constraintTop_creator="1"
         tools:layout_conversion_absoluteHeight="56dp"
         tools:layout_conversion_absoluteWidth="384dp"
         tools:layout_conversion_absoluteX="0dp"
         tools:layout_conversion_absoluteY="0dp"
-        />
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+
+            />
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:id="@+id/drawer_layout"
@@ -37,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tool_bar"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout"
         app:layout_constraintVertical_bias="0.75"
         skin:enable="true"
         tools:layout_constraintBottom_creator="1"

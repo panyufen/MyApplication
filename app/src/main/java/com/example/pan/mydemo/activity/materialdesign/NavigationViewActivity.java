@@ -1,45 +1,33 @@
 package com.example.pan.mydemo.activity.materialdesign;
 
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.pan.skin.loader.load.SkinManager;
 
 public class NavigationViewActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout mDrawerLayout;
-
     private NavigationView mNavigationView;
-
     private TextView swipValueTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        initStatus();
+        int color = SkinManager.getInstance().getColorPrimaryDark();
+        color = color == -1 ? getResources().getColor(R.color.colorPrimaryDark) : color;
+        setTranslucaentStatusBarForDrawer(color);
         setContentView(R.layout.activity_navigation_view);
         setSupportActionBar(R.id.tool_bar, "Content Title");
         init();
-    }
-
-    private void initStatus() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        }
     }
 
     private void init() {

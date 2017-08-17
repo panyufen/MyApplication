@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
@@ -77,9 +78,15 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, final int position) {
             DataGroupItem groupItem = lists.get(position);
             holder.tv.setText(groupItem.text);
+            holder.tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(RecyclerViewItemDecoration2Activity.this, "position:" + position, Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
         @Override
@@ -94,6 +101,8 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
             public MyViewHolder(View itemView) {
                 super(itemView);
                 tv = (TextView) itemView.findViewById(R.id.item_tv);
+                dynamicAddSkinEnableView(tv, "textColor", R.color.normal_text_color);
+                dynamicAddSkinEnableView(tv, "background", R.drawable.item_selector);
             }
         }
     }

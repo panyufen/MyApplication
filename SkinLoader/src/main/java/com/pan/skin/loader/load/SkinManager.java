@@ -173,7 +173,6 @@ public class SkinManager implements ISkinLoader {
                         Method addAssetPath = assetManager.getClass().getMethod("addAssetPath", String.class);
                         addAssetPath.invoke(assetManager, skinPkgPath);
 
-
                         Resources superRes = context.getResources();
                         Resources skinResource = new Resources(assetManager, superRes.getDisplayMetrics(), superRes.getConfiguration());
 

@@ -90,7 +90,7 @@ public class AutoScrollRecyclerView extends RecyclerView {
             super.smoothScrollToPosition(pos);
         } else if (pos > firstPos && pos < lastPos) {
             int targetPos = pos - firstPos;
-            if (targetPos < 0 || targetPos > lastPos)
+            if (targetPos < 0 || targetPos > getChildCount() - 1)
                 return;
             View targetView = getChildAt(targetPos);
             int firstTop = firstView.getTop();
@@ -184,7 +184,7 @@ public class AutoScrollRecyclerView extends RecyclerView {
             super.onScrolled(recyclerView, dx, dy);
             View firstView = recyclerView.getChildAt(0);
             int firstPos = recyclerView.getChildLayoutPosition(firstView);
-            LogUtils.i("onScrolled onScrolled " + mNeedMove + " " + recyclerView.getScrollState());
+//            LogUtils.i("onScrolled onScrolled " + mNeedMove + " " + recyclerView.getScrollState());
             if (mNeedMove && recyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE) {
                 mNeedMove = false;
                 int movePos = mTargetPos - firstPos;

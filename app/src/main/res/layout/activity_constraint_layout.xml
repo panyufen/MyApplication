@@ -19,6 +19,7 @@
         android:background="@color/colorPrimary"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintHorizontal_bias="0.0"
+        app:titleTextColor="@color/normal_text_color"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
