@@ -48,14 +48,14 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
 
         }
         super.onCreate(savedInstanceState);
+        changeStatusColor();
+        setStatusTextColor(SkinConfig.isLightSkin(this));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         SkinManager.getInstance().attach(this);
-        changeStatusColor();
-        setStatusTextColor(SkinConfig.isLightSkin(this));
     }
 
     @Override
@@ -162,7 +162,6 @@ public class SkinBaseActivity extends AppCompatActivity implements ISkinUpdate, 
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
-
 
 
     @Override

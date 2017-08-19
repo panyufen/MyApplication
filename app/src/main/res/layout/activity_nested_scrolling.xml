@@ -5,8 +5,8 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/window_background"
+    android:orientation="vertical"
     skin:enable="true"
     >
 
@@ -19,8 +19,8 @@
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@color/normal_text_color"
             android:background="@color/colorPrimary"
+            app:titleTextColor="@color/normal_text_color"
 
             />
     </android.support.design.widget.AppBarLayout>
@@ -37,6 +37,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
         android:background="@color/common_white"
         app:layout_behavior="@string/behavior_content"
         >

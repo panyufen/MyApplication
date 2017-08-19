@@ -32,8 +32,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
-    <!-- nfc -->
-    <uses-permission android:name="android.permission.NFC"/>
+    <!-- nfc --><uses-permission android:name="android.permission.NFC"/>
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -307,7 +306,10 @@
             android:name=".activity.materialdesign.SearchViewActivity"
             android:label="SearchView">
         </activity>
-        <activity android:name=".activity.materialdesign.NestedScrollingActivity">
+        <activity
+            android:name=".activity.materialdesign.NestedScrollingActivity"
+            android:label="NestedScrolling"
+            >
         </activity>
         <activity
             android:name=".activity.customview.CustomViewActivity"
@@ -384,18 +386,18 @@
         </activity>
         <activity
             android:name=".activity.NFCActivity"
-            android:exported="true"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
             android:launchMode="singleTask"
             >
             <!-- NFC Tech Filter -->
             <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
-                android:resource="@xml/nfc_tech_filter" />
+                android:resource="@xml/nfc_tech_filter"/>
         </activity>
     </application>
 
