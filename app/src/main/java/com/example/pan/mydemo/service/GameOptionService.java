@@ -321,7 +321,7 @@ public class GameOptionService extends Service {
         Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(1, 5));
         Imgproc.dilate(hsvFontMat, hsvFontMat, element);
 
-//        writeFileByMat(mFilePath + "mat_hsv_" + mScreenFileName, hsvFontMat);
+//        writeFileByMat(mFilePath + "mat_hsv_" + System.currentTimeMillis() + mScreenFileName, hsvFontMat);
 //        Intent intent3 = new Intent(GameOptionService.this, ZoomActivity.class);
 //        intent3.putExtra("imageUrl", mFilePath + "mat_hsv_" + mScreenFileName);
 //        intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -391,7 +391,7 @@ public class GameOptionService extends Service {
             Imgproc.resize(grayFontMat, wordDst, wordDst.size(), 0, 0, Imgproc.INTER_AREA);
             wordDst.convertTo(wordDst, CV_32F);
 
-//            writeFileByMat(mFilePath + "mat_" + i + "_" + mScreenFileName, wordDst);
+//            writeFileByMat(mFilePath + "mat_" + i + "_" + System.currentTimeMillis() + mScreenFileName, wordDst);
 
             wordDst = wordDst.reshape(1, SAMPLE_WIDTH * SAMPLE_HEIGHT);
             for (int k = 0; k < SAMPLE_WIDTH * SAMPLE_HEIGHT; k++) {
@@ -434,7 +434,7 @@ public class GameOptionService extends Service {
                     }
                 }
             }
-            LogUtils.i("matchResult count " + matchCount + " " + tempData.length + " " + i + " " + new Gson().toJson(matchBoolean));
+            LogUtils.i("matchResult count " + matchCount + " " + tempData.length + " " + i + " " + new Gson().toJson(results) + " " + new Gson().toJson(tempData) + " " + new Gson().toJson(matchBoolean));
             if (matchCount == tempData.length) {
                 matchIndex = i;
                 break;
