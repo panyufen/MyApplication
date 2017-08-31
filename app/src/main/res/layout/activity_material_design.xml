@@ -9,29 +9,35 @@
     android:orientation="vertical"
     >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:titleTextColor="@color/normal_text_color"
-        app:contentInsetLeft="0dp"
-        app:contentInsetStartWithNavigation="0dp"
-        >
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <TextView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:background="@color/common_white"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="自定义搜索"
-            android:textColor="@color/common_black"
-            android:textSize="16dp"
-            />
-    </android.support.v7.widget.Toolbar>
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:titleTextColor="@color/normal_text_color"
+            >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:background="@color/common_white"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="自定义搜索"
+                android:textColor="@color/common_black"
+                android:textSize="16dp"
+                />
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"

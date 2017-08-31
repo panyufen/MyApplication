@@ -40,4 +40,7 @@
 
     <color name="contract_index_background">#7f424242</color>
 
+
+
+    <color name="login_page_input_text_line_bg">#7FFFFFFF</color>
 </resources>

@@ -3,6 +3,8 @@ package com.example.pan.mydemo.adapter;
 import android.content.Context;
 import android.util.Log;
 
+import com.cus.pan.library.utils.LogUtils;
+
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -80,10 +82,10 @@ public class CarPlateDetectionFilter implements DetectionFilter {
         //矩形车牌定位
 //        findCard(gray, dst);
 //        numberDetection();
-        Log.i("applyTime","start "+System.nanoTime()/time);
+        Log.i("applyTime", "start " + System.nanoTime() / time);
         //颜色定位车牌,并识别
         findCardByColor(rgba, gray, dst);
-        Log.i("applyTime","end "+System.nanoTime()/time);
+        Log.i("applyTime", "end " + System.nanoTime() / time);
     }
 
     // Lower and Upper bounds for range checking in HSV color space
@@ -94,15 +96,15 @@ public class CarPlateDetectionFilter implements DetectionFilter {
         Mat rangeMat = new Mat();
         Mat sourceHsv = new Mat();
         Imgproc.cvtColor(rgba, sourceHsv, Imgproc.COLOR_RGB2HSV_FULL);
-        Log.i("applyTime","start1 "+System.nanoTime()/time);
+        Log.i("applyTime", "start1 " + System.nanoTime() / time);
         Core.inRange(sourceHsv, mLowerBound, mUpperBound, rangeMat);
 
-        Log.i("applyTime","start2 "+System.nanoTime()/time);
+        Log.i("applyTime", "start2 " + System.nanoTime() / time);
         sourceHsv.release();
 
 //        Imgproc.threshold(rangeMat, rangeMat, 0, 255, Imgproc.THRESH_OTSU);
 
-        Log.i("applyTime","start3 "+rangeMat.channels());
+        Log.i("applyTime", "start3 " + rangeMat.channels());
 
 //太卡 先去除
 //         //除噪可扫描车牌轮廓
@@ -125,15 +127,15 @@ public class CarPlateDetectionFilter implements DetectionFilter {
         List<MatOfInt> hull = new ArrayList<>();
         Mat hierarchy = new Mat();
 
-        Log.i("applyTime","start8 "+System.nanoTime()/time);
+        Log.i("applyTime", "start8 " + System.nanoTime() / time);
         Imgproc.findContours(tempRangeMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-        Log.i("applyTime","start9 "+System.nanoTime()/time);
+        Log.i("applyTime", "start9 " + System.nanoTime() / time);
         int contoursSize = contours.size();
         for (int i = 0; i < contoursSize; i++) {
             MatOfInt matOfInt = new MatOfInt();
-            Imgproc.convexHull(contours.get(i),matOfInt, false);
-            int index=(int)matOfInt.get(((int)matOfInt.size().height)-1,0)[0];
-            Log.i("hull",matOfInt.size()+" "+index);
+            Imgproc.convexHull(contours.get(i), matOfInt, false);
+            int index = (int) matOfInt.get(((int) matOfInt.size().height) - 1, 0)[0];
+            Log.i("hull", matOfInt.size() + " " + index);
         }
 
         tempRangeMat.release();
@@ -247,7 +249,7 @@ public class CarPlateDetectionFilter implements DetectionFilter {
                 Imgproc.line(tempCarPlateAreaGray, new Point(tempCarPlateAreaGray.cols(), 0), new Point(tempCarPlateAreaGray.cols(), tempCarPlateAreaGray.rows()), new Scalar(0), r.height / 4);
 
                 Mat wordElement = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(2, 5));
-                if( r.width > 300 ){
+                if (r.width > 300) {
                     Imgproc.dilate(tempCarPlateAreaGray, tempCarPlateAreaGray, wordElement);
                 }
                 if (r.width > 480) {
@@ -285,6 +287,7 @@ public class CarPlateDetectionFilter implements DetectionFilter {
                         Mat sample = gray.submat(r).submat(ir);
                         Mat wordDst = new Mat(12, 12, CvType.CV_32F);
                         Imgproc.threshold(sample, sample, 0, 255, Imgproc.THRESH_OTSU);
+                        //图像反色
                         Core.bitwise_not(sample, sample);
                         Imgproc.resize(sample, wordDst, wordDst.size(), 0, 0, Imgproc.INTER_AREA);
                         wordDst.convertTo(wordDst, CvType.CV_32F);
@@ -304,7 +307,7 @@ public class CarPlateDetectionFilter implements DetectionFilter {
                             sourceMat.put(0, k, data);
                         }
 
-                        if( initStatus ) {//如果识别库初始化完毕才进行识别
+                        if (initStatus) {//如果识别库初始化完毕才进行识别
                             int result = (int) kNearest.findNearest(sourceMat.row(0), 1, results, neighborResponses, dist);
 
                             String ocrResult = "" + result;
@@ -313,6 +316,7 @@ public class CarPlateDetectionFilter implements DetectionFilter {
                             }
                             Imgproc.putText(plateAreaRgba, ocrResult, new Point(ir.x, ir.y + ir.height), 0, 1, new Scalar(255, 0, 0), 2);
                         }
+                        LogUtils.i("gameotion " + sourceMat.row(0) + " " + wordDst.type());
                         sample.release();
                         wordDst.release();
                         showWord.release();
@@ -322,7 +326,7 @@ public class CarPlateDetectionFilter implements DetectionFilter {
 //                Imgproc.cvtColor(carPlateAreaGray, carPlateAreaGray, Imgproc.COLOR_GRAY2RGBA);
 //                carPlateAreaGray.copyTo(dst.submat(r));  //显示处理后的图像
 
-                Imgproc.putText(dst, String.format("%.2f", borderW / borderH)+" "+borderW, r.tl(), 0, 1, new Scalar(255), 2);
+                Imgproc.putText(dst, String.format("%.2f", borderW / borderH) + " " + borderW, r.tl(), 0, 1, new Scalar(255), 2);
                 Imgproc.rectangle(dst, r.tl(), r.br(), new Scalar(0, 255, 0), 1);
 
                 plateAreaRgba.release();

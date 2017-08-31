@@ -32,12 +32,14 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
-    <!-- nfc --><uses-permission android:name="android.permission.NFC"/>
+    <!-- nfc -->
+    <uses-permission android:name="android.permission.NFC"/>
+
+    <uses-permission android:name="android.permission.INJECT_EVENTS"/>  
 
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true"/>
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false"/>
@@ -90,6 +92,10 @@
                 <action android:name="com.example.pan.mydemo.aidl"/>
             </intent-filter>
         </service>
+        <service
+            android:name=".service.FloatDialogService"
+            android:enabled="true"
+            android:exported="true"/>
         <service
             android:name=".service.MyClientService"
             android:enabled="true"
@@ -308,8 +314,7 @@
         </activity>
         <activity
             android:name=".activity.materialdesign.NestedScrollingActivity"
-            android:label="NestedScrolling"
-            >
+            android:label="NestedScrolling">
         </activity>
         <activity
             android:name=".activity.customview.CustomViewActivity"
@@ -388,8 +393,8 @@
             android:name=".activity.NFCActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
-            android:launchMode="singleTask"
-            >
+            android:launchMode="singleTask">
+
             <!-- NFC Tech Filter -->
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED"/>
@@ -398,6 +403,18 @@
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
                 android:resource="@xml/nfc_tech_filter"/>
+        </activity>
+        <activity
+            android:name="com.androidyuan.lib.screenshot.ScreenShotActivity"
+            android:theme="@android:style/Theme.Dialog"/>
+
+        <service
+            android:name=".service.GameOptionService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".activity.opencv.HSVDetectionActivity">
         </activity>
     </application>
 

@@ -112,13 +112,17 @@ public class NestedScrollContentBehavior extends CoordinatorLayout.Behavior<View
 
     @Override
     public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY) {
-        LogUtils.i("onNestedPreFling ");
-        return super.onNestedPreFling(coordinatorLayout, child, target, velocityX, velocityY);
+        int targetTop = (int) target.getTranslationY();
+        if (targetTop != targetMaxTop && targetTop != targetMinTop) { //代表不在底部 不在頂部
+            return true;
+        }
+        boolean b = super.onNestedPreFling(coordinatorLayout, child, target, velocityX, velocityY);
+        LogUtils.i("onNestedPreFling " + velocityX + " " + velocityY + " " + b);
+        return b;
     }
 
     @Override
     public boolean onNestedFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY, boolean consumed) {
-        LogUtils.i("onNestedFling ");
         return super.onNestedFling(coordinatorLayout, child, target, velocityX, velocityY, consumed);
     }
 

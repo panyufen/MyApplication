@@ -380,7 +380,7 @@ public class FileUtils {
             }
             return true;
         } else {
-            LogUtils.i(" file is exists don't need to copy");
+//            LogUtils.i(" file is exists don't need to copy");
             return true;
         }
     }

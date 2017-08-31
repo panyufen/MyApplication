@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.support.multidex.MultiDex;
 
+import com.example.pan.mydemo.service.FloatDialogService;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.react.BuildConfig;
 import com.facebook.react.ReactApplication;
@@ -22,8 +23,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Nullable;
-
-import cn.jpush.android.api.JPushInterface;
 
 /**
  * Created by PAN on 2016/9/26.
@@ -48,8 +47,8 @@ public class MyApplication extends SkinBaseApplication implements ReactApplicati
         Fresco.initialize(this);
 
         //初始化极光
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
+//        JPushInterface.setDebugMode(true);
+//        JPushInterface.init(this);
     }
 
     /**
@@ -110,5 +109,11 @@ public class MyApplication extends SkinBaseApplication implements ReactApplicati
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        FloatDialogService.floatManager.removeView();
     }
 }

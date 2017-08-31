@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginLeft="2dp"
+        android:background="@drawable/float_popup_background_left"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/float_menu_item_first"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/float_menu_item_first_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始"
+                android:textColor="#646464"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/login_text_input_line_selector"/>
+
+        <LinearLayout
+            android:id="@+id/float_menu_item_close"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_custom_service"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/tv_custom_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退出"
+                android:textColor="#646464"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

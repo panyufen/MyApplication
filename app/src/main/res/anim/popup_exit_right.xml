@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Alpha=1.0表示不透明,Alpha=0.0表示透明 -->
+<set
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator" >
+     <scale 
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:duration="150"
+        android:fromYScale="1.0"
+        android:toYScale="1.0"
+        android:pivotY="50%"
+        android:pivotX="100%"
+        android:fromXScale="1.0"
+        android:toXScale="0"/>  
+        <translate 
+            android:toXDelta="-12%"
+            android:duration="150"
+            android:fillAfter="true"
+            /> 
+</set>

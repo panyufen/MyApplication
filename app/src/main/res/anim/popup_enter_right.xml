@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- android:fromYDelta:动画开始的点离当前View X坐标上的差值 -->
+<!-- 利用100%p表示该动画在当前View的最下方 -->
+<set
+   	 xmlns:android="http://schemas.android.com/apk/res/android"
+     android:interpolator="@android:anim/decelerate_interpolator">
+    <scale 
+        android:duration="150"
+        android:fillAfter="true"
+        android:fromYScale="1.0"
+        android:toYScale="1.0"
+        android:pivotY="50%"
+        android:pivotX="100%"
+        android:fromXScale="0"
+        android:toXScale="1.0"/>    
+        <translate 
+            android:fromXDelta="-12%"
+            android:duration="150"
+            android:fillAfter="true"
+            />  
+</set>

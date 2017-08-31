@@ -1,16 +1,16 @@
 package com.example.pan.mydemo.activity.materialdesign;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
 
-public class MaterialDesignActivity extends BaseActivity {
+import java.io.DataOutputStream;
+import java.io.OutputStream;
 
-    ActionBar mActionBar;
+public class MaterialDesignActivity extends BaseActivity {
 
     Toolbar mToolbar;
 
@@ -19,6 +19,18 @@ public class MaterialDesignActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_design);
         mToolbar = setSupportActionBar(R.id.tool_bar);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                execShellCmd("input tap 400 800");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     public void startRecycler(View v) {
@@ -69,5 +81,26 @@ public class MaterialDesignActivity extends BaseActivity {
 
     public void startNestedScrollView(View v) {
         startActivity(NestedScrollViewActivity.class);
+    }
+
+    /**
+     * 执行shell命令
+     *
+     * @param cmd
+     */
+    private void execShellCmd(String cmd) {
+        try {
+            // 申请获取root权限，这一步很重要，不然会没有作用
+            Process process = Runtime.getRuntime().exec("su");
+            // 获取输出流
+            OutputStream outputStream = process.getOutputStream();
+            DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
+            dataOutputStream.writeBytes(cmd);
+            dataOutputStream.flush();
+            dataOutputStream.close();
+            outputStream.close();
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
     }
 }

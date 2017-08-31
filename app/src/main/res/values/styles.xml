@@ -8,6 +8,7 @@
         <item name="toolbarStyle">@style/MyToolBarStyle</item>
         <item name="searchViewStyle">@style/MySearchViewStyle</item>
         <item name="android:textColor">@color/normal_text_color</item>
+        <item name="toolbarNavigationButtonStyle">@style/MyToolBarNavigation</item>
         <!--设置menu中item的图标颜色-->
         <!--<item name="android:textColorPrimary">@android:color/white</item>-->
         <!--<item name="android:textColorSecondary">@android:color/white</item>-->
@@ -21,6 +22,10 @@
     <style name="MyToolBarStyle" parent="Base.Widget.AppCompat.Toolbar">
         <item name="contentInsetStart">0dp</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+
+    <style name="MyToolBarNavigation" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">56dp</item>
     </style>
 
     <style name="MySearchViewStyle" parent="Base.Widget.AppCompat.SearchView">
@@ -95,5 +100,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1px</item>
         <item name="android:background">@color/default_blue_royal</item>
+    </style>
+
+    <style name="popupWindowAnimation" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_enter_left</item>
+        <item name="android:windowExitAnimation">@anim/popup_exit_left</item>
+    </style>
+    <style name="popupWindowRightAnimation" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/popup_enter_right</item>
+        <item name="android:windowExitAnimation">@anim/popup_exit_right</item>
     </style>
 </resources>

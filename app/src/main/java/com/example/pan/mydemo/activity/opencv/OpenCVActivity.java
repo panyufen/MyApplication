@@ -18,6 +18,10 @@ public class OpenCVActivity extends BaseActivity {
         startActivity(OpenCVGrayActivity.class);
     }
 
+    public void startOpenCVHSVDetection(View v) {
+        startActivity(HSVDetectionActivity.class);
+    }
+
     public void startOpenFeature(View v) {
         startActivity(OpenCVFeatureActivity.class);
     }

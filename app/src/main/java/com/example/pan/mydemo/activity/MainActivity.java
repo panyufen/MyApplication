@@ -18,6 +18,7 @@ import com.example.pan.mydemo.activity.opengl.OpenGLActivity;
 import com.example.pan.mydemo.activity.queue.PriorityConQueueActivity;
 import com.example.pan.mydemo.activity.rxjava.RxJavaActivity;
 import com.example.pan.mydemo.activity.web.WebIntentActivity;
+import com.example.pan.mydemo.service.FloatDialogService;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
@@ -189,6 +190,11 @@ public class MainActivity extends BaseActivity {
 
     public void startNFC(View view) {
         startActivity(NFCActivity.class);
+    }
+
+    public void startFloatView(View view) {
+        Intent floatDialogIntent = new Intent(this, FloatDialogService.class);
+        startService(floatDialogIntent);
     }
 
     @Override

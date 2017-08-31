@@ -1,7 +1,5 @@
 package com.pan.skin.loader.attr;
 
-import android.util.Log;
-
 /**
  * Created by _SOLID
  * Date:2016/4/14
@@ -21,7 +19,7 @@ public class AttrFactory {
 
 
     public static SkinAttr get(String attrName, int attrValueRefId, String attrValueRefName, String typeName) {
-        Log.i(TAG, "attrName:" + attrName);
+//        Log.i(TAG, "attrName:" + attrName);
         SkinAttr mSkinAttr = null;
 
         if (BACKGROUND.equals(attrName)) {

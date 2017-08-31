@@ -1,5 +1,6 @@
 package com.example.pan.mydemo.activity.customview;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import com.example.pan.mydemo.R;
@@ -11,6 +12,7 @@ public class ZoomActivity extends BaseActivity {
 
     private ZoomImageView zoomImageView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +20,10 @@ public class ZoomActivity extends BaseActivity {
         setTranslucentStatus();
         setStatusTextColor(SkinConfig.isLightSkin(this));
         zoomImageView = (ZoomImageView) findViewById(R.id.zoom_image_view);
-        zoomImageView.setImageDrawable(getResources().getDrawable(R.mipmap.s20150612_195215166));
+        if (getIntent().getStringExtra("imageUrl") != null) {
+            zoomImageView.setImageBitmap(BitmapFactory.decodeFile(getIntent().getStringExtra("imageUrl")));
+        } else {
+            zoomImageView.setImageDrawable(getResources().getDrawable(R.mipmap.s20150612_195215166));
+        }
     }
 }
