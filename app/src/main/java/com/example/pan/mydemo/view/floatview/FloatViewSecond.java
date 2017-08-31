@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
+import com.cus.pan.library.utils.DensityUtils;
 import com.example.pan.mydemo.R;
 
 
@@ -55,8 +56,9 @@ public class FloatViewSecond extends android.support.v7.widget.AppCompatImageVie
 		windowManagerParams.y = (int)mPreferenceManager.getFloatY();
 		// 设置悬浮窗口长宽数据
 		windowManagerParams.width = LayoutParams.WRAP_CONTENT;
-		windowManagerParams.height = LayoutParams.WRAP_CONTENT;
+		windowManagerParams.height = DensityUtils.dip2px(getContext(),46);
 		isRight = mPreferenceManager.isDisplayRight();
 		setImageResource(defaultResource);
+		setScaleType(ScaleType.CENTER_CROP);
 	}
 }
