@@ -134,7 +134,7 @@ public class FloatView extends android.support.v7.widget.AppCompatImageView {
         windowManagerParams.height = DensityUtils.dip2px(getContext(), 46);
         isRight = mPreferenceManager.isDisplayRight();
         setImageResource(defaultResource);
-        setScaleType(ScaleType.CENTER_CROP);
+        setScaleType(ScaleType.FIT_CENTER);
         startTimerCount();
     }
 

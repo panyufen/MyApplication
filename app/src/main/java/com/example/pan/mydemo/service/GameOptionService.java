@@ -3,6 +3,7 @@ package com.example.pan.mydemo.service;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.androidyuan.lib.screenshot.ScreenShotActivity;
 import com.androidyuan.lib.screenshot.ShotPreferencesUtils;
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.adapter.GameOcrDataBase;
+import com.example.pan.mydemo.broadcast.NotificationBroascastReveiver;
 import com.google.gson.Gson;
 
 import org.opencv.core.Core;
@@ -30,8 +32,22 @@ import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import cn.jiguang.common.ClientConfig;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
+import cn.jpush.api.JPushClient;
+import cn.jpush.api.push.PushResult;
+import cn.jpush.api.push.model.Message;
+import cn.jpush.api.push.model.Options;
+import cn.jpush.api.push.model.Platform;
+import cn.jpush.api.push.model.PushPayload;
+import cn.jpush.api.push.model.audience.Audience;
+import cn.jpush.api.push.model.notification.AndroidNotification;
+import cn.jpush.api.push.model.notification.Notification;
 
 import static com.androidyuan.lib.screenshot.Shotter.SCREEN_SHOT_PATH_NAME;
 import static org.opencv.core.CvType.CV_32F;
@@ -53,6 +69,8 @@ public class GameOptionService extends Service {
     int mScreenWidth = 0;
     int mScreenHeight = 0;
 
+    private final int TIMER_PERIOD = 30000;
+
     private android.graphics.Point mRefreshBtnLoc = new android.graphics.Point();
 
     private Scalar mLowerBound = new Scalar(0);
@@ -72,6 +90,11 @@ public class GameOptionService extends Service {
     private boolean needStartDetect = true;
     private Timer mTimer = null;
 
+    //注册极光  用于通知提示
+    NotificationBroascastReveiver notificationBroascastReveiver;
+    JPushClient jpushClient = new JPushClient("3398c36ffcf31bbe3cee4926", "a0c66969c5ad3b1d22893887", null, ClientConfig.getInstance());
+
+
     public GameOptionService() {}
 
     @Override
@@ -84,6 +107,19 @@ public class GameOptionService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         handler = new Handler();
         mContext = this;
+
+        notificationBroascastReveiver = new NotificationBroascastReveiver();
+        IntentFilter filter = new IntentFilter();
+        registerReceiver(notificationBroascastReveiver, filter);
+        JPushInterface.resumePush(this);
+        JPushInterface.setAliasAndTags(this, "pan", null, new TagAliasCallback() {
+            @Override
+            public void gotResult(int i, String s, Set<String> set) {
+                Toast.makeText(GameOptionService.this, "setAliasAndTags Success", Toast.LENGTH_LONG).show();
+                LogUtils.i("setAliasAndTags Success");
+            }
+        });
+
         init();
         return super.onStartCommand(intent, flags, startId);
     }
@@ -99,22 +135,41 @@ public class GameOptionService extends Service {
         mUpperBound.val[3] = 255;
 
         mWingLists.clear();
+
+        Wing tlyy = new Wing();
+        tlyy.name = "贪婪夜羽";
+        tlyy.wingDatas = new int[]{15, 16, 19, 2};
+        tlyy.buyAble = true;
+        mWingLists.add(tlyy);
+
+        Wing dlcb = new Wing();
+        dlcb.name = "堕落翅膀";
+        dlcb.wingDatas = new int[]{20, 21, 17, 18};
+        dlcb.buyAble = true;
+        mWingLists.add(dlcb);
+
         Wing xczy = new Wing();
         xczy.name = "星辰之翼";
         xczy.wingDatas = new int[]{7, 8, 0, 1};
+        xczy.buyAble = true;
         mWingLists.add(xczy);
+
         Wing xmzy = new Wing();
         xmzy.name = "夏沫羽织";
         xmzy.wingDatas = new int[]{9, 10, 2, 3};
+        xmzy.buyAble = false;
         mWingLists.add(xmzy);
+
         Wing lbntzy = new Wing();
         lbntzy.name = "卢比纳特之翼";
         lbntzy.wingDatas = new int[]{11, 12, 13, 14, 0, 1};
+        lbntzy.buyAble = false;
         mWingLists.add(lbntzy);
 
 //        Wing lbntzw = new Wing();
 //        lbntzw.name = "卢比纳特之尾";
 //        lbntzw.wingDatas = new int[]{11, 12, 13, 14, 0, 4};
+//        lbntzw.buyAble = false;
 //        mWingLists.add(lbntzw);
 
         initOcrTransProgress();
@@ -152,12 +207,20 @@ public class GameOptionService extends Service {
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                LogUtils.i("capture screen start");
-                captureScreen();
-                threadSleep(4000);
-                detecScreenPic();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //先点击刷新
+                        inputTap(mRefreshBtnLoc.x, mRefreshBtnLoc.y);
+                        threadSleep(5000);
+                        LogUtils.i("capture screen start");
+                        captureScreen();
+                        threadSleep(5000);
+                        detecScreenPic();
+                    }
+                }).start();
             }
-        }, 0, 30000);
+        }, 0, TIMER_PERIOD);//30秒
 
 
 //        Thread detectedThread = new Thread(new Runnable() {
@@ -215,6 +278,7 @@ public class GameOptionService extends Service {
         int proTitleY1 = (int) (mScreenHeight * 0.2694);
         int proTitleY2 = (int) (mScreenHeight * 0.4416);
         int proTitleY3 = (int) (mScreenHeight * 0.61388);
+        int proTitleY4 = (int) (mScreenHeight * 0.7847);
         //左一
         Wing leftW1 = dealProductMat(mat, proTitleX1, proTitleY1, proTitleW, proTitleH);
 //        leftW1 = new Wing();
@@ -222,20 +286,26 @@ public class GameOptionService extends Service {
         if (leftW1 != null) {
             LogUtils.i("matchResult name " + leftW1.name);
             makeToast(leftW1.name);
-            toBuyTargetWing(proTitleX1, proTitleY1);
-            needStartDetect = true;
-            mTimer.cancel();
-            return null;
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW1.name);
+            if (leftW1.buyAble) {
+                toBuyTargetWing(proTitleX1, proTitleY1);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
         }
         //左二
         Wing leftW2 = dealProductMat(mat, proTitleX1, proTitleY2, proTitleW, proTitleH);
         if (leftW2 != null) {
             LogUtils.i("matchResult name " + leftW2.name);
             makeToast(leftW2.name);
-            toBuyTargetWing(proTitleX1, proTitleY2);
-            needStartDetect = true;
-            mTimer.cancel();
-            return null;
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW2.name);
+            if (leftW2.buyAble) {
+                toBuyTargetWing(proTitleX1, proTitleY2);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
         }
 
         //左三
@@ -243,10 +313,27 @@ public class GameOptionService extends Service {
         if (leftW3 != null) {
             LogUtils.i("matchResult name " + leftW3.name);
             makeToast(leftW3.name);
-            toBuyTargetWing(proTitleX1, proTitleY3);
-            needStartDetect = true;
-            mTimer.cancel();
-            return null;
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW3.name);
+            if (leftW3.buyAble) {
+                toBuyTargetWing(proTitleX1, proTitleY3);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
+        }
+
+        //左四
+        Wing leftW4 = dealProductMat(mat, proTitleX1, proTitleY4, proTitleW, proTitleH);
+        if (leftW4 != null) {
+            LogUtils.i("matchResult name " + leftW4.name);
+            makeToast(leftW4.name);
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW4.name);
+            if (leftW4.buyAble) {
+                toBuyTargetWing(proTitleX1, proTitleY4);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
         }
 
         //右一
@@ -254,10 +341,13 @@ public class GameOptionService extends Service {
         if (rightW1 != null) {
             LogUtils.i("matchResult name " + rightW1.name);
             makeToast(rightW1.name);
-            toBuyTargetWing(proTitleX2, proTitleY1);
-            needStartDetect = true;
-            mTimer.cancel();
-            return null;
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW1.name);
+            if (rightW1.buyAble) {
+                toBuyTargetWing(proTitleX2, proTitleY1);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
         }
 
         //右二
@@ -265,10 +355,13 @@ public class GameOptionService extends Service {
         if (rightW2 != null) {
             LogUtils.i("matchResult name " + rightW2.name);
             makeToast(rightW2.name);
-            toBuyTargetWing(proTitleX2, proTitleY2);
-            needStartDetect = true;
-            mTimer.cancel();
-            return null;
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW2.name);
+            if (rightW2.buyAble) {
+                toBuyTargetWing(proTitleX2, proTitleY2);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
         }
 
         //右三
@@ -276,15 +369,28 @@ public class GameOptionService extends Service {
         if (rightW3 != null) {
             LogUtils.i("matchResult name " + rightW3.name);
             makeToast(rightW3.name);
-            toBuyTargetWing(proTitleX2, proTitleY3);
-            mTimer.cancel();
-            needStartDetect = true;
-            return null;
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW3.name);
+            if (rightW3.buyAble) {
+                toBuyTargetWing(proTitleX2, proTitleY3);
+                mTimer.cancel();
+                needStartDetect = true;
+                return null;
+            }
         }
 
-        //如果没有找到翅膀 则 点击刷新
-        inputTap(mRefreshBtnLoc.x, mRefreshBtnLoc.y);
-
+        //右四
+        Wing rightW4 = dealProductMat(mat, proTitleX2, proTitleY4, proTitleW, proTitleH);
+        if (rightW4 != null) {
+            LogUtils.i("matchResult name " + rightW4.name);
+            makeToast(rightW4.name);
+            sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW4.name);
+            if (rightW4.buyAble) {
+                toBuyTargetWing(proTitleX2, proTitleY4);
+                mTimer.cancel();
+                needStartDetect = true;
+                return null;
+            }
+        }
 //        Mat btnMat = dealBtnMat(mScreenWidth, mScreenHeight, mat);
 
 //识别数字较困难有条件在做
@@ -489,8 +595,39 @@ public class GameOptionService extends Service {
 
     }
 
+    private void sendJPush(int type, String text) {
+        final PushPayload payload = PushPayload.newBuilder()
+                .setPlatform(Platform.android())
+                .setAudience(Audience.alias("pan"))
+                .setNotification(Notification.newBuilder()
+                        .addPlatformNotification(AndroidNotification.newBuilder()
+                                .setAlert("")
+                                .build())
+                        .build())
+                .setMessage(new Message.Builder().addExtra("type", type).setMsgContent(text).build())
+                .setOptions(Options.newBuilder()
+                        .setApnsProduction(true)
+                        .build())
+                .build();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    PushResult pushResult = jpushClient.sendPush(payload);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
     private void detecBuyDialog() {
 //        int sx =
+    }
+
+
+    private void alertByDeep() {
+
     }
 
 
@@ -539,7 +676,7 @@ public class GameOptionService extends Service {
     private void execShellCmd(String cmd) {
         try {
             Process process = Runtime.getRuntime().exec("su");
-            // 获取输出流  
+            // 获取输出流
             OutputStream outputStream = process.getOutputStream();
             DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
             dataOutputStream.writeBytes(cmd);
@@ -595,6 +732,7 @@ public class GameOptionService extends Service {
     class Wing {
         public String name;
         int[] wingDatas;
+        boolean buyAble;
     }
 
     @Override
@@ -604,6 +742,7 @@ public class GameOptionService extends Service {
             mTimer.cancel();
         }
         detectedListenerThreadCanStop = true;
+        unregisterReceiver(notificationBroascastReveiver);
         LogUtils.i("服务已退出 ");
     }
 }

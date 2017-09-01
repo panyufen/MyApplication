@@ -16,7 +16,6 @@ import android.media.projection.MediaProjectionManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v4.os.AsyncTaskCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -143,8 +142,10 @@ public class Shotter {
                 try {
 
                     if (TextUtils.isEmpty(mLocalUrl)) {
+//                        mLocalUrl = getContext().getExternalFilesDir(SCREEN_SHOT_PATH_NAME).getAbsoluteFile()
+//                                + "/" + SystemClock.currentThreadTimeMillis() + ".png";
                         mLocalUrl = getContext().getExternalFilesDir(SCREEN_SHOT_PATH_NAME).getAbsoluteFile()
-                                + "/" + SystemClock.currentThreadTimeMillis() + ".png";
+                                + "/" + System.currentTimeMillis() + ".png";
                     }
                     fileImage = new File(mLocalUrl);
 

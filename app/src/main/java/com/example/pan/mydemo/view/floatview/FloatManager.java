@@ -177,9 +177,9 @@ public class FloatManager {
         floatMenuItemFirst.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                new ShotPreferencesUtils(floatDialogService);
-//                ShotPreferencesUtils.setCurrentPicName("22.png");
                 if (!isClickedStart) {
+//                    new ShotPreferencesUtils(floatDialogService);
+//                    ShotPreferencesUtils.setCurrentPicName("132.png");
                     //启动图像识别服务
                     Intent gameOptIntent = new Intent(floatDialogService, GameOptionService.class);
                     floatDialogService.startService(gameOptIntent);

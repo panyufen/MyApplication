@@ -24,6 +24,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by PAN on 2016/9/26.
  */
@@ -47,8 +49,8 @@ public class MyApplication extends SkinBaseApplication implements ReactApplicati
         Fresco.initialize(this);
 
         //初始化极光
-//        JPushInterface.setDebugMode(true);
-//        JPushInterface.init(this);
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
     }
 
     /**
