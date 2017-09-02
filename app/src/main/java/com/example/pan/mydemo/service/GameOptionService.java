@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.androidyuan.lib.screenshot.ScreenShotActivity;
@@ -71,10 +73,31 @@ public class GameOptionService extends Service {
 
     private final int TIMER_PERIOD = 30000;
 
-    private android.graphics.Point mRefreshBtnLoc = new android.graphics.Point();
+    private android.graphics.Point mRefreshBtnLoc = new android.graphics.Point(); //右上角 交易场刷新按钮
+    private android.graphics.Point mStoreBack = new android.graphics.Point();   //左上角交易场关闭按钮
+    private android.graphics.Point mStoreIn = new android.graphics.Point();     //右上角进入交易场按钮
 
-    private Scalar mLowerBound = new Scalar(0);
-    private Scalar mUpperBound = new Scalar(0);
+    private int mFangBtnW = 0;
+    private int mFangBtnH = 0;
+    private int mFangX = 0;
+    private int mFangY = 0;
+
+    private int mProTitleW = 0;
+    private int mProTitleH = 0;
+
+    private int mProTitleX1 = 0;
+    private int mProTitleX2 = 0;
+    private int mProTitleY1 = 0;
+    private int mProTitleY2 = 0;
+    private int mProTitleY3 = 0;
+    private int mProTitleY4 = 0;
+
+
+    private Scalar mPurpleLowerBound = new Scalar(0);
+    private Scalar mPurpleUpperBound = new Scalar(0);
+
+    private Scalar mWhiteLowerBound = new Scalar(0);
+    private Scalar mWhiteUpperBound = new Scalar(0);
 
     KNearest kNearest = KNearest.create();
     private boolean initStatus = false;
@@ -125,16 +148,32 @@ public class GameOptionService extends Service {
     }
 
     private void init() {
-        mLowerBound.val[0] = 185;
-        mUpperBound.val[0] = 255;
-        mLowerBound.val[1] = 20;
-        mUpperBound.val[1] = 255;
-        mLowerBound.val[2] = 209;
-        mUpperBound.val[2] = 255;
-        mLowerBound.val[3] = 0;
-        mUpperBound.val[3] = 255;
+        mPurpleLowerBound.val[0] = 185;
+        mPurpleUpperBound.val[0] = 255;
+        mPurpleLowerBound.val[1] = 20;
+        mPurpleUpperBound.val[1] = 255;
+        mPurpleLowerBound.val[2] = 209;
+        mPurpleUpperBound.val[2] = 255;
+        mPurpleLowerBound.val[3] = 0;
+        mPurpleUpperBound.val[3] = 255;
+
+        mWhiteLowerBound.val[0] = 0;
+        mWhiteUpperBound.val[0] = 255;
+        mWhiteLowerBound.val[1] = 72;
+        mWhiteUpperBound.val[1] = 255;
+        mWhiteLowerBound.val[2] = 43;
+        mWhiteUpperBound.val[2] = 205;
+        mWhiteLowerBound.val[3] = 0;
+        mWhiteUpperBound.val[3] = 255;
 
         mWingLists.clear();
+
+        Wing fang = new Wing();
+        fang.name = "防沉迷确定";
+        fang.wingDatas = new int[]{22, 23};
+        fang.buyAble = true;
+        mWingLists.add(fang);
+
 
         Wing tlyy = new Wing();
         tlyy.name = "贪婪夜羽";
@@ -172,10 +211,60 @@ public class GameOptionService extends Service {
 //        lbntzw.buyAble = false;
 //        mWingLists.add(lbntzw);
 
-        initOcrTransProgress();
+        //读取屏幕尺寸并初始化 识别坐标
+        initMatPointLoc();
 
+        initOcrTransProgress();
         //启动识别监听 对应的管理程序
         initDetectListenerThread();
+    }
+
+    private void initMatPointLoc() {
+        DisplayMetrics dm = new DisplayMetrics();
+        WindowManager windowMgr = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        windowMgr.getDefaultDisplay().getRealMetrics(dm);
+        mScreenWidth = dm.widthPixels > 1280 ? 1280 : dm.widthPixels;
+        mScreenHeight = dm.heightPixels > 720 ? 720 : dm.heightPixels;
+
+        //按钮点击坐标
+        mRefreshBtnLoc.x = (int) (mScreenWidth * 0.878);
+        mRefreshBtnLoc.y = (int) (mScreenHeight * 0.173);
+        //交易場進入返回按鈕坐標
+        mStoreBack.x = (int) (mScreenWidth * 0.0304);
+        mStoreBack.y = (int) (mScreenHeight * 0.0430);
+        mStoreIn.x = (int) (mScreenWidth * 0.8695);
+        mStoreIn.y = (int) (mScreenHeight * 0.0791);
+        //防沉迷窗确定按钮坐标
+        mFangX = (int) (mScreenWidth * 0.4773);
+        mFangY = (int) (mScreenHeight * 0.6361);
+        mFangBtnW = (int) (mScreenWidth * 0.04619);
+        mFangBtnH = (int) (mScreenHeight * 0.04127);
+
+
+        //识别每一个区域
+        mProTitleW = (int) (mScreenWidth * 0.1282);
+        mProTitleH = (int) (mScreenHeight * 0.0417);
+
+        mProTitleX1 = (int) (mScreenWidth * 0.4530);
+        mProTitleX2 = (int) (mScreenWidth * 0.7625);
+        mProTitleY1 = (int) (mScreenHeight * 0.2694);
+        mProTitleY2 = (int) (mScreenHeight * 0.4416);
+        mProTitleY3 = (int) (mScreenHeight * 0.61388);
+        mProTitleY4 = (int) (mScreenHeight * 0.7847);
+    }
+
+    /**
+     * 初始化Ocr训练程序
+     */
+    private void initOcrTransProgress() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                gameOcrDataBase = new GameOcrDataBase(mContext);
+                initStatus = kNearest.train(gameOcrDataBase.getTrainingDataMat(), Ml.ROW_SAMPLE, gameOcrDataBase.getTrainingLabelsMat());
+                Log.i("train", "train 训练 是否成功 " + initStatus);
+            }
+        }).start();
     }
 
     /**
@@ -197,7 +286,6 @@ public class GameOptionService extends Service {
         });
         detectedListenerThread.start();
     }
-
 
     private void startDetected() {
         if (mTimer != null) {
@@ -248,13 +336,95 @@ public class GameOptionService extends Service {
                 //将图片读取为Mat
                 mImageMat = dealToMat(mFilePath + mScreenFileName);
 //                LogUtils.i("image Info " + mImageMat.size() + " " + mImageMat.type());
-
                 //进行识别Mat
                 mImageMat = matFilterProcess(mImageMat);
                 //保存Mat到文件
             }
         }
     }
+
+    private Wing dealFangMat(Mat mat, int sx, int sy, int pw, int ph) {
+        //裁剪出对应区域
+        Rect targetRect = new Rect(sx, sy, pw, ph);
+        Mat targetMat = mat.submat(targetRect);
+
+        //转hsv 提取文字
+        Mat hsvFontMat = new Mat();
+        Imgproc.cvtColor(targetMat, hsvFontMat, Imgproc.COLOR_RGB2HSV_FULL);
+        Core.inRange(hsvFontMat, mWhiteLowerBound, mWhiteUpperBound, hsvFontMat);
+
+        Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(1, 3));
+        Imgproc.erode(hsvFontMat, hsvFontMat, element);
+
+        Core.bitwise_not(hsvFontMat, hsvFontMat);
+
+        List<MatOfPoint> contours = new ArrayList<>();
+        Mat hierarchy = new Mat();
+        Imgproc.findContours(hsvFontMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+
+        List<Rect> contoursMatch = new ArrayList<>();
+        for (MatOfPoint cp1 : contours) {
+            Rect tempr = Imgproc.boundingRect(cp1);
+
+//            Imgproc.rectangle(targetMat, new Point(tempr.x, tempr.y), new Point(tempr.x + tempr.width, tempr.y + tempr.height),
+//                    new Scalar(0, 255, 0), 1);
+
+
+            if (tempr.height < targetRect.height / 2 || tempr.width < targetRect.height / 2) {//宽或高 小于 图片高度/2的丢掉
+                continue;
+            }
+            contoursMatch.add(tempr);
+        }
+
+//        writeFileByMat(mFilePath + "mat_" + "hsv_" + mScreenFileName, targetMat);
+
+        //从左到右排序
+        for (int j = 0; j < contoursMatch.size(); j++) {
+            Rect rectj = contoursMatch.get(j);
+            for (int k = j + 1; k < contoursMatch.size(); k++) {
+                Rect rectk = contoursMatch.get(k);
+                if (rectk.x < rectj.x) {
+                    contoursMatch.set(k, rectj);
+                    contoursMatch.set(j, rectk);
+                    rectj = rectk;
+                }
+            }
+        }
+
+        int[] detecResult = new int[2];
+        int length = contoursMatch.size() > detecResult.length ? detecResult.length : contoursMatch.size();
+        for (int i = 0; i < length; i++) {
+            Mat sourceWordMat = new Mat(1, SAMPLE_WIDTH * SAMPLE_HEIGHT, CV_32F);
+            Mat wordDst = new Mat(SAMPLE_HEIGHT, SAMPLE_WIDTH, CV_32F);
+            Rect r = contoursMatch.get(i);
+            //裁剪出產品區域
+            Mat rgbFontMat = targetMat.submat(r);
+            Mat grayFontMat = new Mat();
+            Imgproc.cvtColor(rgbFontMat, grayFontMat, Imgproc.COLOR_RGBA2GRAY);
+            //二值化
+            Imgproc.threshold(grayFontMat, grayFontMat, 0, 255, Imgproc.THRESH_OTSU);
+            //反相
+            Core.bitwise_not(grayFontMat, grayFontMat);
+            //将图片缩放到对应尺寸
+            Imgproc.resize(grayFontMat, wordDst, wordDst.size(), 0, 0, Imgproc.INTER_AREA);
+            wordDst.convertTo(wordDst, CV_32F);
+
+//            writeFileByMat(mFilePath + "mat_" + i + "_" + mScreenFileName, wordDst);
+
+            wordDst = wordDst.reshape(1, SAMPLE_WIDTH * SAMPLE_HEIGHT);
+            for (int k = 0; k < SAMPLE_WIDTH * SAMPLE_HEIGHT; k++) {
+                double[] data = wordDst.get(k, 0);
+                sourceWordMat.put(0, k, data);
+            }
+            if (initStatus) {//识别库初始化完毕才进行识别
+                int result = (int) kNearest.findNearest(sourceWordMat, 1, results, neighborResponses, dist);
+//                LogUtils.i("ocrResult " + i + " => " + result + " " + gameOcrDataBase.getResultLabel(result));
+                detecResult[i] = result;
+            }
+        }
+        return matchResult(detecResult);
+    }
+
 
     /**
      * 识别mat
@@ -263,24 +433,22 @@ public class GameOptionService extends Service {
      * @return
      */
     private Mat matFilterProcess(Mat mat) {
-        mScreenWidth = mat.width();
-        mScreenHeight = mat.height();
-        //按钮点击坐标
-        mRefreshBtnLoc.x = (int) (mScreenWidth * 0.878);
-        mRefreshBtnLoc.y = (int) (mScreenHeight * 0.173);
 
-        //识别每一个区域
-        int proTitleW = (int) (mScreenWidth * 0.1282);
-        int proTitleH = (int) (mScreenHeight * 0.0417);
+        //先识别是否有 防沉迷提示框，如果有则关闭，在进行翅膀识别
+        Wing fcmDialog = dealFangMat(mat, mFangX, mFangY, mFangBtnW, mFangBtnH);
+        if (fcmDialog != null) {
+            LogUtils.i("matchResult name " + fcmDialog.name);
+            makeToast(fcmDialog.name);
+            if (fcmDialog.name.equals("防沉迷确定")) {
+                inputTap(mFangX, mFangY);
+                needStartDetect = true;
+                mTimer.cancel();
+                return null;
+            }
+        }
 
-        int proTitleX1 = (int) (mScreenWidth * 0.4530);
-        int proTitleX2 = (int) (mScreenWidth * 0.7625);
-        int proTitleY1 = (int) (mScreenHeight * 0.2694);
-        int proTitleY2 = (int) (mScreenHeight * 0.4416);
-        int proTitleY3 = (int) (mScreenHeight * 0.61388);
-        int proTitleY4 = (int) (mScreenHeight * 0.7847);
         //左一
-        Wing leftW1 = dealProductMat(mat, proTitleX1, proTitleY1, proTitleW, proTitleH);
+        Wing leftW1 = dealProductMat(mat, mProTitleX1, mProTitleY1, mProTitleW, mProTitleH);
 //        leftW1 = new Wing();
 //        leftW1.name = "测试名字";
         if (leftW1 != null) {
@@ -288,20 +456,20 @@ public class GameOptionService extends Service {
             makeToast(leftW1.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW1.name);
             if (leftW1.buyAble) {
-                toBuyTargetWing(proTitleX1, proTitleY1);
+                toBuyTargetWing(mProTitleX1, mProTitleY1);
                 needStartDetect = true;
                 mTimer.cancel();
                 return null;
             }
         }
         //左二
-        Wing leftW2 = dealProductMat(mat, proTitleX1, proTitleY2, proTitleW, proTitleH);
+        Wing leftW2 = dealProductMat(mat, mProTitleX1, mProTitleY2, mProTitleW, mProTitleH);
         if (leftW2 != null) {
             LogUtils.i("matchResult name " + leftW2.name);
             makeToast(leftW2.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW2.name);
             if (leftW2.buyAble) {
-                toBuyTargetWing(proTitleX1, proTitleY2);
+                toBuyTargetWing(mProTitleX1, mProTitleY2);
                 needStartDetect = true;
                 mTimer.cancel();
                 return null;
@@ -309,13 +477,13 @@ public class GameOptionService extends Service {
         }
 
         //左三
-        Wing leftW3 = dealProductMat(mat, proTitleX1, proTitleY3, proTitleW, proTitleH);
+        Wing leftW3 = dealProductMat(mat, mProTitleX1, mProTitleY3, mProTitleW, mProTitleH);
         if (leftW3 != null) {
             LogUtils.i("matchResult name " + leftW3.name);
             makeToast(leftW3.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW3.name);
             if (leftW3.buyAble) {
-                toBuyTargetWing(proTitleX1, proTitleY3);
+                toBuyTargetWing(mProTitleX1, mProTitleY3);
                 needStartDetect = true;
                 mTimer.cancel();
                 return null;
@@ -323,13 +491,13 @@ public class GameOptionService extends Service {
         }
 
         //左四
-        Wing leftW4 = dealProductMat(mat, proTitleX1, proTitleY4, proTitleW, proTitleH);
+        Wing leftW4 = dealProductMat(mat, mProTitleX1, mProTitleY4, mProTitleW, mProTitleH);
         if (leftW4 != null) {
             LogUtils.i("matchResult name " + leftW4.name);
             makeToast(leftW4.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, leftW4.name);
             if (leftW4.buyAble) {
-                toBuyTargetWing(proTitleX1, proTitleY4);
+                toBuyTargetWing(mProTitleX1, mProTitleY4);
                 needStartDetect = true;
                 mTimer.cancel();
                 return null;
@@ -337,13 +505,13 @@ public class GameOptionService extends Service {
         }
 
         //右一
-        Wing rightW1 = dealProductMat(mat, proTitleX2, proTitleY1, proTitleW, proTitleH);
+        Wing rightW1 = dealProductMat(mat, mProTitleX2, mProTitleY1, mProTitleW, mProTitleH);
         if (rightW1 != null) {
             LogUtils.i("matchResult name " + rightW1.name);
             makeToast(rightW1.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW1.name);
             if (rightW1.buyAble) {
-                toBuyTargetWing(proTitleX2, proTitleY1);
+                toBuyTargetWing(mProTitleX2, mProTitleY1);
                 needStartDetect = true;
                 mTimer.cancel();
                 return null;
@@ -351,13 +519,13 @@ public class GameOptionService extends Service {
         }
 
         //右二
-        Wing rightW2 = dealProductMat(mat, proTitleX2, proTitleY2, proTitleW, proTitleH);
+        Wing rightW2 = dealProductMat(mat, mProTitleX2, mProTitleY2, mProTitleW, mProTitleH);
         if (rightW2 != null) {
             LogUtils.i("matchResult name " + rightW2.name);
             makeToast(rightW2.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW2.name);
             if (rightW2.buyAble) {
-                toBuyTargetWing(proTitleX2, proTitleY2);
+                toBuyTargetWing(mProTitleX2, mProTitleY2);
                 needStartDetect = true;
                 mTimer.cancel();
                 return null;
@@ -365,13 +533,13 @@ public class GameOptionService extends Service {
         }
 
         //右三
-        Wing rightW3 = dealProductMat(mat, proTitleX2, proTitleY3, proTitleW, proTitleH);
+        Wing rightW3 = dealProductMat(mat, mProTitleX2, mProTitleY3, mProTitleW, mProTitleH);
         if (rightW3 != null) {
             LogUtils.i("matchResult name " + rightW3.name);
             makeToast(rightW3.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW3.name);
             if (rightW3.buyAble) {
-                toBuyTargetWing(proTitleX2, proTitleY3);
+                toBuyTargetWing(mProTitleX2, mProTitleY3);
                 mTimer.cancel();
                 needStartDetect = true;
                 return null;
@@ -379,18 +547,26 @@ public class GameOptionService extends Service {
         }
 
         //右四
-        Wing rightW4 = dealProductMat(mat, proTitleX2, proTitleY4, proTitleW, proTitleH);
+        Wing rightW4 = dealProductMat(mat, mProTitleX2, mProTitleY4, mProTitleW, mProTitleH);
         if (rightW4 != null) {
             LogUtils.i("matchResult name " + rightW4.name);
             makeToast(rightW4.name);
             sendJPush(NotificationBroascastReveiver.TYPE_Normal, rightW4.name);
             if (rightW4.buyAble) {
-                toBuyTargetWing(proTitleX2, proTitleY4);
+                toBuyTargetWing(mProTitleX2, mProTitleY4);
                 mTimer.cancel();
                 needStartDetect = true;
                 return null;
             }
         }
+
+
+        //关闭在重新打开交易场
+        inputTap(mStoreBack.x, mStoreBack.y);
+        threadSleep(2000);
+        inputTap(mStoreIn.x, mStoreIn.y);
+
+
 //        Mat btnMat = dealBtnMat(mScreenWidth, mScreenHeight, mat);
 
 //识别数字较困难有条件在做
@@ -422,7 +598,7 @@ public class GameOptionService extends Service {
         //转hsv 提取文字
         Mat hsvFontMat = new Mat();
         Imgproc.cvtColor(titleMat, hsvFontMat, Imgproc.COLOR_RGB2HSV_FULL);
-        Core.inRange(hsvFontMat, mLowerBound, mUpperBound, hsvFontMat);
+        Core.inRange(hsvFontMat, mPurpleLowerBound, mPurpleUpperBound, hsvFontMat);
 
         Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(1, 5));
         Imgproc.dilate(hsvFontMat, hsvFontMat, element);
@@ -436,12 +612,6 @@ public class GameOptionService extends Service {
         List<MatOfPoint> contours = new ArrayList<>();
         Mat hierarchy = new Mat();
         Imgproc.findContours(hsvFontMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
-
-        int contoursSize = contours.size();
-        for (int i = 0; i < contoursSize; i++) {
-            Imgproc.drawContours(hsvFontMat, contours, i, new Scalar(0, 255, 0));
-        }
-
 
         List<Rect> contoursMatch = new ArrayList<>();
         for (MatOfPoint cp1 : contours) {
@@ -694,20 +864,6 @@ public class GameOptionService extends Service {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * 初始化Ocr训练程序
-     */
-    private void initOcrTransProgress() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                gameOcrDataBase = new GameOcrDataBase(mContext);
-                initStatus = kNearest.train(gameOcrDataBase.getTrainingDataMat(), Ml.ROW_SAMPLE, gameOcrDataBase.getTrainingLabelsMat());
-                Log.i("train", "train 训练 是否成功 " + initStatus);
-            }
-        }).start();
     }
 
     /**

@@ -22,6 +22,10 @@ public class OpenCVActivity extends BaseActivity {
         startActivity(HSVDetectionActivity.class);
     }
 
+    public void startOpenCVThreshold(View v) {
+        startActivity(OpenCVThresholdActivity.class);
+    }
+
     public void startOpenFeature(View v) {
         startActivity(OpenCVFeatureActivity.class);
     }

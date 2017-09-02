@@ -34,9 +34,8 @@
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
     <!-- nfc -->
     <uses-permission android:name="android.permission.NFC"/>
-
-    <uses-permission android:name="android.permission.INJECT_EVENTS"/>  
-
+    <uses-permission android:name="android.permission.INJECT_EVENTS"/>
+      
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true"/>
@@ -415,6 +414,8 @@
         </service>
 
         <activity android:name=".activity.opencv.HSVDetectionActivity">
+        </activity>
+        <activity android:name=".activity.opencv.OpenCVThresholdActivity">
         </activity>
     </application>
 
