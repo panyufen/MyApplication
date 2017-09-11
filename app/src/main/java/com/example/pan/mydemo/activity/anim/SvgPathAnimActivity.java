@@ -33,10 +33,9 @@ public class SvgPathAnimActivity extends BaseActivity implements SvgPathImproveV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_svg_path_anim);
-
-        mToolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(mToolbar);
+        mToolbar = setSupportActionBar(R.id.tool_bar);
         mToolbar.setNavigationIcon(R.mipmap.iron_man2);
+
         textView = (TextView) findViewById(R.id.text_view);
         svgPathView = (SvgPathImproveView) findViewById(R.id.svg_path_view);
 

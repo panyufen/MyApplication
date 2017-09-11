@@ -6,7 +6,6 @@ import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -16,6 +15,8 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 
 import com.cus.pan.library.utils.LogUtils;
+import com.example.pan.mydemo.R;
+import com.pan.skin.loader.load.SkinManager;
 
 import java.util.ArrayList;
 
@@ -71,10 +72,9 @@ public class SvgPathImproveView extends View {
     private void init() {
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
-
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.BLACK);
+        mPaint.setColor(SkinManager.getInstance().getColor(R.color.normal_text_color));
         mPaint.setStrokeWidth(1);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setAntiAlias(true);

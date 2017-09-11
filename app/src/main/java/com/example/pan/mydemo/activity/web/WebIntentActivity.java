@@ -31,11 +31,11 @@ public class WebIntentActivity extends BaseActivity {
     }
 
     private void init() {
-        LogUtils.i("filepath " + FileUtils.getCacheDir(this) + FILENAME);
+//        LogUtils.i("filepath " + FileUtils.getCacheDir(this) + File.separator + FILENAME);
         FileUtils.copyFileFromAssets(getApplicationContext(), true, FILENAME, FileUtils.getCacheDir(this) + File.separator + FILENAME);
         FileUtils.setPermission(FileUtils.getCacheDir(this) + File.separator + FILENAME);
         File file = new File(getExternalCacheDir() + File.separator + FILENAME);
-        LogUtils.i("file " + file.exists());
+        LogUtils.i("file " + file.getAbsolutePath() + " " + file.exists());
         final Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".fileProvider", file);
 
         mWebIntentUrlEt = (EditText) findViewById(R.id.web_intent_path_et);

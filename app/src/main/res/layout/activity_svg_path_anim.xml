@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:orientation="vertical"
     >
     <android.support.design.widget.AppBarLayout
@@ -24,7 +25,8 @@
         android:id="@+id/activity_svg_path_anim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:background="@color/colorPrimary"
+        skin:enable="true"
         >
 
         <com.example.pan.mydemo.view.SvgPathImproveView
@@ -47,6 +49,8 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="@string/svg_text_tip"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
                 />
 
             <TextView

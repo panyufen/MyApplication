@@ -22,11 +22,9 @@ import com.google.gson.Gson;
 import cn.jpush.android.api.JPushInterface;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
-
 /**
  * Created by PAN on 2017/4/13.
  */
-
 public class NotificationBroascastReveiver extends BroadcastReceiver {
 
     private String TAG = "JPush Reveiver";
@@ -43,6 +41,8 @@ public class NotificationBroascastReveiver extends BroadcastReceiver {
 
     private Context mContext;
 
+    private String msg = "";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         mContext = context;
@@ -58,7 +58,8 @@ public class NotificationBroascastReveiver extends BroadcastReceiver {
 
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-            Log.i(TAG, "收到了自定义消息。消息内容是：" + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+            msg = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+            Log.i(TAG, "收到了自定义消息。消息内容是：" + msg);
             String json = bundle.getString(JPushInterface.EXTRA_EXTRA);
             MsgType msgType = new Gson().fromJson(json, MsgType.class);
             Log.i(TAG, "消息类型：" + json + " " + msgType.type);
@@ -109,7 +110,7 @@ public class NotificationBroascastReveiver extends BroadcastReceiver {
         //第一行内容  通常作为通知栏标题
         builder.setContentTitle("标题");
         //第二行内容 通常是通知正文
-        builder.setContentText("通知内容");
+        builder.setContentText(msg);
         //第三行内容 通常是内容摘要什么的 在低版本机器上不一定显示
         builder.setSubText("这里显示的是通知第三行内容！");
         //ContentInfo 在通知的右侧 时间的下面 用来展示一些其他信息

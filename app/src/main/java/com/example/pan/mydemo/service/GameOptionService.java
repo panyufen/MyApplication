@@ -344,83 +344,87 @@ public class GameOptionService extends Service {
     }
 
     private Wing dealFangMat(Mat mat, int sx, int sy, int pw, int ph) {
-        //裁剪出对应区域
-        Rect targetRect = new Rect(sx, sy, pw, ph);
-        Mat targetMat = mat.submat(targetRect);
+        int[] detecResult = new int[2];
+        try {
+            //裁剪出对应区域
+            Rect targetRect = new Rect(sx, sy, pw, ph);
+            Mat targetMat = mat.submat(targetRect);
 
-        //转hsv 提取文字
-        Mat hsvFontMat = new Mat();
-        Imgproc.cvtColor(targetMat, hsvFontMat, Imgproc.COLOR_RGB2HSV_FULL);
-        Core.inRange(hsvFontMat, mWhiteLowerBound, mWhiteUpperBound, hsvFontMat);
+            //转hsv 提取文字
+            Mat hsvFontMat = new Mat();
+            Imgproc.cvtColor(targetMat, hsvFontMat, Imgproc.COLOR_RGB2HSV_FULL);
+            Core.inRange(hsvFontMat, mWhiteLowerBound, mWhiteUpperBound, hsvFontMat);
 
-        Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(1, 3));
-        Imgproc.erode(hsvFontMat, hsvFontMat, element);
+            Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(1, 3));
+            Imgproc.erode(hsvFontMat, hsvFontMat, element);
 
-        Core.bitwise_not(hsvFontMat, hsvFontMat);
+            Core.bitwise_not(hsvFontMat, hsvFontMat);
 
-        List<MatOfPoint> contours = new ArrayList<>();
-        Mat hierarchy = new Mat();
-        Imgproc.findContours(hsvFontMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
+            List<MatOfPoint> contours = new ArrayList<>();
+            Mat hierarchy = new Mat();
+            Imgproc.findContours(hsvFontMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
-        List<Rect> contoursMatch = new ArrayList<>();
-        for (MatOfPoint cp1 : contours) {
-            Rect tempr = Imgproc.boundingRect(cp1);
+            List<Rect> contoursMatch = new ArrayList<>();
+            for (MatOfPoint cp1 : contours) {
+                Rect tempr = Imgproc.boundingRect(cp1);
 
 //            Imgproc.rectangle(targetMat, new Point(tempr.x, tempr.y), new Point(tempr.x + tempr.width, tempr.y + tempr.height),
 //                    new Scalar(0, 255, 0), 1);
 
 
-            if (tempr.height < targetRect.height / 2 || tempr.width < targetRect.height / 2) {//宽或高 小于 图片高度/2的丢掉
-                continue;
+                if (tempr.height < targetRect.height / 2 || tempr.width < targetRect.height / 2) {//宽或高 小于 图片高度/2的丢掉
+                    continue;
+                }
+                contoursMatch.add(tempr);
             }
-            contoursMatch.add(tempr);
-        }
 
 //        writeFileByMat(mFilePath + "mat_" + "hsv_" + mScreenFileName, targetMat);
 
-        //从左到右排序
-        for (int j = 0; j < contoursMatch.size(); j++) {
-            Rect rectj = contoursMatch.get(j);
-            for (int k = j + 1; k < contoursMatch.size(); k++) {
-                Rect rectk = contoursMatch.get(k);
-                if (rectk.x < rectj.x) {
-                    contoursMatch.set(k, rectj);
-                    contoursMatch.set(j, rectk);
-                    rectj = rectk;
+            //从左到右排序
+            for (int j = 0; j < contoursMatch.size(); j++) {
+                Rect rectj = contoursMatch.get(j);
+                for (int k = j + 1; k < contoursMatch.size(); k++) {
+                    Rect rectk = contoursMatch.get(k);
+                    if (rectk.x < rectj.x) {
+                        contoursMatch.set(k, rectj);
+                        contoursMatch.set(j, rectk);
+                        rectj = rectk;
+                    }
                 }
             }
-        }
 
-        int[] detecResult = new int[2];
-        int length = contoursMatch.size() > detecResult.length ? detecResult.length : contoursMatch.size();
-        for (int i = 0; i < length; i++) {
-            Mat sourceWordMat = new Mat(1, SAMPLE_WIDTH * SAMPLE_HEIGHT, CV_32F);
-            Mat wordDst = new Mat(SAMPLE_HEIGHT, SAMPLE_WIDTH, CV_32F);
-            Rect r = contoursMatch.get(i);
-            //裁剪出產品區域
-            Mat rgbFontMat = targetMat.submat(r);
-            Mat grayFontMat = new Mat();
-            Imgproc.cvtColor(rgbFontMat, grayFontMat, Imgproc.COLOR_RGBA2GRAY);
-            //二值化
-            Imgproc.threshold(grayFontMat, grayFontMat, 0, 255, Imgproc.THRESH_OTSU);
-            //反相
-            Core.bitwise_not(grayFontMat, grayFontMat);
-            //将图片缩放到对应尺寸
-            Imgproc.resize(grayFontMat, wordDst, wordDst.size(), 0, 0, Imgproc.INTER_AREA);
-            wordDst.convertTo(wordDst, CV_32F);
+            int length = contoursMatch.size() > detecResult.length ? detecResult.length : contoursMatch.size();
+            for (int i = 0; i < length; i++) {
+                Mat sourceWordMat = new Mat(1, SAMPLE_WIDTH * SAMPLE_HEIGHT, CV_32F);
+                Mat wordDst = new Mat(SAMPLE_HEIGHT, SAMPLE_WIDTH, CV_32F);
+                Rect r = contoursMatch.get(i);
+                //裁剪出產品區域
+                Mat rgbFontMat = targetMat.submat(r);
+                Mat grayFontMat = new Mat();
+                Imgproc.cvtColor(rgbFontMat, grayFontMat, Imgproc.COLOR_RGBA2GRAY);
+                //二值化
+                Imgproc.threshold(grayFontMat, grayFontMat, 0, 255, Imgproc.THRESH_OTSU);
+                //反相
+                Core.bitwise_not(grayFontMat, grayFontMat);
+                //将图片缩放到对应尺寸
+                Imgproc.resize(grayFontMat, wordDst, wordDst.size(), 0, 0, Imgproc.INTER_AREA);
+                wordDst.convertTo(wordDst, CV_32F);
 
 //            writeFileByMat(mFilePath + "mat_" + i + "_" + mScreenFileName, wordDst);
 
-            wordDst = wordDst.reshape(1, SAMPLE_WIDTH * SAMPLE_HEIGHT);
-            for (int k = 0; k < SAMPLE_WIDTH * SAMPLE_HEIGHT; k++) {
-                double[] data = wordDst.get(k, 0);
-                sourceWordMat.put(0, k, data);
-            }
-            if (initStatus) {//识别库初始化完毕才进行识别
-                int result = (int) kNearest.findNearest(sourceWordMat, 1, results, neighborResponses, dist);
+                wordDst = wordDst.reshape(1, SAMPLE_WIDTH * SAMPLE_HEIGHT);
+                for (int k = 0; k < SAMPLE_WIDTH * SAMPLE_HEIGHT; k++) {
+                    double[] data = wordDst.get(k, 0);
+                    sourceWordMat.put(0, k, data);
+                }
+                if (initStatus) {//识别库初始化完毕才进行识别
+                    int result = (int) kNearest.findNearest(sourceWordMat, 1, results, neighborResponses, dist);
 //                LogUtils.i("ocrResult " + i + " => " + result + " " + gameOcrDataBase.getResultLabel(result));
-                detecResult[i] = result;
+                    detecResult[i] = result;
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return matchResult(detecResult);
     }
