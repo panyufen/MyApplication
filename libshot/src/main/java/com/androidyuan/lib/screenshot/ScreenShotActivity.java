@@ -26,7 +26,7 @@ public class ScreenShotActivity extends Activity {
 //        setTheme(android.R.style.Theme_Dialog);//这个在这里设置 之后导致 的问题是 背景很黑
         super.onCreate(savedInstanceState);
 
-        new ShotPreferencesUtils(this);
+        new ShotPreferencesUtils(getApplicationContext());
 
         //如下代码 只是想 启动一个透明的Activity 而上一个activity又不被pause
         requestWindowFeature(Window.FEATURE_NO_TITLE);

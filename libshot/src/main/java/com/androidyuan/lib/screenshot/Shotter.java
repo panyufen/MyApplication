@@ -207,14 +207,14 @@ public class Shotter {
 
     private int getScreenWidth() {
         DisplayMetrics dm = new DisplayMetrics();
-        WindowManager windowMgr = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowMgr = (WindowManager) mContext.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowMgr.getDefaultDisplay().getRealMetrics(dm);
         return dm.widthPixels > 1280 ? 1280 : dm.widthPixels;
     }
 
     private int getScreenHeight() {
         DisplayMetrics dm = new DisplayMetrics();
-        WindowManager windowMgr = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowMgr = (WindowManager) mContext.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         windowMgr.getDefaultDisplay().getRealMetrics(dm);
         return dm.heightPixels > 720 ? 720 : dm.heightPixels;
     }

@@ -78,22 +78,23 @@ public class FileReaderActivity extends BaseActivity {
         String result0 = "读取时间：" + (e - s) + "\n";
         if (TextUtils.isEmpty(result)) {
             result0 += "read failed";
-        }else{
-            result0 += "读取了："+result.length()+" 个文字";
+        } else {
+            result0 += "读取了：" + result.length() + " 个文字\n" + result;
         }
+
         textView.setText(textView.getText().toString() + "\n" + result0);
     }
 
     private String readByInputStream(InputStream is) throws IOException {
-        int lenght = is.available();
-        byte[] buffer = new byte[lenght];
+        int len = is.available();
+        byte[] buffer = new byte[len];
         is.read(buffer);
         return new String(buffer, "utf-8");
     }
 
 
     private String readByBufferredInputStream(InputStream is) throws IOException {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(is,1024*1024);
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(is, 1024 * 1024);
         int lenght = bufferedInputStream.available();
         byte[] buffer = new byte[lenght];
         bufferedInputStream.read(buffer);
@@ -103,10 +104,11 @@ public class FileReaderActivity extends BaseActivity {
 
     private String readByInputStreamReader(InputStream is) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
-        String tempLine;
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is,"utf-8"),1024*1024);
-        while( (tempLine = bufferedReader.readLine()) != null  ){
-            stringBuilder.append(tempLine+"\n");
+        int len = 0;
+        char[] tempLine = new char[1024];
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, "utf-8"), 1024 * 1024);
+        while ((len = bufferedReader.read(tempLine)) != -1) {
+            stringBuilder.append(tempLine, 0, len);
         }
         return stringBuilder.toString();
     }

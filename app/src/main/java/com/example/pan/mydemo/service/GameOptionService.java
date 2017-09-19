@@ -62,7 +62,6 @@ public class GameOptionService extends Service {
     private Context mContext;
     private String mScreenFileName = "";
     private String mFilePath = "";
-    private Mat mImageMat = null;
 
     //需要将测试样本resize到的宽高
     private final int SAMPLE_WIDTH = 21;
@@ -334,11 +333,15 @@ public class GameOptionService extends Service {
             if (getExternalFilesDir(SCREEN_SHOT_PATH_NAME) != null) {
                 mFilePath = getExternalFilesDir(SCREEN_SHOT_PATH_NAME) + File.separator;
                 //将图片读取为Mat
-                mImageMat = dealToMat(mFilePath + mScreenFileName);
+                Mat mImageMat = dealToMat(mFilePath + mScreenFileName);
 //                LogUtils.i("image Info " + mImageMat.size() + " " + mImageMat.type());
                 //进行识别Mat
-                mImageMat = matFilterProcess(mImageMat);
+                matFilterProcess(mImageMat);
                 //保存Mat到文件
+
+                if( mImageMat != null ) {
+                    mImageMat.release();
+                }
             }
         }
     }
@@ -617,6 +620,8 @@ public class GameOptionService extends Service {
         Mat hierarchy = new Mat();
         Imgproc.findContours(hsvFontMat, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
 
+        hsvFontMat.release();
+
         List<Rect> contoursMatch = new ArrayList<>();
         for (MatOfPoint cp1 : contours) {
             Rect tempr = Imgproc.boundingRect(cp1);
@@ -662,6 +667,7 @@ public class GameOptionService extends Service {
             Mat rgbFontMat = titleMat.submat(r);
             Mat grayFontMat = new Mat();
             Imgproc.cvtColor(rgbFontMat, grayFontMat, Imgproc.COLOR_RGBA2GRAY);
+            rgbFontMat.release();
             //二值化
             Imgproc.threshold(grayFontMat, grayFontMat, 0, 255, Imgproc.THRESH_OTSU);
 
@@ -669,6 +675,7 @@ public class GameOptionService extends Service {
             Mat wordDst = new Mat(SAMPLE_HEIGHT, SAMPLE_WIDTH, CV_32F);
             //将图片缩放到对应尺寸
             Imgproc.resize(grayFontMat, wordDst, wordDst.size(), 0, 0, Imgproc.INTER_AREA);
+            grayFontMat.release();
             wordDst.convertTo(wordDst, CV_32F);
 
 //            writeFileByMat(mFilePath + "mat_" + i + "_" + System.currentTimeMillis() + mScreenFileName, wordDst);
@@ -678,13 +685,15 @@ public class GameOptionService extends Service {
                 double[] data = wordDst.get(k, 0);
                 sourceWordMat.put(0, k, data);
             }
+            wordDst.release();
             if (initStatus) {//识别库初始化完毕才进行识别
                 int result = (int) kNearest.findNearest(sourceWordMat, 1, results, neighborResponses, dist);
 //                LogUtils.i("ocrResult " + i + " => " + result + " " + gameOcrDataBase.getResultLabel(result));
                 detecResult[i] = result;
             }
+            sourceWordMat.release();
         }
-
+        titleMat.release();
         return matchResult(detecResult);
     }
 
