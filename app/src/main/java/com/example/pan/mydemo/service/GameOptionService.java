@@ -174,6 +174,13 @@ public class GameOptionService extends Service {
         mWingLists.add(fang);
 
 
+        Wing mmzy = new Wing();
+        mmzy.name = "泯灭之翼";
+        mmzy.wingDatas = new int[]{24, 25, 0, 1};
+        mmzy.buyAble = true;
+        mWingLists.add(mmzy);
+
+
         Wing tlyy = new Wing();
         tlyy.name = "贪婪夜羽";
         tlyy.wingDatas = new int[]{15, 16, 19, 2};
@@ -678,7 +685,7 @@ public class GameOptionService extends Service {
             grayFontMat.release();
             wordDst.convertTo(wordDst, CV_32F);
 
-//            writeFileByMat(mFilePath + "mat_" + i + "_" + System.currentTimeMillis() + mScreenFileName, wordDst);
+            writeFileByMat(mFilePath + "mat_" + i + "_" + System.currentTimeMillis() + mScreenFileName, wordDst);
 
             wordDst = wordDst.reshape(1, SAMPLE_WIDTH * SAMPLE_HEIGHT);
             for (int k = 0; k < SAMPLE_WIDTH * SAMPLE_HEIGHT; k++) {
