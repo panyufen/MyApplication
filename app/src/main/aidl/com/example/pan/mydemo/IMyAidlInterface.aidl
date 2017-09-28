@@ -12,7 +12,7 @@ interface IMyAidlInterface {
             double aDouble, String aString);
 
 
-    void start(int id);
+    int start(int id);
 
-    void stop(int id);
+    int stop(int id);
 }

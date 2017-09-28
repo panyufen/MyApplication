@@ -1,12 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.pan.mydemo.activity.ServiceActivity"
     >
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="进程间通讯测试,\n bind->start|stop->unbind"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="bind"
+        android:text="bind"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="unbind"
+        android:text="unbind"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="start"
+        android:text="start"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="stop"
+        android:text="stop"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true"
+        />
 
 
-</RelativeLayout>
+</LinearLayout>

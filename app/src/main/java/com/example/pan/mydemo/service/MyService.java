@@ -1,11 +1,12 @@
 package com.example.pan.mydemo.service;
 
-import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.pan.mydemo.IMyAidlInterface;
 
@@ -13,32 +14,17 @@ public class MyService extends Service {
 
     private MyIBinder myIBinder;
 
-    private AlertDialog alertDialog;
-    /**
-     * Called by the system when the service is first created.  Do not call this method directly.
-     */
     @Override
     public void onCreate() {
         super.onCreate();
         myIBinder = new MyIBinder();
-        showDialog();
-        alertDialog.show();
-    }
-
-    public void show(){
-        alertDialog.show();
-    }
-
-    private void showDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-        builder.setTitle("aaaaa");
-        alertDialog = builder.create();
+        Toast.makeText(this, "service start", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        Log.i("AIDL ","onBind");
-        return myIBinder;
+        Log.i("AIDL ", "onBind");
+        return new LocalBinder();
     }
 
     public class MyIBinder extends IMyAidlInterface.Stub {
@@ -60,14 +46,32 @@ public class MyService extends Service {
         }
 
         @Override
-        public void start(int id) throws RemoteException {
-            Log.i("AIDL ","start");
-            show();
+        public int start(int id) throws RemoteException {
+            Log.i("AIDL ", "start");
+            return 1;
         }
 
         @Override
-        public void stop(int id) throws RemoteException {
-            Log.i("AIDL ","stop");
+        public int stop(int id) throws RemoteException {
+            Log.i("AIDL ", "stop");
+            return 2;
         }
+    }
+
+    public int start() {
+        return 11;
+    }
+
+    public int stop() {
+        return 22;
+    }
+
+
+    public class LocalBinder extends Binder {
+
+        public MyService getBinder() {
+            return MyService.this;
+        }
+
     }
 }

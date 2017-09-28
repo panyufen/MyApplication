@@ -685,7 +685,7 @@ public class GameOptionService extends Service {
             grayFontMat.release();
             wordDst.convertTo(wordDst, CV_32F);
 
-            writeFileByMat(mFilePath + "mat_" + i + "_" + System.currentTimeMillis() + mScreenFileName, wordDst);
+//            writeFileByMat(mFilePath + "mat_" + i + "_" + System.currentTimeMillis() + mScreenFileName, wordDst);
 
             wordDst = wordDst.reshape(1, SAMPLE_WIDTH * SAMPLE_HEIGHT);
             for (int k = 0; k < SAMPLE_WIDTH * SAMPLE_HEIGHT; k++) {
