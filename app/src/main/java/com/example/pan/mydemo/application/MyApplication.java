@@ -29,7 +29,7 @@ import cn.jpush.android.api.JPushInterface;
 /**
  * Created by PAN on 2016/9/26.
  */
-public class MyApplication extends SkinBaseApplication implements ReactApplication{
+public class MyApplication extends SkinBaseApplication implements ReactApplication, Thread.UncaughtExceptionHandler {
 
     @Override
     public void onCreate() {
@@ -51,6 +51,9 @@ public class MyApplication extends SkinBaseApplication implements ReactApplicati
         //初始化极光
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
+
+        //异常处理
+        Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
     /**
@@ -63,14 +66,14 @@ public class MyApplication extends SkinBaseApplication implements ReactApplicati
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
-        String jsBundleFilePath = Environment.getExternalStorageDirectory().getPath()+
+        String jsBundleFilePath = Environment.getExternalStorageDirectory().getPath() +
                 "/RNBundle/index.android.bundle";
 
         @Nullable
         @Override
         protected String getJSBundleFile() {
             File file = new File(jsBundleFilePath);
-            if(file.exists() ){
+            if (file.exists()) {
                 return jsBundleFilePath;
             }
 
@@ -111,6 +114,11 @@ public class MyApplication extends SkinBaseApplication implements ReactApplicati
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+    }
+
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        //主线程中未捕获的异常
     }
 
     @Override
