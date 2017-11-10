@@ -1,5 +1,5 @@
 # MyApplication
-## 大部分是收集网络资源 做的修改 如有侵权请告知
+## 部分内容收集自网络开源资源 做的修改 如有侵权请告知
 ## 动态换肤
 ![](/ScreenShoot/SkinLoaderScreenShoot.gif )  
 ## 从外部浏览器打开应用
