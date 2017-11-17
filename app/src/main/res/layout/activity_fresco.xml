@@ -24,6 +24,6 @@
         fresco:roundBottomRight="false"
         fresco:roundWithOverlayColor="@color/btn_blue_pressed"
         fresco:roundingBorderWidth="1dp"
-        fresco:roundingBorderColor="@color/catalyst_redbox_background"
+        fresco:roundingBorderColor="@color/default_red_fire_brick"
         />
 </LinearLayout>

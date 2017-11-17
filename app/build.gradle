@@ -11,15 +11,15 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-        externalNativeBuild {
-            cmake {
-                cppFlags "-std=c++11 -frtti -fexceptions"
-                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-            }
-        }
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags "-std=c++11 -frtti -fexceptions"
+//                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+//            }
+//        }
 
         ndk {
-            abiFilters 'armeabi-v7a',"x86"
+            abiFilters 'armeabi','armeabi-v7a','arm64-v8a'
         }
 
         manifestPlaceholders = [
@@ -35,6 +35,22 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    signingConfigs {
+        debug {
+            keyAlias 'panyufen'
+            keyPassword '123456'
+            storeFile file('/AppKey.jks')
+            storePassword '123456'
+        }
+        release {
+            keyAlias 'panyufen'
+            keyPassword '123456'
+            storeFile file('/AppKey.jks')
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
 
         debug {
@@ -57,11 +73,11 @@ android {
             }
         }
     }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
+//    externalNativeBuild {
+//        cmake {
+//            path "CMakeLists.txt"
+//        }
+//    }
     productFlavors {
     }
 }
@@ -91,9 +107,9 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.4.1'
     compile 'com.squareup.okio:okio:1.5.0'
     compile 'io.reactivex:rxjava:1.1.6'
-    compile 'com.facebook.react:react-native:+'
+//    compile 'com.facebook.react:react-native:+'
     compile 'com.facebook.fresco:fresco:0.12.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.lovedise:permissiongen:0.0.6'
     compile 'com.android.support:multidex:1.0.1'
     // 此处以JPush 3.0.3 版本为例。
@@ -109,5 +125,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.bumptech.glide:glide:4.0.0'
     testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    compile 'com.jakewharton:butterknife-compiler:8.7.0'
 }

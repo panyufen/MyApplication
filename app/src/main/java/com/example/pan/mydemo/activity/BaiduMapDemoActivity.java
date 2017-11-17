@@ -83,8 +83,6 @@ public class BaiduMapDemoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 注意该方法要再setContentView方法之前实现
-        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_baidu_map_demo);
         mToolBar = setSupportActionBar(R.id.tool_bar);
 
