@@ -436,7 +436,7 @@ public class ZoomImageView extends ImageView implements OnScaleGestureListener, 
         if (rect.height() < height) {
             deltaY = height * 0.5f - rect.bottom + 0.5f * rect.height();
         }
-//        LogUtils.e(TAG, "deltaX = " + deltaX + " , deltaY = " + deltaY);
+//        LogUtils.msg(TAG, "deltaX = " + deltaX + " , deltaY = " + deltaY);
 
         mScaleMatrix.postTranslate(deltaX, deltaY);
 

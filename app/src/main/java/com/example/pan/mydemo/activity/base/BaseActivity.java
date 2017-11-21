@@ -9,8 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.pan.mydemo.R;
+import com.example.pan.mydemo.http.event.ResEvent;
 import com.pan.skin.loader.base.SkinBaseActivity;
 import com.pan.skin.loader.config.SkinConfig;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 
@@ -26,8 +31,15 @@ public class BaseActivity extends SkinBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     protected void startActivity(Class<?> cls) {
         Intent intent = new Intent(this, cls);
@@ -94,4 +106,18 @@ public class BaseActivity extends SkinBaseActivity {
         dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimary);
         return toolbar;
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(ResEvent event) {
+
+    }
+
 }

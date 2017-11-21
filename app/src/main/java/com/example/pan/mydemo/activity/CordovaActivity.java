@@ -80,8 +80,8 @@ public class CordovaActivity extends BaseActivity implements MyCordovaPlugIn.Abc
 //                    jsonObject.put("a", "异步发送消息");
 //                    jsonObject.put("b","这里是b");
 //                    cordovaPlugin.sendCmd(jsonObject);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
+//                } catch (JSONException msg) {
+//                    msg.printStackTrace();
 //                }
 
                 //这里调用js

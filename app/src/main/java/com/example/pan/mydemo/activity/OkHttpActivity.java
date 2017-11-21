@@ -6,10 +6,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cus.pan.library.utils.FileUtils;
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.example.pan.mydemo.http.OkHttpHelper;
+import com.example.pan.mydemo.http.bean.HomeReqBean;
+import com.example.pan.mydemo.http.bean.HomeResBean;
+import com.example.pan.mydemo.http.event.HomeResEvent;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.google.gson.Gson;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +103,6 @@ public class OkHttpActivity extends BaseActivity {
         }
         mOkHttpClient = builder.build();
 
-
     }
 
 
@@ -143,23 +151,58 @@ public class OkHttpActivity extends BaseActivity {
                             .build();
 
                     final Response response = mOkHttpClient.newCall(request).execute();
-                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                    if (!response.isSuccessful())
+                        throw new IOException("Unexpected code " + response);
+                    final String resString = response.body().string();
+                    LogUtils.i(resString + " ");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             try {
-                                textView.setText(response.body().string() + " ");
+                                textView.setText(String.valueOf(resString + " "));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }
                     });
-                    LogUtils.i(response.body().string() + " ");
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+
+
+    public void PostByUtils(View view) {
+        FileUtils.copyFileFromAssets(this, "685ba3810ad799bfd94cb24cc5865490.jpg", getExternalCacheDir().getAbsolutePath() + "/685ba3810ad799bfd94cb24cc5865490.jpg");
+
+        File file = new File(getExternalCacheDir().getAbsolutePath() + "/685ba3810ad799bfd94cb24cc5865490.jpg");
+        LogUtils.i("file " + file.getAbsolutePath() + " " + file.exists());
+
+        HomeReqBean homeReqBean = new HomeReqBean();
+        homeReqBean.temp = 1;
+        homeReqBean.role = 1;
+        homeReqBean.city = "沈阳市";
+        homeReqBean.src = "0ca7a96d91ec798d25c827686e9b4962";
+        homeReqBean.city_id_change = 210100;
+        homeReqBean.isnew = 1;
+        homeReqBean.version = 3106230;
+        homeReqBean.uid = 926664;
+        homeReqBean.rank = "member";
+        homeReqBean.ysApp = "android";
+        homeReqBean.vip = 1;
+        homeReqBean.did = 46;
+        homeReqBean.file = file;
+        OkHttpHelper.getInstance().requestSync(homeReqBean, HomeResEvent.class, HomeResBean.class);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(HomeResEvent event) {
+        HomeResBean homeResBean = (HomeResBean) event.resBean;
+        textView.setText(new Gson().toJson(homeResBean));
+
     }
 
     public void postString(View v) {
@@ -183,7 +226,8 @@ public class OkHttpActivity extends BaseActivity {
                             .build();
 
                     Response response = mOkHttpClient.newCall(request).execute();
-                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                    if (!response.isSuccessful())
+                        throw new IOException("Unexpected code " + response);
                     LogUtils.i("" + response.body().string());
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -215,7 +259,8 @@ public class OkHttpActivity extends BaseActivity {
                             .build();
 
                     Response response = mOkHttpClient.newCall(request).execute();
-                    if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                    if (!response.isSuccessful())
+                        throw new IOException("Unexpected code " + response);
 
                     System.out.println(response.body().string());
                 } catch (Exception e) {
@@ -240,7 +285,7 @@ public class OkHttpActivity extends BaseActivity {
             "http://download.mokeedev.com/41xryr"
     };
     int countIndex = 0;
-    int count = ((int)(Math.random()*100)+1) * urlArr.length;
+    int count = ((int) (Math.random() * 100) + 1) * urlArr.length;
 
     public void postLoop(final View v) {
         new Thread(new Runnable() {
@@ -275,26 +320,30 @@ public class OkHttpActivity extends BaseActivity {
     }
 
 
-    class LoggingInterceptor implements Interceptor {
+    public static class LoggingInterceptor implements Interceptor {
         @Override
         public Response intercept(Interceptor.Chain chain) throws IOException {
             Request request = chain.request();
 
+            StringBuilder stringBuffer = new StringBuilder();
+            stringBuffer.append("{");
+            FormBody formBody = (FormBody) request.body();
+            for (int i = 0; i < formBody.size(); i++) {
+                stringBuffer.append(formBody.name(i)).append(":").append(formBody.value(i));
+                if (i + 1 < formBody.size()) {
+                    stringBuffer.append(",");
+                }
+            }
+            stringBuffer.append("}");
+
             long t1 = System.nanoTime();
-            Long c1 = System.currentTimeMillis();
-            LogUtils.i(System.currentTimeMillis() + " " + System.nanoTime());
-            LogUtils.i(String.format("Sending request %s on %s%n%s",
-                    request.url(), chain.connection(), request.headers()));
+            LogUtils.i(String.format("Sending request %s%n%s", request.url(), stringBuffer.toString()));
 
             Response response = chain.proceed(request);
 
             long t2 = System.nanoTime();
-            long c2 = System.currentTimeMillis();
-            LogUtils.i(String.format("Received response for %s in %.1fms%n%s",
-                    response.request().url(), (t2 - t1) / 1e6d, response.headers()));
-
-            LogUtils.i(System.currentTimeMillis() + " " + System.nanoTime() + " " + (t2 - t1) + " " + (c2 - c1));
-
+//            LogUtils.i(String.format("Received response for %s in %.1fms%n%s", response.request().url(), (t2 - t1) / 1e6d, response.headers()));
+            LogUtils.i(String.format("Received response for %s in %.1fms", response.request().url(), (t2 - t1) / 1e6d));
             return response;
         }
     }
