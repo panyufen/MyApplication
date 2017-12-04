@@ -10,7 +10,7 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:background="@color/window_background"
     skin:enable="true"
-    tools:context="com.example.pan.mydemo.activity.BlurringActivity">
+    tools:context="com.example.pan.mydemo.view.BlurringActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

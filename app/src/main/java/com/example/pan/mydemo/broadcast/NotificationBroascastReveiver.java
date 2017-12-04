@@ -16,7 +16,7 @@ import android.widget.RemoteViews;
 
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.activity.NotificationActivity;
+import com.example.pan.mydemo.view.NotificationActivity;
 import com.google.gson.Gson;
 
 import cn.jpush.android.api.JPushInterface;

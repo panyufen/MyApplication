@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context="com.example.pan.mydemo.activity.anim.XMLPropertyAnimActivity"
+    tools:context="com.example.pan.mydemo.view.anim.XMLPropertyAnimActivity"
     >
 
     <android.support.design.widget.AppBarLayout

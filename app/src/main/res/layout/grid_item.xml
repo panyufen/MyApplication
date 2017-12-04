@@ -19,7 +19,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <com.example.pan.mydemo.activity.materialdesign.SquareFrameLayout
+    <com.example.pan.mydemo.view.materialdesign.SquareFrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"/>
 
-    </com.example.pan.mydemo.activity.materialdesign.SquareFrameLayout>
+    </com.example.pan.mydemo.view.materialdesign.SquareFrameLayout>
 
     <TextView
         android:id="@+id/textview_name"

@@ -20,11 +20,14 @@ import cn.jpush.android.api.JPushInterface;
  * Created by PAN on 2016/9/26.
  */
 //public class MyApplication extends SkinBaseApplication implements ReactApplication, Thread.UncaughtExceptionHandler {
-    public class MyApplication extends SkinBaseApplication implements Thread.UncaughtExceptionHandler {
+public class MyApplication extends SkinBaseApplication implements Thread.UncaughtExceptionHandler {
+
+    public static Context app;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        app = this;
         Stetho.initialize(Stetho.newInitializerBuilder(this)
                 .enableDumpapp(new DumperPluginsProvider() {
                     @Override

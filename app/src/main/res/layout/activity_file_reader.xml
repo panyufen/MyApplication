@@ -9,7 +9,7 @@
     android:background="@color/window_background"
     skin:enable="true"
     android:orientation="vertical"
-    tools:context="com.example.pan.mydemo.activity.FileReaderActivity"
+    tools:context="com.example.pan.mydemo.view.FileReaderActivity"
     >
 
     <Button

@@ -5,7 +5,7 @@
     xmlns:skin="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pan.mydemo.activity.VolleyActivity"
+    tools:context="com.example.pan.mydemo.view.VolleyActivity"
     android:background="@color/window_background"
     skin:enable="true"
     tools:showIn="@layout/activity_volley">

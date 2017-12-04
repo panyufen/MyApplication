@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:background="@color/window_background"
     skin:enable="true"
-    tools:context="com.example.pan.mydemo.activity.AccessibilityServiceActivity"
+    tools:context="com.example.pan.mydemo.view.AccessibilityServiceActivity"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout

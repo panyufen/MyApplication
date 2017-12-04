@@ -1,7 +1,6 @@
 package com.example.pan.mydemo.http;
 
 import com.cus.pan.library.utils.LogUtils;
-import com.cus.pan.library.utils.Logger;
 import com.example.pan.mydemo.http.base.HttpMethodType;
 import com.example.pan.mydemo.http.bean.base.ReqBean;
 import com.example.pan.mydemo.http.bean.base.ResBean;
@@ -96,16 +95,16 @@ public class OkHttpHelper {
     }
 
 
-    public void requestSync(final ReqBean reqBean, Class<? extends ResEvent> resEvent, final Class<? extends ResBean> resBean) {
-
+    public Call requestSync(final ReqBean reqBean, Class<? extends ResEvent> resEvent, final Class<? extends ResBean> resBean) {
+        Call call = null;
         HttpMethodType httpMethodType = reqBean.getMethodType();
 
         List<Field> reqFields = getFields(reqBean.getClass());
         MultipartBody.Builder multiFormBodyBuidler = new MultipartBody.Builder();
         FormBody.Builder formBodyBuilder = new FormBody.Builder();
         int fileCount = 0;
-        for (Field field : reqFields) {
-            try {
+        try {
+            for (Field field : reqFields) {
                 if (Modifier.isPrivate(field.getModifiers())
                         || Modifier.isTransient(field.getModifiers())
                         || Modifier.isStatic(field.getModifiers())) {//如果是private static transient 则忽略
@@ -130,12 +129,8 @@ public class OkHttpHelper {
                         multiFormBodyBuidler.addFormDataPart(fieldName, val.toString());
                     }
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                Logger.e("transfer params error");
             }
-        }
-        try {
+
             Request.Builder requestBuilder = new Request.Builder();
             String requestUrl = BASE_URL + reqBean.getPath();
             if (httpMethodType == HttpMethodType.GET || reqFields.size() == 0) {
@@ -162,7 +157,7 @@ public class OkHttpHelper {
             requestBuilder.url(requestUrl);
             Request request = requestBuilder.build();
             final long t1 = System.nanoTime();
-            Call call = mOkHttpClient.newCall(request);
+            call = mOkHttpClient.newCall(request);
             //设置返回Event
             final ResEvent resultResEvent = resEvent.newInstance();
             resultResEvent.reqBean = reqBean;
@@ -191,9 +186,11 @@ public class OkHttpHelper {
                     EventBus.getDefault().post(resultResEvent);
                 }
             });
+            return call;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return call;
     }
 
     //获取参数列表

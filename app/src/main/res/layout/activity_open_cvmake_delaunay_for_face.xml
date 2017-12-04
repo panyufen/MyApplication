@@ -8,7 +8,7 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:background="@color/window_background"
     skin:enable="true"
-    tools:context="com.example.pan.mydemo.activity.opencv.OpenCVMakeDelaunayForFaceActivity">
+    tools:context="com.example.pan.mydemo.view.opencv.OpenCVMakeDelaunayForFaceActivity">
     <org.opencv.android.JavaCameraView
         android:id="@+id/feature_camera_view"
         android:layout_width="match_parent"

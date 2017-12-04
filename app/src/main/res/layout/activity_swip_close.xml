@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.pan.mydemo.view.SwipBackLayout
+<com.example.pan.mydemo.widget.SwipBackLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:skin="http://schemas.android.com/android/skin"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -41,4 +41,4 @@
             skin:enable="true"
             />
     </LinearLayout>
-</com.example.pan.mydemo.view.SwipBackLayout>
+</com.example.pan.mydemo.widget.SwipBackLayout>

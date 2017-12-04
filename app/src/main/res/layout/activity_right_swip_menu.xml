@@ -27,7 +27,7 @@
             />
     </android.support.design.widget.AppBarLayout>
 
-    <com.example.pan.mydemo.view.RightSwipMenuLayout
+    <com.example.pan.mydemo.widget.RightSwipMenuLayout
         android:id="@+id/right_swip_menu_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -52,7 +52,7 @@
                 skin:enable="true"
                 />
 
-            <com.example.pan.mydemo.view.AutoScrollRecyclerView
+            <com.example.pan.mydemo.widget.AutoScrollRecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -80,7 +80,7 @@
                 android:orientation="vertical"
                 >
 
-                <com.example.pan.mydemo.view.SideBar
+                <com.example.pan.mydemo.widget.SideBar
                     android:id="@+id/side_bar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -96,7 +96,7 @@
                 skin:enable="true"
                 >
 
-                <com.example.pan.mydemo.view.AutoLinearLayout
+                <com.example.pan.mydemo.widget.AutoLinearLayout
                     android:id="@+id/auto_line_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -104,5 +104,5 @@
             </LinearLayout>
         </LinearLayout>
 
-    </com.example.pan.mydemo.view.RightSwipMenuLayout>
+    </com.example.pan.mydemo.widget.RightSwipMenuLayout>
 </LinearLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.pan.mydemo"
-          tools:overrideLibrary="com.facebook.react">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.pan.mydemo"
+    tools:overrideLibrary="com.facebook.react">
 
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -34,7 +34,6 @@
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
     <!-- nfc -->
     <uses-permission android:name="android.permission.NFC"/>
-    <uses-permission android:name="android.permission.INJECT_EVENTS"/>
       
     <uses-feature
         android:name="android.hardware.nfc"
@@ -68,19 +67,24 @@
             android:value="nopiAXSGl2xsnhHW07xUe3fUErX5nsud"/>
 
         <activity
-            android:name=".activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.AppStartLoad">
+            android:name=".view.LoadingActivity"
+            android:theme="@style/AppTheme.AppStartLoad"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".activity.SecondActivity"
-            android:label="@string/app_name">
+            android:name=".view.MainActivity"
+            android:label="@string/app_name"
+            >
         </activity>
+        <activity
+            android:name=".view.SecondActivity"
+            android:label="@string/app_name"/>
 
         <service
             android:name=".service.MyService"
@@ -98,69 +102,50 @@
         <service
             android:name=".service.MyClientService"
             android:enabled="true"
-            android:exported="false">
-        </service>
+            android:exported="false"/>
 
         <activity
-            android:name=".activity.customview.ZoomActivity"
-            android:theme="@style/AppTheme.StatusTranslattion">
-        </activity>
+            android:name=".view.customview.ZoomActivity"
+            android:theme="@style/AppTheme.StatusTranslattion"/>
         <activity
-            android:name=".activity.AnimActivity"
-            android:label="@string/title_activity_anim">
-        </activity>
+            android:name=".view.AnimActivity"
+            android:label="@string/title_activity_anim"/>
         <activity
-            android:name=".activity.ServiceActivity"
-            android:label="@string/title_activity_service">
-        </activity>
+            android:name=".view.ServiceActivity"
+            android:label="@string/title_activity_service"/>
         <activity
-            android:name=".activity.InflaterFactoryActivity"
-            android:label="@string/title_activity_inflater_factory">
-        </activity>
+            android:name=".view.InflaterFactoryActivity"
+            android:label="@string/title_activity_inflater_factory"/>
         <activity
-            android:name=".activity.VolleyActivity"
-            android:label="@string/title_activity_volley">
-        </activity>
+            android:name=".view.VolleyActivity"
+            android:label="@string/title_activity_volley"/>
         <activity
-            android:name=".activity.OkHttpActivity"
-            android:label="@string/title_activity_ok_http">
-        </activity>
+            android:name=".view.OkHttpActivity"
+            android:label="@string/title_activity_ok_http"/>
         <activity
-            android:name=".activity.WebActivity"
-            android:label="@string/title_activity_web">
-        </activity>
-        <activity android:name=".activity.rxjava.RxJavaActivity">
-        </activity>
+            android:name=".view.WebActivity"
+            android:label="@string/title_activity_web"/>
+        <activity android:name=".view.rxjava.RxJavaActivity"/>
         <activity
-            android:name=".activity.PicassoActivity"
-            android:label="PicassoActivity">
-        </activity>
-        <activity android:name=".activity.materialdesign.RecyclerViewItemDecorationActivity">
-        </activity>
-        <activity android:name=".activity.CordovaActivity">
-        </activity>
-        <activity android:name=".activity.ReactNativeActivity">
-        </activity>
-        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity">
-        </activity>
+            android:name=".view.PicassoActivity"
+            android:label="PicassoActivity"/>
+        <activity android:name=".view.materialdesign.RecyclerViewItemDecorationActivity"/>
+        <activity android:name=".view.CordovaActivity"/>
+        <activity android:name=".view.ReactNativeActivity"/>
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
         <activity
-            android:name=".activity.materialdesign.SwipCloseActivity"
-            android:theme="@style/transparent">
-        </activity>
-        <activity android:name=".activity.BaiduMapDemoActivity">
-        </activity>
-        <activity android:name=".activity.SkinLoaderActivity">
-        </activity>
+            android:name=".view.materialdesign.SwipCloseActivity"
+            android:theme="@style/transparent"/>
+        <activity android:name=".view.BaiduMapDemoActivity"/>
+        <activity android:name=".view.SkinLoaderActivity"/>
         <activity
-            android:name=".activity.materialdesign.ConstraintLayoutActivity"
-            android:label="@string/title_activity_constraint_layout">
-        </activity>
+            android:name=".view.materialdesign.ConstraintLayoutActivity"
+            android:label="@string/title_activity_constraint_layout"/>
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote">
-        </service>
+            android:process=":remote"/>
         <service
             android:name=".service.MyAccessibilityService"
             android:enabled="true"
@@ -190,71 +175,51 @@
                 android:resource="@xml/auto_reply_service"/>
         </service>
 
-        <activity android:name=".activity.AccessibilityServiceActivity">
-        </activity>
-        <activity android:name=".activity.BlurringActivity">
-        </activity>
-        <activity android:name=".activity.anim.ViewPagerActivity">
-        </activity>
-        <activity android:name=".activity.opencv.OpenCVGrayActivity">
-        </activity>
-        <activity android:name=".activity.opencv.OpenCVActivity">
-        </activity>
+        <activity android:name=".view.AccessibilityServiceActivity"/>
+        <activity android:name=".view.BlurringActivity"/>
+        <activity android:name=".view.anim.ViewPagerActivity"/>
+        <activity android:name=".view.opencv.OpenCVGrayActivity"/>
+        <activity android:name=".view.opencv.OpenCVActivity"/>
         <activity
-            android:name=".activity.opencv.OpenCVFeatureActivity"
+            android:name=".view.opencv.OpenCVFeatureActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar.FullScreen">
-        </activity>
+            android:theme="@style/NoActionBar.FullScreen"/>
         <activity
-            android:name=".activity.opencv.OpencvFaceDetectionActivity"
+            android:name=".view.opencv.OpencvFaceDetectionActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar.FullScreen">
-        </activity>
+            android:theme="@style/NoActionBar.FullScreen"/>
         <activity
-            android:name=".activity.opencv.OpenCVCarPlateActivity"
+            android:name=".view.opencv.OpenCVCarPlateActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar.FullScreen">
-        </activity>
+            android:theme="@style/NoActionBar.FullScreen"/>
         <activity
-            android:name=".activity.opencv.OpenCVCarDetectionActivity"
+            android:name=".view.opencv.OpenCVCarDetectionActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar.FullScreen">
-        </activity>
+            android:theme="@style/NoActionBar.FullScreen"/>
         <activity
-            android:name=".activity.opencv.OpenCVMakeDelaunayForFaceActivity"
+            android:name=".view.opencv.OpenCVMakeDelaunayForFaceActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar.FullScreen">
-        </activity>
-        <activity android:name=".activity.FrescoActivity">
-        </activity>
+            android:theme="@style/NoActionBar.FullScreen"/>
+        <activity android:name=".view.FrescoActivity"/>
         <activity
-            android:name=".activity.opencv.OpenCVCarPlateDetectionByCActivity"
+            android:name=".view.opencv.OpenCVCarPlateDetectionByCActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/NoActionBar.FullScreen">
-        </activity>
+            android:theme="@style/NoActionBar.FullScreen"/>
         <activity
-            android:name=".activity.WebJsBridgeActivity"
+            android:name=".view.WebJsBridgeActivity"
             android:exported="false"
             android:process=":newtask"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".activity.FileReaderActivity">
-        </activity>
-        <activity android:name=".activity.anim.PathAnimActivity">
-        </activity>
-        <activity android:name=".activity.anim.LayoutAnimActivity">
-        </activity>
-        <activity android:name=".activity.anim.PropertyAnimActivity">
-        </activity>
-        <activity android:name=".activity.anim.SvgPathAnimActivity">
-        </activity>
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.FileReaderActivity"/>
+        <activity android:name=".view.anim.PathAnimActivity"/>
+        <activity android:name=".view.anim.LayoutAnimActivity"/>
+        <activity android:name=".view.anim.PropertyAnimActivity"/>
+        <activity android:name=".view.anim.SvgPathAnimActivity"/>
         <activity
-            android:name=".activity.anim.XMLPropertyAnimActivity"
-            android:label="XMLPropertyAnim">
-        </activity>
-        <activity android:name=".activity.NotificationActivity">
-        </activity>
+            android:name=".view.anim.XMLPropertyAnimActivity"
+            android:label="XMLPropertyAnim"/>
+        <activity android:name=".view.NotificationActivity"/>
 
         <receiver
             android:name=".broadcast.NotificationBroascastReveiver"
@@ -271,56 +236,38 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.opengl.OpenGLActivity">
-        </activity>
-        <activity android:name=".activity.opengl.OpenGLSampleActivity">
-        </activity>
-        <activity android:name=".activity.opengl.OpenGL20SampleActivity">
-        </activity>
+        <activity android:name=".view.opengl.OpenGLActivity"/>
+        <activity android:name=".view.opengl.OpenGLSampleActivity"/>
+        <activity android:name=".view.opengl.OpenGL20SampleActivity"/>
         <activity
-            android:name=".activity.RecentTaskActivity"
-            android:launchMode="standard">
-        </activity>
-        <activity android:name=".activity.materialdesign.MaterialDesignActivity">
-        </activity>
+            android:name=".view.RecentTaskActivity"
+            android:launchMode="standard"/>
+        <activity android:name=".view.materialdesign.MaterialDesignActivity"/>
         <activity
-            android:name=".activity.materialdesign.NavigationViewActivity"
-            android:theme="@style/AppTheme.StatusTranslattion">
-        </activity>
+            android:name=".view.materialdesign.NavigationViewActivity"
+            android:theme="@style/AppTheme.StatusTranslattion"/>
         <activity
-            android:name=".activity.materialdesign.CollapsingToolbarLayoutActivity"
-            android:label="CollapsingToolBarLayoutActivityTitleSample">
-        </activity>
-        <activity android:name=".activity.materialdesign.SceneTransitionActivity">
-        </activity>
-        <activity android:name=".activity.materialdesign.SceneTransitionDetailActivity">
-        </activity>
-        <activity android:name=".activity.materialdesign.RightSwipMenuActivity">
-        </activity>
-        <activity android:name=".activity.anim.OtherAnimActivity">
-        </activity>
-        <activity android:name=".activity.opengl.OpenGLProjectionActivity">
-        </activity>
-        <activity android:name=".activity.opengl.OpenGLLightActivity">
-        </activity>
-        <activity android:name=".activity.CheckDevActivity">
-        </activity>
-        <activity android:name=".activity.opengl.OpenGLTextureActivity">
-        </activity>
+            android:name=".view.materialdesign.CollapsingToolbarLayoutActivity"
+            android:label="CollapsingToolBarLayoutActivityTitleSample"/>
+        <activity android:name=".view.materialdesign.SceneTransitionActivity"/>
+        <activity android:name=".view.materialdesign.SceneTransitionDetailActivity"/>
+        <activity android:name=".view.materialdesign.RightSwipMenuActivity"/>
+        <activity android:name=".view.anim.OtherAnimActivity"/>
+        <activity android:name=".view.opengl.OpenGLProjectionActivity"/>
+        <activity android:name=".view.opengl.OpenGLLightActivity"/>
+        <activity android:name=".view.CheckDevActivity"/>
+        <activity android:name=".view.opengl.OpenGLTextureActivity"/>
         <activity
-            android:name=".activity.materialdesign.SearchViewActivity"
-            android:label="SearchView">
-        </activity>
+            android:name=".view.materialdesign.SearchViewActivity"
+            android:label="SearchView"/>
         <activity
-            android:name=".activity.materialdesign.NestedScrollingActivity"
-            android:label="NestedScrolling">
-        </activity>
+            android:name=".view.materialdesign.NestedScrollingActivity"
+            android:label="NestedScrolling"/>
         <activity
-            android:name=".activity.customview.CustomViewActivity"
-            android:label="自定义View">
-        </activity>
+            android:name=".view.customview.CustomViewActivity"
+            android:label="自定义View"/>
         <activity
-            android:name=".activity.web.WebIntentActivity"
+            android:name=".view.web.WebIntentActivity"
             android:allowTaskReparenting="true"
             android:label="从web打开App">
             <intent-filter>
@@ -345,51 +292,36 @@
         </provider>
 
         <activity
-            android:name=".activity.customview.CircleRectViewActivity"
-            android:label="CircleRectView">
-        </activity>
+            android:name=".view.customview.CircleRectViewActivity"
+            android:label="CircleRectView"/>
         <activity
-            android:name=".activity.materialdesign.NestedScrollViewActivity"
-            android:label="ScrollViewOnScroll">
-        </activity>
+            android:name=".view.materialdesign.NestedScrollViewActivity"
+            android:label="ScrollViewOnScroll"/>
         <activity
-            android:name=".activity.materialdesign.NestedScrolling2Activity"
-            android:label="BottomSheetBehavior">
-        </activity>
+            android:name=".view.materialdesign.NestedScrolling2Activity"
+            android:label="BottomSheetBehavior"/>
         <activity
-            android:name=".activity.materialdesign.FlexBoxLayoutActivity"
-            android:label="FlexBoxLayout">
-        </activity>
-        <activity android:name=".activity.queue.PriorityConQueueActivity">
-        </activity>
-        <activity android:name=".activity.queue.PriorityQueueActivity">
-        </activity>
-        <activity android:name=".activity.queue.SimpleQueueActivity">
-        </activity>
-        <activity android:name=".activity.rxjava.RxJava1Activity">
-        </activity>
-        <activity android:name=".activity.rxjava.RxJava2Activity">
-        </activity>
-        <activity android:name=".activity.rxjava.RxJava3Activity">
-        </activity>
-        <activity android:name=".activity.RetrofitActivity">
-        </activity>
+            android:name=".view.materialdesign.FlexBoxLayoutActivity"
+            android:label="FlexBoxLayout"/>
+        <activity android:name=".view.queue.PriorityConQueueActivity"/>
+        <activity android:name=".view.queue.PriorityQueueActivity"/>
+        <activity android:name=".view.queue.SimpleQueueActivity"/>
+        <activity android:name=".view.rxjava.RxJava1Activity"/>
+        <activity android:name=".view.rxjava.RxJava2Activity"/>
+        <activity android:name=".view.rxjava.RxJava3Activity"/>
+        <activity android:name=".view.RetrofitActivity"/>
         <activity
-            android:name=".activity.GlideActivity"
-            android:label="GlideActivity">
-        </activity>
+            android:name=".view.GlideActivity"
+            android:label="GlideActivity"/>
         <activity
-            android:name=".activity.materialdesign.RecyclerViewActivity"
-            android:label="RecyclerViewActivity">
-        </activity>
+            android:name=".view.materialdesign.RecyclerViewActivity"
+            android:label="RecyclerViewActivity"/>
         <activity
-            android:name=".activity.materialdesign.RecyclerViewItemDecoration2Activity"
-            android:label="ItemDecoration2Activity">
-        </activity>
-        <activity android:name=".activity.materialdesign.RecyclerViewRelatedActivity">
-        </activity>
+            android:name=".view.materialdesign.RecyclerViewItemDecoration2Activity"
+            android:label="ItemDecoration2Activity"/>
+        <activity android:name=".view.materialdesign.RecyclerViewRelatedActivity"/>
         <activity
-            android:name=".activity.NFCActivity"
+            android:name=".view.NFCActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:launchMode="singleTask">
@@ -410,13 +342,13 @@
         <service
             android:name=".service.GameOptionService"
             android:enabled="true"
-            android:exported="true">
-        </service>
+            android:exported="true"/>
 
-        <activity android:name=".activity.opencv.HSVDetectionActivity">
-        </activity>
-        <activity android:name=".activity.opencv.OpenCVThresholdActivity">
-        </activity>
+        <activity android:name=".view.opencv.HSVDetectionActivity"/>
+        <activity android:name=".view.opencv.OpenCVThresholdActivity"/>
+        <activity
+            android:name=".view.CalendarActivity"
+            android:label="CalendarActivity"/>
     </application>
 
 </manifest>

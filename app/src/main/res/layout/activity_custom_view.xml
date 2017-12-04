@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:skin="http://schemas.android.com/android/skin"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/window_background"
-    skin:enable="true"
     android:orientation="vertical"
-    >
+    skin:enable="true">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -19,8 +17,8 @@
             android:id="@+id/tool_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextColor="@color/normal_text_color"
             android:background="@color/colorPrimary"
+            app:titleTextColor="@color/normal_text_color"
 
             />
     </android.support.design.widget.AppBarLayout>
@@ -34,8 +32,7 @@
         android:text="ZoomView"
         android:textAllCaps="false"
         android:textColor="@color/normal_text_color"
-        skin:enable="true"
-        />
+        skin:enable="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -46,7 +43,16 @@
         android:text="CircleRectView"
         android:textAllCaps="false"
         android:textColor="@color/normal_text_color"
-        skin:enable="true"
-        />
+        skin:enable="true" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:background="@drawable/item_selector"
+        android:onClick="startCalendar"
+        android:text="Calendar"
+        android:textAllCaps="false"
+        android:textColor="@color/normal_text_color"
+        skin:enable="true" />
 </LinearLayout>

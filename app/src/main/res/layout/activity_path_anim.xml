@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.pan.mydemo.activity.anim.PathAnimActivity"
+    tools:context="com.example.pan.mydemo.view.anim.PathAnimActivity"
     >
 
     <android.support.design.widget.AppBarLayout
@@ -43,7 +43,7 @@
                 android:text="圆形变心形"
                 />
 
-            <com.example.pan.mydemo.view.CircleToHeartView
+            <com.example.pan.mydemo.widget.CircleToHeartView
                 android:id="@+id/pathView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -65,7 +65,7 @@
                 android:text="搜索动画"
                 />
 
-            <com.example.pan.mydemo.view.SearchView
+            <com.example.pan.mydemo.widget.SearchView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
@@ -87,7 +87,7 @@
                 android:textColor="@color/common_white"
                 />
 
-            <com.example.pan.mydemo.view.InterpolatorView
+            <com.example.pan.mydemo.widget.InterpolatorView
                 android:id="@+id/interpolator_view"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
@@ -98,7 +98,7 @@
                 android:background="@color/colorPrimary"
                 />
 
-            <com.example.pan.mydemo.view.ConfirmView
+            <com.example.pan.mydemo.widget.ConfirmView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
 
@@ -115,7 +115,7 @@
                 android:textColor="@color/common_white"
                 />
 
-            <com.example.pan.mydemo.view.DrawFingerView
+            <com.example.pan.mydemo.widget.DrawFingerView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"/>
 
@@ -131,7 +131,7 @@
                 android:text="PolyToPoly"
                 />
 
-            <com.example.pan.mydemo.view.SetPolyToPolyView
+            <com.example.pan.mydemo.widget.SetPolyToPolyView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:background="@color/default_green_dark"
@@ -149,7 +149,7 @@
                 android:text="贝塞尔水滴融合分离"
                 />
 
-            <com.example.pan.mydemo.view.LoadingView
+            <com.example.pan.mydemo.widget.LoadingView
                 android:id="@+id/loading_view"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"

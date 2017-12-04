@@ -4,7 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.example.pan.mydemo.view.floatview.FloatManager;
+import com.example.pan.mydemo.widget.floatview.FloatManager;
 
 
 public class FloatDialogService extends Service {

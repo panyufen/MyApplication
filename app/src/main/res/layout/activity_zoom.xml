@@ -7,7 +7,7 @@
     android:fitsSystemWindows="false"
     >
 
-    <com.example.pan.mydemo.view.ZoomImageView
+    <com.example.pan.mydemo.widget.ZoomImageView
         android:id="@+id/zoom_image_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

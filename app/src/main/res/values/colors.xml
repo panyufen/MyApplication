@@ -7,7 +7,7 @@
     <!-- 普通文字颜色 -->
     <color name="normal_text_color">#DDDDDD</color>
     <!-- 辅助文字颜色(hint) -->
-    <color name="assist_text_color">#A4A4A4</color>
+    <color name="assist_text_color">#949494</color>
     <color name="btn_normal">#3d3d3d</color>
     <color name="btn_pressed">#525252</color>
 

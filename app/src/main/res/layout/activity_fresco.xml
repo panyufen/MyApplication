@@ -9,7 +9,7 @@
     xmlns:skin="http://schemas.android.com/android/skin"
     android:background="@color/window_background"
     skin:enable="true"
-    tools:context="com.example.pan.mydemo.activity.FrescoActivity"
+    tools:context="com.example.pan.mydemo.view.FrescoActivity"
     >
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/image_view"

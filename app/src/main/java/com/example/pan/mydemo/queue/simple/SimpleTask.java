@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ProgressBar;
 
-import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.example.pan.mydemo.view.base.BaseActivity;
 
 /**
  * Created by PAN on 2017/6/21.

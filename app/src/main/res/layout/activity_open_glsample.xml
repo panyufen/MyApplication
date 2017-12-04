@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context="com.example.pan.mydemo.activity.opengl.OpenGLSampleActivity"
+    tools:context="com.example.pan.mydemo.view.opengl.OpenGLSampleActivity"
     >
 
     <android.opengl.GLSurfaceView

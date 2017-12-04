@@ -5,7 +5,7 @@
     android:id="@+id/activity_opencv_face_detection"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.pan.mydemo.activity.opencv.OpencvFaceDetectionActivity">
+    tools:context="com.example.pan.mydemo.view.opencv.OpencvFaceDetectionActivity">
     <org.opencv.android.JavaCameraView
         android:id="@+id/feature_camera_view"
         android:layout_width="match_parent"

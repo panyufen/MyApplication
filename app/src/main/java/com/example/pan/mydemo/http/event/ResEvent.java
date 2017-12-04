@@ -7,10 +7,10 @@ import com.example.pan.mydemo.http.bean.base.ResBean;
  * Created by Pan on 2017/11/18.
  */
 
-public class ResEvent {
+public class ResEvent<T extends ResBean> {
 
     public ReqBean reqBean;
 
-    public ResBean resBean;
+    public T resBean;
 
 }

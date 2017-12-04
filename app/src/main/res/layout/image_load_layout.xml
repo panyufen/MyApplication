@@ -32,7 +32,7 @@
             android:padding="5dp"
             >
 
-            <com.example.pan.mydemo.view.SquareImageView
+            <com.example.pan.mydemo.widget.SquareImageView
                 android:id="@+id/image_load_error_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             android:padding="5dp"
             >
 
-            <com.example.pan.mydemo.view.SquareImageView
+            <com.example.pan.mydemo.widget.SquareImageView
                 android:id="@+id/image_load_net_timeout_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:padding="5dp"
             >
 
-            <com.example.pan.mydemo.view.SquareImageView
+            <com.example.pan.mydemo.widget.SquareImageView
                 android:id="@+id/image_load_success_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

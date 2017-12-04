@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.activity.base.BaseActivity;
+import com.example.pan.mydemo.view.base.BaseActivity;
 
 /**
  * Created by PAN on 2017/6/23.
