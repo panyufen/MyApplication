@@ -101,7 +101,7 @@ dependencies {
     compile project(':CordovaLib')
     compile project(':libshot')
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile(name: 'mylibrary-release', ext: 'aar')
+    compile(name: 'mylibrary-release', ext: 'aar') //日历arr包
 
     //    compile 'com.facebook.react:react-native:+'
 
