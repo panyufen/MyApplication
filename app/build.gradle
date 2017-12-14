@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 25
@@ -80,6 +81,21 @@ android {
 //    }
     productFlavors {
     }
+
+    greendao {
+        /**
+         * 版本号
+         */
+        schemaVersion 1
+        /**
+         * greendao输出dao的数据库操作实体类文件夹（相对路径 包名+自定义路径名称，包将创建于包名的直接路径下）
+         */
+        daoPackage 'com.qiufeng.greendao.greendao.gen'
+        /**
+         * greenDao实体类包文件夹
+         */
+        targetGenDir 'src/main/java'
+    }
 }
 
 def buildTime() {
@@ -132,5 +148,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'org.greenrobot:eventbus:3.1.0-RC'
-    testCompile 'junit:junit:4.12'
+    compile 'org.greenrobot:greendao:3.2.2'
+    compile 'org.greenrobot:greendao-generator:3.1.0'
+    compile 'junit:junit:4.12'
 }

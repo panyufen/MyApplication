@@ -12,6 +12,7 @@ import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.view.customview.CustomViewActivity;
+import com.example.pan.mydemo.view.database.DataBaseActivity;
 import com.example.pan.mydemo.view.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.view.opencv.OpenCVActivity;
 import com.example.pan.mydemo.view.opengl.OpenGLActivity;
@@ -196,6 +197,11 @@ public class MainActivity extends BaseActivity {
         Intent floatDialogIntent = new Intent(this, FloatDialogService.class);
         startService(floatDialogIntent);
     }
+
+    public void startDatabase(View v ){
+        startActivity(DataBaseActivity.class);
+    }
+
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
