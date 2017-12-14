@@ -18,6 +18,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by PAN on 2016/9/23.
@@ -25,6 +26,8 @@ import butterknife.ButterKnife;
 public class BaseActivity extends SkinBaseActivity {
     String TAG = this.getClass().getName();
     private Toolbar toolbar;
+
+    protected Unbinder baseUnbinder;
 
     private boolean isShowToolbarNavIcon = true;
 
@@ -48,8 +51,14 @@ public class BaseActivity extends SkinBaseActivity {
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
+        setContentView(layoutResID,true);
+    }
+
+    public void setContentView(@LayoutRes int layoutResID, boolean bindable) {
         super.setContentView(layoutResID);
-        ButterKnife.bind(this);
+        if (bindable) {
+            baseUnbinder = ButterKnife.bind(this);
+        }
     }
 
     public void setToolbarNavIconVisible(ActionBar actionbar, boolean visible) {
