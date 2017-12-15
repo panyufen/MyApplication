@@ -13,8 +13,8 @@ import com.facebook.stetho.dumpapp.DumperContext;
 import com.facebook.stetho.dumpapp.DumperPlugin;
 import com.pan.skin.loader.base.SkinBaseApplication;
 
-
 import cn.jpush.android.api.JPushInterface;
+import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
 
 /**
  * Created by PAN on 2016/9/26.
@@ -50,6 +50,9 @@ public class MyApplication extends SkinBaseApplication implements Thread.Uncaugh
 
         //异常处理
         Thread.setDefaultUncaughtExceptionHandler(this);
+
+        //数据库查看lib
+        SQLiteStudioService.instance().start(this);
     }
 
 //    /**
@@ -115,11 +118,13 @@ public class MyApplication extends SkinBaseApplication implements Thread.Uncaugh
     @Override
     public void uncaughtException(Thread t, Throwable e) {
         //主线程中未捕获的异常
+        e.printStackTrace();
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
         FloatDialogService.floatManager.removeView();
+        SQLiteStudioService.instance().stop();
     }
 }

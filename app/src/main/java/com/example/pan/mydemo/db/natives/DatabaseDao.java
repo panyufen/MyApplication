@@ -15,26 +15,35 @@ import java.util.List;
 /**
  * Created by PAN on 2017/12/13.
  */
-
 public abstract class DatabaseDao implements DBInterface {
 
     private DataBaseHelper dataBaseHelper;
     private SQLiteDatabase db;
 
+    protected String table;
+
+    private DatabaseInterface DatabaseInterface = new DataBaseInterImpl();
+
     public DatabaseDao() {
-        this.dataBaseHelper = DataBaseHelper.getInstance(this);
+        table = getTableName();
+        this.dataBaseHelper = DataBaseHelper.getInstance(DatabaseInterface);
         db = dataBaseHelper.getWritableDatabase();
     }
 
-    @Override
-    public void create(String table) {
-        db.execSQL(getCreateTableSql(table));
-    }
+    protected abstract String getTableName();
+
+    public abstract void createTable(SQLiteDatabase db);
+
+    public abstract Object getDataItem(Cursor cursor);
 
     @Override
     public void insert(Object obj) {
         String table = getTableName(obj);
-        db.insert(table, null, pariseValues(obj));
+        ContentValues contentValues = pariseValues(obj);
+        if (contentValues.size() > 0) {
+            db.insert(table, null, contentValues);
+        }
+
     }
 
     @Override
@@ -53,7 +62,10 @@ public abstract class DatabaseDao implements DBInterface {
 
     @Override
     public <T> List<T> query(T obj, String id) {
-        String table = getTableName(obj);
+        return null;
+    }
+
+    public <T> List<T> queryAll() {
         String sql = "select * from " + table + " where 1=1";
         if (db.isOpen()) {
             Cursor cur = db.rawQuery(sql, null);
@@ -61,28 +73,21 @@ public abstract class DatabaseDao implements DBInterface {
             List<T> list = new ArrayList<>();
             try {
                 while (cur.moveToNext()) {
-                    T t = (T) getObject(cur);
+                    T t = (T) getDataItem(cur);
                     list.add(t);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
             cur.close();
+            return list;
         }
-
         return null;
     }
-
-    abstract Object getObject(Cursor cursor);
 
     @Override
     public void delete(Object obj, String id) {
 
-    }
-
-    public String getCreateTableSql(String tableName) {
-        return "create table if not exists " + tableName + "(id INTEGER NOT NULL,userid INTEGER,name TEXT,age INTEGER,mbile TEXT,"
-                + ");create index userinfo_id_index on " + tableName + "(id);";
     }
 
     protected String getTableName(Object obj) {
@@ -113,9 +118,13 @@ public abstract class DatabaseDao implements DBInterface {
         List<Field> fieldList = FieldUtil.getFields(object.getClass());
         try {
             for (Field f : fieldList) {
+                if (Modifier.isTransient(f.getModifiers())
+                        || Modifier.isStatic(f.getModifiers())) {//如果是static transient 则忽略
+                    continue;
+                }
                 String fieldName = f.getName();
                 Object v = f.get(object);
-                if( v != null ) {
+                if (v != null) {
                     contentValues.put(fieldName, FieldUtil.toString(v));
                 }
             }
@@ -123,5 +132,24 @@ public abstract class DatabaseDao implements DBInterface {
             e.printStackTrace();
         }
         return contentValues;
+    }
+
+    public class DataBaseInterImpl implements DatabaseInterface {
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            createTable(db);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        }
+    }
+
+
+    interface DatabaseInterface {
+        void onCreate(SQLiteDatabase db);
+
+        void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion);
     }
 }

@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.application.MyApplication;
-import com.example.pan.mydemo.db.DBInterface;
 
 /**
  * Created by PAN on 2017/12/11.
@@ -17,21 +16,19 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
     private static final String DB_NAME = "database_native";
-    private String tableName;
-    private SQLiteDatabase db = null;
-    private DBInterface dbInterface;
+    private DatabaseDao.DatabaseInterface dbInterface;
 
 
-    private DataBaseHelper(Context context,DBInterface dbInterface) {
+    private DataBaseHelper(Context context, DatabaseDao.DatabaseInterface dbInterface) {
         super(context, DB_NAME, null, DB_VERSION);
         this.dbInterface = dbInterface;
     }
 
-    public static DataBaseHelper getInstance(DBInterface dbInterface) {
+    public static DataBaseHelper getInstance(DatabaseDao.DatabaseInterface dbInterface) {
         if (dataBaseHelper == null) {
             synchronized (DataBaseHelper.class) {
                 if (dataBaseHelper == null) {
-                    dataBaseHelper = new DataBaseHelper(MyApplication.app,dbInterface);
+                    dataBaseHelper = new DataBaseHelper(MyApplication.app, dbInterface);
                 }
             }
         }
@@ -41,8 +38,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        this.db = db;
-        dbInterface.create(null);
+        LogUtils.i("onCreate db");
+        dbInterface.onCreate(db);
     }
 
     @Override
@@ -52,7 +49,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             switch (oldVersion++) {
 
                 case 2:
-
+                    db.execSQL("ALTER TABLE userinfo ADD COLUMN address TEXT;");
+                    db.execSQL("ALTER TABLE userinfo ADD COLUMN mobile TEXT;");
                     break;
 
                 case 3:
@@ -66,10 +64,5 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             }
         }
     }
-
-    public void setDbDao(DBInterface dbDao) {
-        dbInterface = dbDao;
-    }
-
 
 }

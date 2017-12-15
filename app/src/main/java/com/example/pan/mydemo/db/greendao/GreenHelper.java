@@ -1,7 +1,6 @@
 package com.example.pan.mydemo.db.greendao;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.pan.mydemo.application.MyApplication;
 import com.qiufeng.greendao.greendao.gen.DaoMaster;
@@ -15,17 +14,14 @@ public class GreenHelper {
 
     private static GreenHelper greenHelper;
     private DaoMaster.DevOpenHelper helper;
-
-    private SQLiteDatabase db;
-
     private DaoMaster daoMaster;
-
     private DaoSession daoSession;
+    private final String PASSWORD = "panyufen";
 
     private GreenHelper(Context context) {
         helper = new DaoMaster.DevOpenHelper(context, "database_green", null);
-        db = helper.getWritableDatabase();
-        daoMaster = new DaoMaster(db);
+//        daoMaster = new DaoMaster(helper.getEncryptedWritableDb(PASSWORD));
+        daoMaster = new DaoMaster(helper.getWritableDb());
         daoSession = daoMaster.newSession();
     }
 
@@ -38,10 +34,6 @@ public class GreenHelper {
             }
         }
         return greenHelper;
-    }
-
-    public SQLiteDatabase getDb() {
-        return db;
     }
 
     public DaoSession getDaoSession() {

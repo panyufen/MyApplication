@@ -7,8 +7,6 @@ import java.util.List;
  */
 public interface DBInterface {
 
-    void create(String table);
-
     void insert(Object obj);
 
     void update(Object obj, String[] whereColums, String[] values);
