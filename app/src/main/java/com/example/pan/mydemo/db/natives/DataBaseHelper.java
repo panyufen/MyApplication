@@ -44,25 +44,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        while (oldVersion < newVersion) {
-            LogUtils.i("onUpgrade " + oldVersion + " " + newVersion);
-            switch (oldVersion++) {
-
-                case 2:
-                    db.execSQL("ALTER TABLE userinfo ADD COLUMN address TEXT;");
-                    db.execSQL("ALTER TABLE userinfo ADD COLUMN mobile TEXT;");
-                    break;
-
-                case 3:
-
-                    break;
-
-                case 4:
-
-                    break;
-
-            }
-        }
+        dbInterface.onUpgrade(db,oldVersion,newVersion);
     }
 
 }

@@ -13,6 +13,6 @@ public interface DBInterface {
 
     <T> List<T> query(T obj, String id);
 
-    void delete(Object obj, String id);
+    void delete(Object obj, String[] whereColums, String[] values);
 
 }

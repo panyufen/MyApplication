@@ -2,6 +2,7 @@ package com.example.pan.mydemo.pojo;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 
 /**
  * Created by PAN on 2017/12/11.
@@ -9,6 +10,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class UserInfo {
+    @Id(autoincrement = true)
     private Long id;
     private String name;
     private String age;

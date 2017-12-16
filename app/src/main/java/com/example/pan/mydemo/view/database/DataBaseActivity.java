@@ -88,26 +88,27 @@ public class DataBaseActivity extends BaseLayoutActivity {
         mRecyclerView.setAdapter(new RecyclerAdapter(new RecyclerViewRelatedActivity.OnClickListener() {
             @Override
             public void onClick(View v, int pos) {
-                UserInfo userinfo = userInfos.get(pos);
-                etName.setText(userinfo.getName());
+                currUserinfo = userInfos.get(pos);
+                etName.setText(currUserinfo.getName());
                 if (etName.hasFocus()) {
-                    etName.setSelection(userinfo.getName().length());
+                    etName.setSelection(currUserinfo.getName().length());
                 }
-                etAge.setText(userinfo.getAge());
+                etAge.setText(currUserinfo.getAge());
                 if (etAge.hasFocus()) {
-                    etAge.setSelection(userinfo.getAge().length());
+                    etAge.setSelection(currUserinfo.getAge().length());
                 }
-                etMobile.setText(userinfo.getMobile());
+                etMobile.setText(currUserinfo.getMobile());
                 if (etMobile.hasFocus()) {
-                    etMobile.setSelection(userinfo.getMobile().length());
+                    etMobile.setSelection(currUserinfo.getMobile().length());
                 }
-                etAddress.setText(userinfo.getAddress());
+                etAddress.setText(currUserinfo.getAddress());
                 if (etAddress.hasFocus()) {
-                    etAddress.setSelection(userinfo.getAddress().length());
+                    etAddress.setSelection(currUserinfo.getAddress().length());
                 }
             }
         }));
         mRecyclerView.addItemDecoration(new ItemDecoratoin());
+        refreshData();
     }
 
 
@@ -125,38 +126,48 @@ public class DataBaseActivity extends BaseLayoutActivity {
 
     @OnClick({R.id.button_insert, R.id.button_query, R.id.button_edit, R.id.button_delete})
     public void onViewClicked(View view) {
-        UserInfo userInfo = new UserInfo();
         switch (view.getId()) {
             case R.id.button_insert:
-                userInfo.setName(etName.getText().toString());
-                userInfo.setAge(etAge.getText().toString());
-                userInfo.setMobile(etMobile.getText().toString());
-                userInfo.setAddress(etAddress.getText().toString());
+                currUserinfo = new UserInfo();
+                currUserinfo.setName(etName.getText().toString());
+                currUserinfo.setAge(etAge.getText().toString());
+                currUserinfo.setMobile(etMobile.getText().toString());
+                currUserinfo.setAddress(etAddress.getText().toString());
                 if (isGreen) {
-                    userInfoDao.insert(userInfo);
+                    userInfoDao.insert(currUserinfo);
                 } else {
-                    nUserInfoDao.insert(userInfo);
+                    nUserInfoDao.insert(currUserinfo);
                 }
-                refreshData();
                 break;
             case R.id.button_query:
-                refreshData();
                 break;
             case R.id.button_edit:
-//                userInfo.setName(etName.getText().toString());
-//                userInfo.setAge(etAge.getText().toString());
-//                userInfo.setMobile(etMobile.getText().toString());
-//                userInfo.setAddress(etAddress.getText().toString());
-//                if (isGreen) {
-//                    userInfoDao.insert(userInfo);
-//                } else {
-//                    databaseDao.insert(userInfo);
-//                }
+                if (currUserinfo == null || currUserinfo.getId() == null) {
+                    return;
+                }
+                currUserinfo.setName(etName.getText().toString());
+                currUserinfo.setAge(etAge.getText().toString());
+                currUserinfo.setMobile(etMobile.getText().toString());
+                currUserinfo.setAddress(etAddress.getText().toString());
+                LogUtils.i("edit " + new Gson().toJson(currUserinfo));
+                if (isGreen) {
+                    userInfoDao.update(currUserinfo);
+                } else {
+                    nUserInfoDao.update(currUserinfo, new String[]{"id"}, new String[]{String.valueOf(currUserinfo.getId())});
+                }
                 break;
             case R.id.button_delete:
-
+                if (currUserinfo == null) {
+                    return;
+                }
+                if (isGreen) {
+                    userInfoDao.delete(currUserinfo);
+                } else {
+                    nUserInfoDao.delete(currUserinfo, new String[]{"id"}, new String[]{String.valueOf(currUserinfo.getId())});
+                }
                 break;
         }
+        refreshData();
     }
 
     private void refreshData() {
