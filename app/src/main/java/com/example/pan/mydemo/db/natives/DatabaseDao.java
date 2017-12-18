@@ -165,18 +165,18 @@ public abstract class DatabaseDao implements DBInterface {
                         || Modifier.isStatic(f.getModifiers())) {//如果是static transient 则忽略
                     continue;
                 }
-                Annotation[] annotations = f.getAnnotations();
-                if (annotations != null) {
+                if (f.getAnnotations().length > 0) {
                     continue;
                 }
+
                 String fieldName = f.getName();
                 Object v = f.get(object);
-                LogUtils.i("value " + v.toString());
 
                 String value = "";
                 if (v != null) {
                     value = FieldUtil.toString(v);
                 }
+                LogUtils.i("value " + value);
                 contentValues.put(fieldName, value);
                 LogUtils.i("values " + value);
             }

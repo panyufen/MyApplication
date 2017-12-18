@@ -59,7 +59,7 @@ public class DataBaseActivity extends BaseLayoutActivity {
     @BindView(R.id.recycler_view)
     AutoScrollRecyclerView mRecyclerView;
 
-    //    private DBHelper dbHelper;
+    //private DBHelper dbHelper;
     private NUserInfoDao nUserInfoDao;
     private UserInfoDao userInfoDao;
 

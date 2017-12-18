@@ -11,6 +11,7 @@ import org.greenrobot.greendao.annotation.Id;
 @Entity
 public class UserInfo {
     @Id(autoincrement = true)
+    @com.example.pan.mydemo.pojo.Id
     private Long id;
     private String name;
     private String age;

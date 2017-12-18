@@ -18,30 +18,42 @@ public class NUserInfoDao extends DatabaseDao {
 
     @Override
     public void createTable(SQLiteDatabase db) {
-        String sql = getCreateTableSql(table);
-        LogUtils.i(sql);
-        db.execSQL(sql);
+        try {
+            String sql = getCreateTableSql(table);
+            LogUtils.i(sql);
+            db.execSQL(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void upgradeTable(SQLiteDatabase db, int oldVersion, int newVersion) {
-        while (oldVersion < newVersion) {
-            switch (oldVersion++) {
-                case 1:
-                    break;
-                case 2:
-                    db.execSQL("ALTER TABLE userinfo ADD COLUMN address TEXT;");
-                    db.execSQL("ALTER TABLE userinfo ADD COLUMN mobile TEXT;");
-                    break;
-                case 3:
-                    db.execSQL("alter table userinfo add COLUMN newcolumn TEXT");
-                    break;
+        try {
+            while (oldVersion < newVersion) {
+                LogUtils.i("upgrade Table " + oldVersion + " " + newVersion);
+                switch (++oldVersion) {
+                    case 1:
+                        break;
+                    case 2:
+                        db.beginTransaction();
+                        db.execSQL("ALTER TABLE " + table + " ADD COLUMN address1 TEXT");
+                        db.execSQL("ALTER TABLE " + table + " ADD COLUMN mobile1 TEXT");
+                        db.setTransactionSuccessful();
+                        db.endTransaction();
+                        break;
+                    case 3:
+                        db.execSQL("alter table " + table + " add COLUMN newcolumn TEXT");
+                        break;
+                }
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
     private String getCreateTableSql(String tableName) {
-        return "create table if not exists " + tableName + "(id INTEGER PRIMARY KEY  AUTOINCREMENT,userid INTEGER,name TEXT,age INTEGER,mobile TEXT"
+        return "create table if not exists " + tableName + "(id INTEGER PRIMARY KEY  AUTOINCREMENT,name TEXT,age INTEGER,mobile TEXT"
                 + ",address TEXT);createTable index userinfo_id_index on " + tableName + "(id);";
     }
 
