@@ -1,8 +1,8 @@
 package com.example.pan.mydemo.pojo;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * Created by PAN on 2017/12/11.
@@ -17,14 +17,16 @@ public class UserInfo {
     private String age;
     private String mobile;
     private String address;
-    @Generated(hash = 1070336159)
-    public UserInfo(Long id, String name, String age, String mobile,
-            String address) {
+    private String mobile1;
+    @Generated(hash = 417396528)
+    public UserInfo(Long id, String name, String age, String mobile, String address,
+            String mobile1) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.mobile = mobile;
         this.address = address;
+        this.mobile1 = mobile1;
     }
     @Generated(hash = 1279772520)
     public UserInfo() {
@@ -59,5 +61,10 @@ public class UserInfo {
     public void setAddress(String address) {
         this.address = address;
     }
-
+    public String getMobile1() {
+        return this.mobile1;
+    }
+    public void setMobile1(String mobile1) {
+        this.mobile1 = mobile1;
+    }
 }

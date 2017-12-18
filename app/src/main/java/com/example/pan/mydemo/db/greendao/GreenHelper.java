@@ -14,14 +14,17 @@ public class GreenHelper {
 
     private static GreenHelper greenHelper;
     private DaoMaster.DevOpenHelper helper;
+    private CustomOpenHelper customOpenHelper;
     private DaoMaster daoMaster;
     private DaoSession daoSession;
     private final String PASSWORD = "panyufen";
 
     private GreenHelper(Context context) {
-        helper = new DaoMaster.DevOpenHelper(context, "database_green", null);
+//        helper = new DaoMaster.DevOpenHelper(context, "database_green", null);
+        customOpenHelper = new CustomOpenHelper(context,"database_green",null);
 //        daoMaster = new DaoMaster(helper.getEncryptedWritableDb(PASSWORD));
-        daoMaster = new DaoMaster(helper.getWritableDb());
+//        daoMaster = new DaoMaster(helper.getWritableDb());
+        daoMaster = new DaoMaster(customOpenHelper.getWritableDb());
         daoSession = daoMaster.newSession();
     }
 

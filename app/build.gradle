@@ -86,7 +86,7 @@ android {
         /**
          * 版本号
          */
-        schemaVersion 1
+        schemaVersion 2
         /**
          * greendao输出dao的数据库操作实体类文件夹（相对路径 包名+自定义路径名称，包将创建于包名的直接路径下）
          */
@@ -151,6 +151,7 @@ dependencies {
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'org.greenrobot:greendao-generator:3.1.0'
     compile 'net.zetetic:android-database-sqlcipher:3.5.7'
+    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.1'
     compile 'junit:junit:4.12'
     compile files('libs/SQLiteStudioRemote.jar')
 }

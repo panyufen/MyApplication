@@ -14,7 +14,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static DataBaseHelper dataBaseHelper;
 
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final String DB_NAME = "database_native";
     private DatabaseDao.DatabaseInterface dbInterface;
 
