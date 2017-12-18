@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/item_selector"
         android:gravity="center"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
         />
 
 </LinearLayout>

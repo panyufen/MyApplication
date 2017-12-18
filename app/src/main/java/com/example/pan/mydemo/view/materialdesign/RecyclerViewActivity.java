@@ -12,7 +12,6 @@ public class RecyclerViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
-        setSupportActionBar(R.id.tool_bar);
     }
 
     public void startItemDecoration(View v) {
@@ -23,7 +22,12 @@ public class RecyclerViewActivity extends BaseActivity {
         startActivity(RecyclerViewItemDecoration2Activity.class);
     }
 
-    public void startRecyclerViewRelated(View v){
+    public void startRecyclerViewRelated(View v) {
         startActivity(RecyclerViewRelatedActivity.class);
     }
+
+    public void startSwipRecyclerView(View v) {
+        startActivity(DragRecyclerViewActivity.class);
+    }
+
 }

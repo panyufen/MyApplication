@@ -352,6 +352,8 @@
         </activity>
         <activity android:name=".view.database.DataBaseActivity">
         </activity>
+        <activity android:name=".view.materialdesign.DragRecyclerViewActivity">
+        </activity>
     </application>
 
 </manifest>
