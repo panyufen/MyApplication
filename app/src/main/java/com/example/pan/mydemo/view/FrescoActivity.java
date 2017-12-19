@@ -65,7 +65,7 @@ public class FrescoActivity extends BaseActivity {
 
         GenericDraweeHierarchy hierarchy = builder
                 .setFadeDuration(300)
-                .setPlaceholderImage(R.mipmap.detecimg)
+                .setPlaceholderImage(R.drawable.detecimg)
                 .setProgressBarImage(new ProgressBarDrawable())
                 .build();
 

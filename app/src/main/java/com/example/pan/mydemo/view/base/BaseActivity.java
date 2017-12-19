@@ -102,9 +102,9 @@ public class BaseActivity extends SkinBaseActivity {
     private void setToolbarIconStyle() {
         if (toolbar == null) return;
         if (SkinConfig.isLightSkin(this)) {
-            toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.nav_back_dark));
+            toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.nav_back_dark));
         } else {
-            toolbar.setNavigationIcon(getResources().getDrawable(R.mipmap.nav_back_light));
+            toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.nav_back_light));
         }
     }
 

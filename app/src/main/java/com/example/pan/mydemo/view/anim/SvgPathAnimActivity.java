@@ -34,7 +34,7 @@ public class SvgPathAnimActivity extends BaseActivity implements SvgPathImproveV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_svg_path_anim);
         mToolbar = setSupportActionBar(R.id.tool_bar);
-        mToolbar.setNavigationIcon(R.mipmap.iron_man2);
+        mToolbar.setNavigationIcon(R.drawable.iron_man2);
 
         textView = (TextView) findViewById(R.id.text_view);
         svgPathView = (SvgPathImproveView) findViewById(R.id.svg_path_view);
@@ -73,15 +73,15 @@ public class SvgPathAnimActivity extends BaseActivity implements SvgPathImproveV
             switch ((String) item.getTitle()) {
                 case "iron_man":
                     path = svgPathParser.parsePath(getString(R.string.iron_man));
-                    mToolbar.setNavigationIcon(R.mipmap.iron_man);
+                    mToolbar.setNavigationIcon(R.drawable.iron_man);
                     break;
                 case "iron_man2":
                     path = svgPathParser.parsePath(getString(R.string.iron_man2));
-                    mToolbar.setNavigationIcon(R.mipmap.iron_man2);
+                    mToolbar.setNavigationIcon(R.drawable.iron_man2);
                     break;
                 case "world_map":
                     path = svgPathParser.parsePath(getString(R.string.world_map));
-                    mToolbar.setNavigationIcon(R.mipmap.world_map);
+                    mToolbar.setNavigationIcon(R.drawable.world_map);
                     break;
 
             }

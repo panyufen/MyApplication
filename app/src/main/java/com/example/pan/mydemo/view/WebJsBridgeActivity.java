@@ -18,7 +18,7 @@ public class WebJsBridgeActivity extends WebActivity {
     public void initExternal() {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             LogUtils.i("addApptask start");
-            Bitmap bitmap = BitmapUtils.drawableToBitmap(getResources().getDrawable(R.mipmap.device_2017_01_09_140107));
+            Bitmap bitmap = BitmapUtils.drawableToBitmap(getResources().getDrawable(R.drawable.device_2017_01_09_140107));
             ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
             int result = manager.addAppTask(this, getIntent(), null, bitmap);
             LogUtils.i("addApptask "+result);

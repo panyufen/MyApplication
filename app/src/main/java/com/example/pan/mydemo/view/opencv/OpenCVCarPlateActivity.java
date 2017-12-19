@@ -139,7 +139,7 @@ public class OpenCVCarPlateActivity extends AppCompatActivity implements CameraB
         Log.i("camera", "width height " + width + " " + height);
         try {
             if (mCarPlateDetectionFilter == null) {
-                mCarPlateDetectionFilter = new CarPlateDetectionFilter(this, R.mipmap.digits);
+                mCarPlateDetectionFilter = new CarPlateDetectionFilter(this, R.drawable.digits);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,7 +149,7 @@ public class OpenCVCarPlateActivity extends AppCompatActivity implements CameraB
 
         mTempGray = new Mat();
         try {
-            mTempRgba = Utils.loadResource(this, R.mipmap.carcarda);
+            mTempRgba = Utils.loadResource(this, R.drawable.carcarda);
             Imgproc.cvtColor(mTempRgba, mTempGray, Imgproc.COLOR_RGB2GRAY);
         } catch (IOException e) {
             e.printStackTrace();

@@ -36,7 +36,7 @@
     </style>
 
     <style name="AppTheme.AppStartLoad" parent="NoActionBar.FullScreen">
-        <item name="android:windowBackground">@mipmap/loading_bg</item>
+        <item name="android:windowBackground">@drawable/loading_bg</item>
         <!--<item name="android:windowAnimationStyle">@style/ActivityNoAnimationStyle</item>-->
     </style>
 

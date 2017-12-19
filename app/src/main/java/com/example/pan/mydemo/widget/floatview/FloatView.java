@@ -86,10 +86,10 @@ public class FloatView extends android.support.v7.widget.AppCompatImageView {
         image = this;
         this.windowManager = windowManager;
 
-        defaultResource = R.mipmap.float_light;
-        darkResource = R.mipmap.float_dark;
-        leftResource = R.mipmap.float_dark_left;
-        rightResource = R.mipmap.float_dark_right;
+        defaultResource = R.drawable.float_light;
+        darkResource = R.drawable.float_dark;
+        leftResource = R.drawable.float_dark_left;
+        rightResource = R.drawable.float_dark_right;
 
         this.windowManagerParams = windowManagerParams;
         isMove = false;

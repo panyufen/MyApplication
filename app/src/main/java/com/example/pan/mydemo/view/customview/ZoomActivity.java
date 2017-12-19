@@ -23,7 +23,7 @@ public class ZoomActivity extends BaseActivity {
         if (getIntent().getStringExtra("imageUrl") != null) {
             zoomImageView.setImageBitmap(BitmapFactory.decodeFile(getIntent().getStringExtra("imageUrl")));
         } else {
-            zoomImageView.setImageDrawable(getResources().getDrawable(R.mipmap.s20150612_195215166));
+            zoomImageView.setImageDrawable(getResources().getDrawable(R.drawable.s20150612_195215166));
         }
     }
 }

@@ -55,7 +55,7 @@
                 android:alpha="1.0"
                 android:clickable="true"
                 android:scaleType="fitXY"
-                android:src="@mipmap/map_iv"/>
+                android:src="@drawable/map_iv"/>
 
             <RelativeLayout
                 android:layout_width="fill_parent"
@@ -95,7 +95,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="zan"
-                        android:src="@mipmap/map_zan"/>
+                        android:src="@drawable/map_zan"/>
 
                     <TextView
                         android:layout_width="wrap_content"

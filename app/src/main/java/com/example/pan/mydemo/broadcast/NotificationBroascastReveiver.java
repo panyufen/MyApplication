@@ -209,7 +209,7 @@ public class NotificationBroascastReveiver extends BroadcastReceiver {
         android.support.v4.app.NotificationCompat.BigPictureStyle style = new android.support.v4.app.NotificationCompat.BigPictureStyle();
         style.setBigContentTitle("BigContentTitle");
         style.setSummaryText("SummaryText");
-        style.bigPicture(BitmapFactory.decodeResource(mContext.getResources(), R.mipmap.sample2));
+        style.bigPicture(BitmapFactory.decodeResource(mContext.getResources(), R.drawable.sample2));
         builder.setStyle(style);
         builder.setAutoCancel(true);
         Intent intent = new Intent(mContext, NotificationActivity.class);
@@ -234,7 +234,7 @@ public class NotificationBroascastReveiver extends BroadcastReceiver {
         //第一个参数是图标资源id 第二个是图标显示的名称，第三个图标点击要启动的PendingIntent
         builder.addAction(R.drawable.ic_star, "", null);
         builder.addAction(R.drawable.ic_star, "", null);
-        builder.addAction(R.mipmap.route_play_normal, "", pIntent);
+        builder.addAction(R.drawable.route_play_normal, "", pIntent);
         builder.addAction(R.drawable.ic_star, "", null);
         NotificationCompat.MediaStyle style = new NotificationCompat.MediaStyle();
         style.setMediaSession(new MediaSessionCompat(mContext, "MediaSession",

@@ -87,7 +87,7 @@ public class OpenCVCarPlateDetectionByCActivity extends AppCompatActivity implem
 
         mTempGray = new Mat();
         try {
-            mTempRgba = Utils.loadResource(this, R.mipmap.carcarda);
+            mTempRgba = Utils.loadResource(this, R.drawable.carcarda);
             Imgproc.cvtColor(mTempRgba, mTempGray, Imgproc.COLOR_RGB2GRAY);
         } catch (IOException e) {
             e.printStackTrace();

@@ -26,7 +26,7 @@ public class FloatViewSecond extends android.support.v7.widget.AppCompatImageVie
 	public FloatViewSecond(Context context, LayoutParams windowManagerParams, WindowManager windowManager) {
 		super(context);
 		this.context = context;
-		defaultResource = R.mipmap.float_no_transparent;
+		defaultResource = R.drawable.float_no_transparent;
 		this.windowManager = windowManager;
 		this.windowManagerParams = windowManagerParams;
 		mPreferenceManager = new FloatViewPreferebceManager(context);

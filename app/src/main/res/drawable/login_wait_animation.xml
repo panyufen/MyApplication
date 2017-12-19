@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@mipmap/wait1"
+        android:drawable="@drawable/wait1"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait2"
+        android:drawable="@drawable/wait2"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait3"
+        android:drawable="@drawable/wait3"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait4"
+        android:drawable="@drawable/wait4"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait5"
+        android:drawable="@drawable/wait5"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait6"
+        android:drawable="@drawable/wait6"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait7"
+        android:drawable="@drawable/wait7"
         android:duration="100" />
     <item
-        android:drawable="@mipmap/wait8"
+        android:drawable="@drawable/wait8"
         android:duration="100" />
 
 </animation-list>

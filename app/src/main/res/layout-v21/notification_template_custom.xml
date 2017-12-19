@@ -12,7 +12,7 @@
         android:layout_width="64dp"
         android:layout_height="50dp"
         android:scaleType="fitCenter"
-        android:src="@mipmap/detecimg"/>
+        android:src="@drawable/detecimg"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -73,7 +73,7 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/route_play_normal"
+            android:src="@drawable/route_play_normal"
             />
 
         <ImageButton
@@ -85,7 +85,7 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/route_play_playing"
+            android:src="@drawable/route_play_playing"
             />
 
         <ImageButton
@@ -97,7 +97,7 @@
             android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:src="@mipmap/route_play_stop"
+            android:src="@drawable/route_play_stop"
             />
     </LinearLayout>
 

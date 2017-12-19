@@ -139,7 +139,7 @@ public class OpenCVFeatureActivity extends AppCompatActivity implements CameraBr
         mOrignCenter = new Point(width / 2, height / 2);
 
         try {
-            imageDetectionFilter = new ImageDetectionFilter(this, R.mipmap.sample2);
+            imageDetectionFilter = new ImageDetectionFilter(this, R.drawable.sample2);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -227,7 +227,7 @@ public class OpenCVFeatureActivity extends AppCompatActivity implements CameraBr
                 isProcess = true;
                 imageDetectionFilter.stop();
                 try {
-                    imageDetectionFilter = new ImageDetectionFilter(this, R.mipmap.sample2);
+                    imageDetectionFilter = new ImageDetectionFilter(this, R.drawable.sample2);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -142,9 +142,9 @@ public class SkySurfaceView extends GLSurfaceView {
             GLES30.glEnable(GLES30.GL_CULL_FACE);
 
             //初始化纹理
-            textureIdEarth = initTexture(R.mipmap.earth);
-            textureIdEarthNight = initTexture(R.mipmap.earthn);
-            textureIdMoon = initTexture(R.mipmap.moon);
+            textureIdEarth = initTexture(R.drawable.earth);
+            textureIdEarthNight = initTexture(R.drawable.earthn);
+            textureIdMoon = initTexture(R.drawable.moon);
             //设置太阳灯光的初始位置
             MatrixState.setLightLocationSun(100, 5, 0);
             //启动一个线程定时旋转地球、月球

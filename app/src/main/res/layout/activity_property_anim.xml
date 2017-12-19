@@ -69,7 +69,7 @@
                     android:alpha="0.7"
                     android:onClick="rotateAnimRun"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/fuzi"
+                    android:src="@drawable/fuzi"
                     />
 
             </LinearLayout>
@@ -96,7 +96,7 @@
                     android:layout_margin="10dp"
                     android:onClick="rotateAnimRunListener"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/fuzi"
+                    android:src="@drawable/fuzi"
                     />
 
             </LinearLayout>

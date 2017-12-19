@@ -23,7 +23,7 @@ public class RecentTaskActivity extends BaseActivity {
         setSupportActionBar(R.id.tool_bar, "RecentTask");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Bitmap icon = BitmapUtils.drawableToBitmap(getDrawable(R.mipmap.detecimg));
+            Bitmap icon = BitmapUtils.drawableToBitmap(getDrawable(R.drawable.detecimg));
             int color = getResources().getColor(R.color.colorPrimary);
             TaskDescription taskDescription = new TaskDescription("RecentTask", icon,color);
             setTaskDescription(taskDescription);
