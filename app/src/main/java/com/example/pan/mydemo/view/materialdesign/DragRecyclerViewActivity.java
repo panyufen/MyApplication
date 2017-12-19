@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
+import com.example.pan.mydemo.adapter.DividerGridItemDecoration;
 import com.example.pan.mydemo.pojo.DataGroupItem;
 import com.example.pan.mydemo.view.base.BaseLayoutActivity;
 import com.google.gson.Gson;
@@ -53,11 +54,12 @@ public class DragRecyclerViewActivity extends BaseLayoutActivity {
     public void onViewCheckChanged(CompoundButton v, boolean checked) {
         if (checked) { // greendao
             animType = true;
-            tvType.setText("GreenDao");
+            tvType.setText("item move");
         } else {      //native
             animType = false;
-            tvType.setText("SQLite");
+            tvType.setText("item swap");
         }
+        adapter.notifyDataSetChanged();
     }
 
     private void initView() {
@@ -71,7 +73,7 @@ public class DragRecyclerViewActivity extends BaseLayoutActivity {
             }
         }
         adapter = new AnimRecyclerAdapter();
-
+        recyclerView.addItemDecoration(new DividerGridItemDecoration(this));
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setAdapter(adapter);
 
@@ -82,6 +84,17 @@ public class DragRecyclerViewActivity extends BaseLayoutActivity {
     }
 
     private class SimpleCallback extends ItemTouchHelper.Callback {
+
+        @Override
+        public boolean isLongPressDragEnabled() {
+            return true;
+        }
+
+        @Override
+        public boolean isItemViewSwipeEnabled() {
+            return false;
+        }
+
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
             if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
@@ -99,37 +112,49 @@ public class DragRecyclerViewActivity extends BaseLayoutActivity {
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
             LogUtils.i("SimpleCallback onMove " + viewHolder.getAdapterPosition() + " " + target.getAdapterPosition());
             int sIndex = viewHolder.getAdapterPosition();
-            int tIndex = viewHolder.getAdapterPosition();
+            int tIndex = target.getAdapterPosition();
             if (sIndex < tIndex) {
                 for (int i = sIndex; i < tIndex; i++) {
                     Collections.swap(lists, i, i + 1);
                 }
             } else {
-                for (int i = sIndex; i > tIndex; i--) {
-                    Collections.swap(lists, i, i - 1);
+                for (int j = sIndex; j > tIndex; j--) {
+                    Collections.swap(lists, j, j - 1);
                 }
             }
             LogUtils.i("List " + new Gson().toJson(lists));
-            if (sIndex < tIndex) {
-                adapter.notifyItemMoved(sIndex, tIndex);
-            } else {
-                adapter.notifyItemMoved(tIndex, sIndex);
-            }
+            adapter.notifyItemMoved(sIndex, tIndex);
+            clearClear(viewHolder);
             return true;
         }
+
 
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
             LogUtils.i("SimpleCallback onSwiped");
         }
 
+
         @Override
         public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
             super.onSelectedChanged(viewHolder, actionState);
             if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
-                viewHolder.itemView.setScaleX(1.2f);
-                viewHolder.itemView.setScaleY(1.2f);
+                viewHolder.itemView.setScaleX(1.1f);
+                viewHolder.itemView.setScaleY(1.1f);
             }
+        }
+
+        @Override
+        public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            super.clearView(recyclerView, viewHolder);
+            if (!recyclerView.isComputingLayout()) {
+                clearClear(viewHolder);
+            }
+        }
+
+        private void clearClear(RecyclerView.ViewHolder viewHolder) {
+            viewHolder.itemView.setScaleX(1.0f);
+            viewHolder.itemView.setScaleY(1.0f);
         }
     }
 

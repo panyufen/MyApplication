@@ -19,18 +19,18 @@ public class MaterialDesignActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_design);
         mToolbar = setSupportActionBar(R.id.tool_bar);
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                execShellCmd("input tap 400 800");
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+//TODO
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                execShellCmd("input tap 400 800");
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
     }
 
     public void startRecycler(View v) {
