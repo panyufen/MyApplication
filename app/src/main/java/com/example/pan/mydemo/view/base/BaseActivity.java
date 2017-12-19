@@ -51,7 +51,7 @@ public class BaseActivity extends SkinBaseActivity {
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
-        setContentView(layoutResID,true);
+        setContentView(layoutResID, true);
     }
 
     public void setContentView(@LayoutRes int layoutResID, boolean bindable) {

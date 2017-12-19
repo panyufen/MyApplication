@@ -154,4 +154,5 @@ dependencies {
     compile 'net.zetetic:android-database-sqlcipher:3.5.7'
     compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.0.1'
     compile 'junit:junit:4.12'
+
 }

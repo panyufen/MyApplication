@@ -53,6 +53,7 @@ public class MyApplication extends SkinBaseApplication implements Thread.Uncaugh
 
         //数据库查看lib
         SQLiteStudioService.instance().start(this);
+
     }
 
 //    /**
