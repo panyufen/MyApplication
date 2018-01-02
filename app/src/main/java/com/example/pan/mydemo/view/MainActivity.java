@@ -4,12 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
+import com.example.pan.mydemo.service.FloatDialogService;
 import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.view.customview.CustomViewActivity;
 import com.example.pan.mydemo.view.database.DataBaseActivity;
@@ -19,10 +21,10 @@ import com.example.pan.mydemo.view.opengl.OpenGLActivity;
 import com.example.pan.mydemo.view.queue.PriorityConQueueActivity;
 import com.example.pan.mydemo.view.rxjava.RxJavaActivity;
 import com.example.pan.mydemo.view.web.WebIntentActivity;
-import com.example.pan.mydemo.service.FloatDialogService;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
+import kr.co.namee.permissiongen.PermissionSuccess;
 
 public class MainActivity extends BaseActivity {
 
@@ -53,10 +55,15 @@ public class MainActivity extends BaseActivity {
 
 
     @PermissionFail(requestCode = 100)
-    public void doFailSomething() {
-        Toast.makeText(this, "permission is not granted", Toast.LENGTH_LONG).show();
-        finish();
+    public void permissionDenied() {
+        Toast.makeText(this, "Permission is denied", Toast.LENGTH_LONG).show();
     }
+
+    @PermissionSuccess(requestCode = 100)
+    public void permissionGranted() {
+        Toast.makeText(this, "All Permissions is granted", Toast.LENGTH_LONG).show();
+    }
+
 
     private void call() {
 //        Intent intent = new Intent(Intent.ACTION_DIAL);
@@ -198,10 +205,15 @@ public class MainActivity extends BaseActivity {
         startService(floatDialogIntent);
     }
 
-    public void startDatabase(View v ){
+    public void startDatabase(View v) {
         startActivity(DataBaseActivity.class);
     }
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
+    }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {

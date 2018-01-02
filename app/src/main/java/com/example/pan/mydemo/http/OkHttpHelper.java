@@ -59,7 +59,6 @@ public class OkHttpHelper {
             .connectTimeout(TIME, TimeUnit.SECONDS)
             .readTimeout(TIME, TimeUnit.SECONDS)
             .writeTimeout(TIME, TimeUnit.SECONDS)
-//            .addInterceptor(new OkHttpActivity.LoggingInterceptor())
             .addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
@@ -73,10 +72,15 @@ public class OkHttpHelper {
                     return chain.proceed(requestNew);
                 }
             })
+            .addInterceptor(new LoggingInterceptor())
             .build();
 
     private OkHttpHelper() {
 
+    }
+
+    public OkHttpClient getmOkHttpClient() {
+        return mOkHttpClient;
     }
 
     public static OkHttpHelper getInstance() {
@@ -111,13 +115,14 @@ public class OkHttpHelper {
                     continue;
                 }
                 String fieldName = field.getName();
-                LogUtils.i("fieldName " + fieldName + " " + Modifier.toString(field.getModifiers()) + " " + field.getType().getSimpleName());
+//                LogUtils.i("fieldName " + fieldName + " " + Modifier.toString(field.getModifiers()) + " " + field.getType().getSimpleName());
                 Object val = field.get(reqBean);
                 if (val != null) {
                     if (val instanceof File) { //如果是文件  先忽略
                         fileCount++;
                         File file = (File) val;
-                        multiFormBodyBuidler.addFormDataPart(fieldName, file.getName(), RequestBody.create(MediaType.parse("image/jpeg"), file));
+                        multiFormBodyBuidler.addFormDataPart(fieldName, file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+
                     } else if (val instanceof String) {
                         formBodyBuilder.add(fieldName, (String) val);
                         multiFormBodyBuidler.addFormDataPart(fieldName, (String) val);
@@ -142,7 +147,7 @@ public class OkHttpHelper {
                 }
                 requestUrl += stringBuilder.toString();
                 requestBuilder.method("GET", null);
-                LogUtils.i(String.format("NetStart: GET %s", requestUrl));
+                LogUtils.i(String.format("NetStart: GET %n%s", requestUrl));
             } else {
 
                 if (fileCount > 0) { //如果有文件 则进行转换成FormMulti方式 否则用urlencode方式
@@ -151,7 +156,7 @@ public class OkHttpHelper {
                 } else {
                     requestBuilder.method("POST", formBodyBuilder.build());
                 }
-                LogUtils.i(String.format("NetStart: POST %s %s", requestUrl, new Gson().toJson(reqBean)));
+                LogUtils.i(String.format("NetStart: POST %s%n%s", requestUrl, new Gson().toJson(reqBean)));
             }
 
             requestBuilder.url(requestUrl);
@@ -182,7 +187,7 @@ public class OkHttpHelper {
                         responseBean = defaultResBean;
                     }
                     resultResEvent.resBean = responseBean;
-                    LogUtils.i(String.format("NetResponse: %s in %.1fms %s", BASE_URL + reqBean.getPath(), ((t2 - t1) / 1e6d), new Gson().toJson(responseBean)));
+                    LogUtils.i(String.format("NetResponse: %s in %.1fms %n%s", BASE_URL + reqBean.getPath(), ((t2 - t1) / 1e6d), new Gson().toJson(responseBean)));
                     EventBus.getDefault().post(resultResEvent);
                 }
             });

@@ -12,15 +12,11 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
-//        externalNativeBuild {
-//            cmake {
-//                cppFlags "-std=c++11 -frtti -fexceptions"
-//                abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-//            }
-//        }
-
-        ndk {
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11 -frtti -fexceptions"
+                abiFilters 'armeabi','armeabi-v7a','arm64-v8a'
+            }
         }
 
         manifestPlaceholders = [
@@ -74,11 +70,11 @@ android {
             }
         }
     }
-//    externalNativeBuild {
-//        cmake {
-//            path "CMakeLists.txt"
-//        }
-//    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
     productFlavors {
     }
 
@@ -86,7 +82,7 @@ android {
         /**
          * 版本号
          */
-        schemaVersion 2
+        schemaVersion 1
         /**
          * greendao输出dao的数据库操作实体类文件夹（相对路径 包名+自定义路径名称，包将创建于包名的直接路径下）
          */
@@ -117,8 +113,8 @@ dependencies {
     compile project(':CordovaLib')
     compile project(':libshot')
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile(name: 'mylibrary-release', ext: 'aar')
     //日历arr包
+    compile(name: 'mylibrary-release', ext: 'aar')
 
     //    compile 'com.facebook.react:react-native:+'
     compile files('libs/SQLiteStudioRemote.jar')
