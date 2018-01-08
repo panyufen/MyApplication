@@ -27,6 +27,11 @@ android {
 
 
     }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -37,13 +42,13 @@ android {
         debug {
             keyAlias 'panyufen'
             keyPassword '123456'
-            storeFile file('/AppKey.jks')
+            storeFile file('/AppKey.keystore')
             storePassword '123456'
         }
         release {
             keyAlias 'panyufen'
             keyPassword '123456'
-            storeFile file('/AppKey.jks')
+            storeFile file('/AppKey.keystore')
             storePassword '123456'
         }
     }
@@ -118,9 +123,13 @@ dependencies {
 
     //    compile 'com.facebook.react:react-native:+'
     compile files('libs/SQLiteStudioRemote.jar')
+    compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:cardview-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:multidex:1.0.1'
+
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.facebook.stetho:stetho:1.4.1'
@@ -130,19 +139,16 @@ dependencies {
     compile 'com.squareup.okio:okio:1.5.0'
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'com.facebook.fresco:fresco:0.12.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.lovedise:permissiongen:0.0.6'
-    compile 'com.android.support:multidex:1.0.1'
     compile 'cn.jiguang.sdk:jpush:3.0.3'
     compile 'cn.jiguang.sdk:jcore:1.1.1'
-    compile 'com.android.support:support-v4:25.3.1'
     compile 'com.google.android:flexbox:0.2.6'
     compile 'com.jakewharton:butterknife:8.7.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.bumptech.glide:glide:4.0.0'
     compile 'com.jakewharton:butterknife-compiler:8.7.0'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'org.greenrobot:eventbus:3.1.0-RC'
     compile 'org.greenrobot:greendao:3.2.2'
