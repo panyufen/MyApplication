@@ -1,1 +1,1 @@
-include ':app', ':CordovaLib', ':SkinLoader', ':library',':libshot'
+include ':app', ':CordovaLib', ':SkinLoader', ':library', ':libshot', ':paylib'

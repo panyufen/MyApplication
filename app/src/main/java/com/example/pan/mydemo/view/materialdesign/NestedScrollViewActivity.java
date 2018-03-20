@@ -24,10 +24,8 @@ public class NestedScrollViewActivity extends BaseActivity implements NestedScro
         setContentView(R.layout.activity_nest_scrollview);
         setSupportActionBar(R.id.tool_bar);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
-
         mScrollView = (NestedScrollView) findViewById(R.id.scroll_view);
         mScrollView.setOnScrollChangeListener(this);
-
         image_view = (ImageView) findViewById(R.id.image_view);
     }
 

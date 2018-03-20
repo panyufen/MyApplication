@@ -28,4 +28,11 @@
         <attr name="contentPaddingTB" format="dimension|reference"/>
         <attr name="backgroundColor" format="color|reference"/>
     </declare-styleable>
+
+    <declare-styleable name="AutoLayout">
+        <attr name="is_square" format="boolean"/>
+        <attr name="colums" format="integer"/>
+        <attr name="split_border_width" format="dimension"/>
+        <attr name="split_border_color" format="color"/>
+    </declare-styleable>
 </resources>

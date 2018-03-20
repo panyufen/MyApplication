@@ -48,6 +48,8 @@ public class MainActivity extends BaseActivity {
                         Manifest.permission.CAMERA,
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.CALL_PHONE
+
                 }
         );
 
@@ -203,6 +205,10 @@ public class MainActivity extends BaseActivity {
     public void startFloatView(View view) {
         Intent floatDialogIntent = new Intent(this, FloatDialogService.class);
         startService(floatDialogIntent);
+    }
+
+    public void startPayActivity(View view) {
+        startActivity(PayActivity.class);
     }
 
     public void startDatabase(View v) {

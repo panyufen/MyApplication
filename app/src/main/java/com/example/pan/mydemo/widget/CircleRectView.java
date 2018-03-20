@@ -175,8 +175,8 @@ public class CircleRectView extends View {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(mBackgroundColor);
         canvas.drawPath(mPath, mPaint);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(mStrokeColor);
+//        mPaint.setStyle(Paint.Style.STROKE);
+//        mPaint.setColor(mStrokeColor);
 
         if (!TextUtils.isEmpty(mText)) {
             int textDescent = (int) mTextPaint.getFontMetrics().descent;

@@ -1,10 +1,15 @@
 package com.example.pan.mydemo.view;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -22,8 +27,8 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.adapter.MyOrientationListener;
+import com.example.pan.mydemo.view.base.BaseActivity;
 
 import java.lang.reflect.Method;
 
@@ -84,6 +89,15 @@ public class BaiduMapDemoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baidu_map_demo);
         mToolBar = setSupportActionBar(R.id.tool_bar);
+
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED
+                && !ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            Toast.makeText(this, "位置权限已拒绝且不不在提示", Toast.LENGTH_LONG).show();
+        }
+
+
 
         // 第一次定位
         isFristLocation = true;

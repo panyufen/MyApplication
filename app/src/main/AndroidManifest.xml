@@ -4,6 +4,7 @@
     package="com.example.pan.mydemo"
     tools:overrideLibrary="com.facebook.react">
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -29,7 +30,6 @@
     <!-- 手机信息 -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <!-- Jpush -->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
     <!-- nfc -->
@@ -353,6 +353,8 @@
         <activity android:name=".view.database.DataBaseActivity">
         </activity>
         <activity android:name=".view.materialdesign.DragRecyclerViewActivity">
+        </activity>
+        <activity android:name=".view.PayActivity">
         </activity>
     </application>
 

@@ -2,16 +2,15 @@ package com.example.pan.mydemo.view.anim;
 
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.transformer.AlphaPageTransformer;
 import com.example.pan.mydemo.transformer.NonPageTransformer;
 import com.example.pan.mydemo.transformer.RotateDownPageTransformer;
@@ -19,12 +18,14 @@ import com.example.pan.mydemo.transformer.RotateUpPageTransformer;
 import com.example.pan.mydemo.transformer.RotateYTransformer;
 import com.example.pan.mydemo.transformer.ScaleInTransformer;
 import com.example.pan.mydemo.transformer.ZoomOutPageTransformer;
+import com.example.pan.mydemo.view.base.BaseActivity;
+import com.example.pan.mydemo.widget.ClipViewPager;
 
 public class ViewPagerActivity extends BaseActivity {
 
     private Toolbar toolbar;
 
-    private ViewPager mViewPager;
+    private ClipViewPager mViewPager;
     private PagerAdapter mAdapter;
 
     int[] imgRes = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d,
@@ -37,7 +38,7 @@ public class ViewPagerActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
+        mViewPager = (ClipViewPager) findViewById(R.id.id_viewpager);
 
         mViewPager.setPageMargin(40);
         mViewPager.setOffscreenPageLimit(3);
@@ -72,6 +73,14 @@ public class ViewPagerActivity extends BaseActivity {
             }
         });
         mViewPager.setPageTransformer(true, new AlphaPageTransformer());
+
+        ((ViewGroup)mViewPager.getParent()).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return mViewPager.dispatchTouchEvent(event);
+            }
+        });
+
     }
 
     @Override
