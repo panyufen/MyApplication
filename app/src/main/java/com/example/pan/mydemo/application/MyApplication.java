@@ -12,6 +12,7 @@ import com.facebook.stetho.dumpapp.DumpException;
 import com.facebook.stetho.dumpapp.DumperContext;
 import com.facebook.stetho.dumpapp.DumperPlugin;
 import com.pan.skin.loader.base.SkinBaseApplication;
+import com.umeng.commonsdk.UMConfigure;
 
 import cn.jpush.android.api.JPushInterface;
 import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
@@ -48,12 +49,15 @@ public class MyApplication extends SkinBaseApplication implements Thread.Uncaugh
         //百度地图
         SDKInitializer.initialize(getApplicationContext());
 
-        //异常处理
+        //如果不用第三方异常处理库，需要自己捕获异常
         Thread.setDefaultUncaughtExceptionHandler(this);
 
         //数据库查看lib
         SQLiteStudioService.instance().start(this);
 
+        //友盟初始化
+        UMConfigure.init(this, "5ae912a8b27b0a549a000262", "UMENG_CHANNEL", UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.setLogEnabled(true);
     }
 
 //    /**

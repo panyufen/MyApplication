@@ -25,9 +25,9 @@ public class WebJsBridgeActivity extends WebActivity {
         }
 
         super.initExternal();
-        WebSettings settings = webView.getSettings();
+        WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
-        webView.setWebChromeClient(new JSBridgeWebChromeClient());
+        mWebView.setWebChromeClient(new JSBridgeWebChromeClient());
         JSBridge.register("bridge", BridgeImpl.class);
     }
 }

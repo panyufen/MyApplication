@@ -23,7 +23,6 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -121,7 +120,7 @@ public class OkHttpHelper {
                     if (val instanceof File) { //如果是文件  先忽略
                         fileCount++;
                         File file = (File) val;
-                        multiFormBodyBuidler.addFormDataPart(fieldName, file.getName(), RequestBody.create(MediaType.parse("multipart/form-data"), file));
+                        multiFormBodyBuidler.addFormDataPart(fieldName, file.getName(), RequestBody.create(MultipartBody.FORM, file));
 
                     } else if (val instanceof String) {
                         formBodyBuilder.add(fieldName, (String) val);

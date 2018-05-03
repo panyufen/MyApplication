@@ -12,6 +12,7 @@ import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.http.event.ResEvent;
 import com.pan.skin.loader.base.SkinBaseActivity;
 import com.pan.skin.loader.config.SkinConfig;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -42,6 +43,7 @@ public class BaseActivity extends SkinBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
     }
 
     protected void startActivity(Class<?> cls) {
@@ -114,6 +116,12 @@ public class BaseActivity extends SkinBaseActivity {
         super.setSupportActionBar(toolbar);
         dynamicAddSkinEnableView(toolbar, "background", R.color.colorPrimary);
         return toolbar;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override

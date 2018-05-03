@@ -207,6 +207,31 @@
                 android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/item_selector"
+                android:onClick="startWhiteListActivity"
+                android:text="WhiteListActivity"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/item_selector"
+                android:onClick="startFFmpeg"
+                android:text="FFmpeg"
+                android:textAllCaps="false"
+                android:textColor="@color/normal_text_color"
+                skin:enable="true"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/item_selector"
                 android:onClick="startCusView"
                 android:text="CustomView"
                 android:textAllCaps="false"

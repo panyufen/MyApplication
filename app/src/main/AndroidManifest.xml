@@ -16,15 +16,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-    <!-- 无障碍服务 -->
-    <uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE"/>
     <!-- 相机 -->
     <uses-permission android:name="android.permission.CAMERA"/>
     <!-- 手机信息 -->
@@ -33,8 +28,7 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="com.example.pan.mydemo.permission.JPUSH_MESSAGE"/>
     <!-- nfc -->
-    <uses-permission android:name="android.permission.NFC"/>
-      
+    <uses-permission android:name="android.permission.NFC"/>  
     <uses-feature
         android:name="android.hardware.nfc"
         android:required="true"/>
@@ -121,6 +115,7 @@
             android:label="@string/title_activity_ok_http"/>
         <activity
             android:name=".view.WebActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/title_activity_web"/>
         <activity android:name=".view.rxjava.RxJavaActivity"/>
         <activity
@@ -355,6 +350,8 @@
         <activity android:name=".view.materialdesign.DragRecyclerViewActivity">
         </activity>
         <activity android:name=".view.PayActivity">
+        </activity>
+        <activity android:name=".view.ffmpeg.FFmpegActivity">
         </activity>
     </application>
 

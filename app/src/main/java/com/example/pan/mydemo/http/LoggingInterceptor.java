@@ -1,7 +1,13 @@
 package com.example.pan.mydemo.http;
 
+import com.cus.pan.library.utils.LogUtils;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.zip.GZIPInputStream;
 
 import okhttp3.FormBody;
 import okhttp3.Interceptor;
@@ -13,8 +19,9 @@ import okio.Buffer;
 import okio.BufferedSource;
 
 /**
- * Created by PAN on 2017/12/20.
+ * Created by PAN on 2017/11/30.
  */
+
 public class LoggingInterceptor implements Interceptor {
 
     @Override
@@ -23,21 +30,22 @@ public class LoggingInterceptor implements Interceptor {
 
         StringBuilder stringBuffer = new StringBuilder();
         stringBuffer.append("{");
+        FormBody formBody = null;
         if (request.body() instanceof FormBody) {
-            FormBody formBody = (FormBody) request.body();
+            formBody = (FormBody) request.body();
+        }
+        if (formBody != null) {
             for (int i = 0; i < formBody.size(); i++) {
                 stringBuffer.append(formBody.name(i)).append(":").append(formBody.value(i));
                 if (i + 1 < formBody.size()) {
                     stringBuffer.append(",");
                 }
             }
-        } else {
-            stringBuffer.append("...MultipartBody...");
         }
         stringBuffer.append("}");
 
         long t1 = System.nanoTime();
-//        Logger.i(String.format("Sending request %s%nbody:%s", request.url(), stringBuffer.toString()));
+        LogUtils.i(String.format("Sending request %s%nbody:%s", request.url(), stringBuffer.toString()));
 
         Response response = chain.proceed(request);
         long t2 = System.nanoTime();
@@ -45,21 +53,37 @@ public class LoggingInterceptor implements Interceptor {
         ResponseBody responseBody = response.body();
         long contentLen = responseBody.contentLength();
         String result = "";
-
         BufferedSource source = responseBody.source();
         source.request(Long.MAX_VALUE); // Buffer the entire body.
         Buffer buffer = source.buffer();
 
         Charset charset = Util.bomAwareCharset(buffer, response.body().contentType().charset());
 
-        if (contentLen != 0) {
-            result = buffer.clone().readString(charset);
+        if (contentLen != 0 && charset != null) {
+            Buffer buffer1 = buffer.clone();
+            GZIPInputStream gzipInputStream = new GZIPInputStream(buffer1.inputStream());
+            result = readByInputStreamReader(gzipInputStream);
+
+//            result = buffer1.readString(charset);
             result = decodeUnicode(result);
+            buffer1.close();
+            buffer1.clear();
+            buffer = null;
         }
-
-//        Logger.i(String.format("Received response from %s in %.1fms%nbody:%s", response.request().url(), (t2 - t1) / 1e6d, result + " \nlen:" + result.length()));
-
+        String responseStr = String.format("Received response from %s in %.1fms %s%nbody:%s", response.request().url(), (t2 - t1) / 1e6d, response.code(), result + "\nlen:" + result.length());
+        LogUtils.i(responseStr);
         return response;
+    }
+
+    private String readByInputStreamReader(InputStream is) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        int len = 0;
+        char[] tempLine = new char[1024];
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(is, "utf-8"), 1024 * 1024);
+        while ((len = bufferedReader.read(tempLine)) != -1) {
+            stringBuilder.append(tempLine, 0, len);
+        }
+        return stringBuilder.toString();
     }
 
 
@@ -106,8 +130,7 @@ public class LoggingInterceptor implements Interceptor {
                                 value = (value << 4) + 10 + aChar - 'A';
                                 break;
                             default:
-                                throw new IllegalArgumentException(
-                                        "Malformed   \\uxxxx   encoding.");
+                                throw new IllegalArgumentException("Malformed\\u xxxxencoding.");
                         }
 
                     }

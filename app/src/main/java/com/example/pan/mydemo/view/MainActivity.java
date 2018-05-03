@@ -4,23 +4,29 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cus.pan.library.utils.LogUtils;
+import com.cus.pan.library.utils.WhiteListUtils;
 import com.example.pan.mydemo.R;
 import com.example.pan.mydemo.service.FloatDialogService;
 import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.view.customview.CustomViewActivity;
 import com.example.pan.mydemo.view.database.DataBaseActivity;
+import com.example.pan.mydemo.view.ffmpeg.FFmpegActivity;
 import com.example.pan.mydemo.view.materialdesign.MaterialDesignActivity;
 import com.example.pan.mydemo.view.opencv.OpenCVActivity;
 import com.example.pan.mydemo.view.opengl.OpenGLActivity;
 import com.example.pan.mydemo.view.queue.PriorityConQueueActivity;
 import com.example.pan.mydemo.view.rxjava.RxJavaActivity;
 import com.example.pan.mydemo.view.web.WebIntentActivity;
+
+import java.util.List;
 
 import kr.co.namee.permissiongen.PermissionFail;
 import kr.co.namee.permissiongen.PermissionGen;
@@ -29,6 +35,11 @@ import kr.co.namee.permissiongen.PermissionSuccess;
 public class MainActivity extends BaseActivity {
 
     private ActionBar actionBar;
+
+    private Handler handler;
+
+    private List<String> names;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +63,16 @@ public class MainActivity extends BaseActivity {
 
                 }
         );
+
+//        Logger.i(names.size()+" ");
+
+        handler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+                return false;
+            }
+        });
+
 
     }
 
@@ -215,6 +236,13 @@ public class MainActivity extends BaseActivity {
         startActivity(DataBaseActivity.class);
     }
 
+    public void startFFmpeg(View v) {
+        startActivity(FFmpegActivity.class);
+    }
+
+    public void startWhiteListActivity(View v) {
+        WhiteListUtils.enterWhiteListSetting(this);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
