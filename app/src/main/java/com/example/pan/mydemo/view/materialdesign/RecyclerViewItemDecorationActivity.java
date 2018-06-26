@@ -15,9 +15,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cus.pan.library.utils.Logger;
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.adapter.DividerItemDecoration;
+import com.example.pan.mydemo.view.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,18 @@ public class RecyclerViewItemDecorationActivity extends BaseActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter = new HomeAdapter());
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                View view = recyclerView.getChildAt(0);
+                int top = view.getTop();
+                Logger.i("scroll " + recyclerView.getScrollY() + " " + recyclerView.getTop() + " " + top);
+
+            }
+        });
 
     }
 

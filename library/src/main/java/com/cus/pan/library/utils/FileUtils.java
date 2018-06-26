@@ -28,19 +28,31 @@ public class FileUtils {
     private static String FILE_WRITING_ENCODING = "UTF-8";
     private static String FILE_READING_ENCODING = "UTF-8";
 
+    public static String readFile(String _sFileName) throws Exception {
+        return readFile(_sFileName, FILE_READING_ENCODING);
+    }
+
+
     public static String readFile(String _sFileName, String _sEncoding) throws Exception {
+        InputStream inputStream = new FileInputStream(_sFileName);
+        return readFile(inputStream, _sEncoding);
+    }
+
+    public static String readFile(InputStream _sFileIs) throws Exception {
+        return readFile(_sFileIs, FILE_READING_ENCODING);
+    }
+
+    public static String readFile(InputStream _sFileIs, String _sEncoding) throws Exception {
         StringBuffer buffContent = null;
         String sLine;
 
-        FileInputStream fis = null;
         BufferedReader buffReader = null;
         if (_sEncoding == null || "".equals(_sEncoding)) {
             _sEncoding = FILE_READING_ENCODING;
         }
 
         try {
-            fis = new FileInputStream(_sFileName);
-            buffReader = new BufferedReader(new InputStreamReader(fis,
+            buffReader = new BufferedReader(new InputStreamReader(_sFileIs,
                     _sEncoding));
             boolean zFirstLine = "UTF-8".equalsIgnoreCase(_sEncoding);
             while ((sLine = buffReader.readLine()) != null) {
@@ -65,8 +77,8 @@ public class FileUtils {
             try {
                 if (buffReader != null)
                     buffReader.close();
-                if (fis != null)
-                    fis.close();
+                if (_sFileIs != null)
+                    _sFileIs.close();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -204,7 +216,7 @@ public class FileUtils {
     }
 
 
-    public static void moveAssetsToDir(Context context, String rawName, String dir,boolean isOverRide) {
+    public static void moveAssetsToDir(Context context, String rawName, String dir, boolean isOverRide) {
         try {
             writeFile(context.getAssets().open(rawName), dir, isOverRide);
         } catch (Exception e) {
@@ -388,11 +400,12 @@ public class FileUtils {
 
     /**
      * 提升读写权限
+     *
      * @param filePath 文件路径
      * @return
      * @throws IOException
      */
-    public static void setPermission(String filePath)  {
+    public static void setPermission(String filePath) {
         String command = "chmod " + "777" + " " + filePath;
         Runtime runtime = Runtime.getRuntime();
         try {

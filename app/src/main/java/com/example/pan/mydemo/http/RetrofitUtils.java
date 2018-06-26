@@ -7,8 +7,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Pan on 2017/11/18.
@@ -36,15 +34,4 @@ public class RetrofitUtils {
                 }
             })
             .build();
-
-    private static Retrofit getJsonRetrofit(){
-        return new Retrofit.Builder()
-                .client(client)
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).build();
-    }
-
-
-
-
 }

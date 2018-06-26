@@ -8,10 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cus.pan.library.utils.FileUtils;
+import com.cus.pan.library.utils.LogUtils;
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.utils.SvgPathParser;
+import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.widget.SvgPathImproveView;
+
+import java.io.InputStream;
 
 public class SvgPathAnimActivity extends BaseActivity implements SvgPathImproveView.StatusListener {
 
@@ -43,15 +47,21 @@ public class SvgPathAnimActivity extends BaseActivity implements SvgPathImproveV
 
         try {
             // iron_man,iron_man2,worldmap2
-            path = svgPathParser.parsePath(getString(R.string.iron_man2));
+            InputStream stream = getAssets().open("svg/iron_man_svg.txt");
+            String pathStr = getSvgString(stream);
+            LogUtils.i("pathStr " + pathStr);
+            path = svgPathParser.parsePath(pathStr);
         } catch (Exception e) {
             e.printStackTrace();
         }
         svgPathView.setPath(path);
         svgPathView.setStatusListener(this);
-
-
     }
+
+    private String getSvgString(InputStream is) throws Exception {
+        return FileUtils.readFile(is);
+    }
+
 
     public void doRestart(View v) {
         svgPathView.setPath(path);
@@ -72,15 +82,15 @@ public class SvgPathAnimActivity extends BaseActivity implements SvgPathImproveV
             // iron_man,iron_man2,worldmap2,shuangzixing
             switch ((String) item.getTitle()) {
                 case "iron_man":
-                    path = svgPathParser.parsePath(getString(R.string.iron_man));
+                    path = svgPathParser.parsePath(getSvgString(getAssets().open("svg/iron_man_svg.txt")));
                     mToolbar.setNavigationIcon(R.drawable.iron_man);
                     break;
                 case "iron_man2":
-                    path = svgPathParser.parsePath(getString(R.string.iron_man2));
+                    path = svgPathParser.parsePath(getSvgString(getAssets().open("svg/iron_man2_svg.txt")));
                     mToolbar.setNavigationIcon(R.drawable.iron_man2);
                     break;
                 case "world_map":
-                    path = svgPathParser.parsePath(getString(R.string.world_map));
+                    path = svgPathParser.parsePath(getSvgString(getAssets().open("svg/world_map_svg.txt")));
                     mToolbar.setNavigationIcon(R.drawable.world_map);
                     break;
 

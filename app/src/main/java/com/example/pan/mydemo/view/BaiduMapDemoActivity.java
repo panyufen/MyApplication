@@ -98,7 +98,6 @@ public class BaiduMapDemoActivity extends BaseActivity {
         }
 
 
-
         // 第一次定位
         isFristLocation = true;
         // 获取地图控件引用
@@ -122,27 +121,27 @@ public class BaiduMapDemoActivity extends BaseActivity {
     private void initOritationListener() {
         myOrientationListener = new MyOrientationListener(getApplicationContext());
         myOrientationListener.setOnOrientationListener(new MyOrientationListener.OnOrientationListener() {
-                    @Override
-                    public void onOrientationChanged(float x) {
-                        mXDirection = (int) x;
+            @Override
+            public void onOrientationChanged(float x) {
+                mXDirection = (int) x;
 
-                        // 构造定位数据
-                        MyLocationData locData = new MyLocationData.Builder()
-                                .accuracy(mCurrentAccracy)
-                                // 此处设置开发者获取到的方向信息，顺时针0-360
-                                .direction(mXDirection)
-                                .latitude(mCurrentLantitude)
-                                .longitude(mCurrentLongitude).build();
-                        // 设置定位数据
-                        mBaiduMap.setMyLocationData(locData);
-                        // 设置自定义图标
-                        BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
-                                .fromResource(R.drawable.navi_map_gps_locked);
-                        MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, null);
-                        mBaiduMap.setMyLocationConfigeration(config);
+                // 构造定位数据
+                MyLocationData locData = new MyLocationData.Builder()
+                        .accuracy(mCurrentAccracy)
+                        // 此处设置开发者获取到的方向信息，顺时针0-360
+                        .direction(mXDirection)
+                        .latitude(mCurrentLantitude)
+                        .longitude(mCurrentLongitude).build();
+                // 设置定位数据
+                mBaiduMap.setMyLocationData(locData);
+                // 设置自定义图标
+                BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+                        .fromResource(R.drawable.navi_map_gps_locked);
+                MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
+                mBaiduMap.setMyLocationConfigeration(config);
 
-                    }
-                });
+            }
+        });
     }
 
     /**
@@ -172,7 +171,7 @@ public class BaiduMapDemoActivity extends BaseActivity {
             if (location == null || mMapView == null)
                 return;
 
-            LogUtils.i(location.getLatitude()+" "+location.getLongitude()+" "+location.getRadius());
+            LogUtils.i(location.getLatitude() + " " + location.getLongitude() + " " + location.getRadius());
 
 
             // 构造定位数据
@@ -190,7 +189,7 @@ public class BaiduMapDemoActivity extends BaseActivity {
             BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
                     .fromResource(R.drawable.navi_map_gps_locked);
             MyLocationConfiguration config = new MyLocationConfiguration(
-                    mCurrentMode, true, null);
+                    mCurrentMode, true, mCurrentMarker);
             mBaiduMap.setMyLocationConfigeration(config);
             // 第一次定位时，将地图位置移动到当前位置
             if (isFristLocation) {

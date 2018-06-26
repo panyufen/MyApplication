@@ -134,7 +134,6 @@ public class OkHttpHelper {
                     }
                 }
             }
-
             Request.Builder requestBuilder = new Request.Builder();
             String requestUrl = BASE_URL + reqBean.getPath();
             if (httpMethodType == HttpMethodType.GET || reqFields.size() == 0) {

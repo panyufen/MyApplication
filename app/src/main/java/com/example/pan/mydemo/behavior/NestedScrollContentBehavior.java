@@ -36,7 +36,7 @@ public class NestedScrollContentBehavior extends CoordinatorLayout.Behavior<View
 
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, View child, View dependency) {
-        LogUtils.i("onDependentViewChanged");
+        LogUtils.i("onDependentViewChanged " + mDependency);
         mDependency = dependency;
         offsetChildAsNeeded(parent, child, dependency);
         return super.onDependentViewChanged(parent, child, dependency);
@@ -51,7 +51,7 @@ public class NestedScrollContentBehavior extends CoordinatorLayout.Behavior<View
 
     @Override
     public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
-        LogUtils.i("onStartNestedScroll ");
+        LogUtils.i("onStartNestedScroll " + child + " " + directTargetChild + " " + target);
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
 //        return super.onStartNestedScroll(coordinatorLayout, child, directTargetChild, target, nestedScrollAxes);
     }

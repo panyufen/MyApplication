@@ -9,10 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cus.pan.library.utils.Logger;
 import com.example.pan.mydemo.R;
-import com.example.pan.mydemo.view.base.BaseActivity;
 import com.example.pan.mydemo.adapter.ItemDecoraionDivider;
 import com.example.pan.mydemo.pojo.DataGroupItem;
+import com.example.pan.mydemo.view.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,10 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
     }
 
     private void initView() {
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(homeAdpater);
+
         //设置itemDecoration
         mRecyclerView.addItemDecoration(new ItemDecoraionDivider(this, new ItemDecoraionDivider.GroupTitleCallBack() {
             @Override
@@ -53,6 +56,17 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
                 return null;
             }
         }));
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                View view = recyclerView.getChildAt(0);
+                int top = view.getTop();
+                Logger.i("scroll " + recyclerView.getScrollY() + " " + recyclerView.getTop() + " " + top + " " + recyclerView.canScrollVertically(-1));
+
+            }
+        });
     }
 
 
@@ -79,12 +93,14 @@ public class RecyclerViewItemDecoration2Activity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, final int position) {
-            DataGroupItem groupItem = lists.get(position);
+            final DataGroupItem groupItem = lists.get(position);
             holder.tv.setText(groupItem.text);
             holder.tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    groupItem.text += " click";
                     Toast.makeText(RecyclerViewItemDecoration2Activity.this, "position:" + position, Toast.LENGTH_LONG).show();
+                    HomeAdpater.this.notifyItemChanged(position);
                 }
             });
         }

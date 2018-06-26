@@ -37,15 +37,32 @@ public class testDemo {
         //7 0111
         //8 1000
 
-        int s = 1|2|4|8;
-        System.out.println("1248: "+s);
+//        int s = 1|2|4|8;
+//        System.out.println("1248: "+s);
 
 //        int a = (7&2);
 
 //        System.out.println("testDemo End "+Integer.toBinaryString(a)+" ");
 
 
-        printRegex();
+//        printRegex();
+
+
+        String rasStr = "\n" +
+                "MIICXQIBAAKBgQCtuvl8359i4LkBbUKmW+hVS2j4QsrcakYKIGsipFqiuhxQ5M76\n" +
+                "lg5MsL6n0LUcbaw+3XMGsAX0E6GyTfdBoGbsEk4AAY6KA0g5KxONo6yBLIXH7oLT\n" +
+                "peaMqiiib4XMeLuHA+Mw/Ht1Ls4ERz+p74SVRN/2cQA5KTPVoZD8LL728QIDAQAB\n" +
+                "AoGAdaddVJshFtZ3lCbJb15ovnLeeNrLBXCXVD5WL9S8aN2/VW1PWtcKghdkVsP6\n" +
+                "E3GWp9BTGOFWdtBgvh8c5v3ZFMJzN9VNSSFlL8EmrI43h9T4+tLrn3628NI60L2w\n" +
+                "MJRal89cin1YR2udTUQCiKt4XFr0ylYUpFxCufmVgFMOc50CQQDjRjAef6zzYzUN\n" +
+                "3vvFu5kueKOOzZZj1rJtL+syDN7T+rqZNAqhtVsSKyxCc2F5PTlVF1IsSy8932bV\n" +
+                "ZYde4LOPAkEAw7BK/t7cJZYLvkAf7stoiNjhMGb4o+nAfqXV/3Gouv5RmvRPBnV8\n" +
+                "ADIh7YIQBzRmmwc+3j65OFfi7xSfEw5tfwJAMl4Ps/KfpaDK1TQhoASfQglCVheB\n" +
+                "yMZ/7Gq+OO1ZRKlASUubP5Mth61BtchURcYnuo/ciixvX8ruw0Qo6AHsSQJBAITh\n" +
+                "Myu6fVbwemzn8kcezI8QZmmNooz7b4EQby4UKfVAOH22I+tI37jqUeuLhALAbGQd\n" +
+                "GW2kvfUqiKi8IgC4rVUCQQCvOuZmaO3PFUw3aYb7zYsHKRTftWCu3gyxCIci6/rr\n" +
+                "gNkd3vIM6vw5g+R5QsT4bsRvNmdWxnMDqmQyowVKqIUo";
+        System.out.println(rasStr.length());
 
 
         System.out.println("testDemo End");
